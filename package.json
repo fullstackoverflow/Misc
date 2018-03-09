@@ -1,0 +1,29 @@
+{
+  "name": "@tosee/misc",
+  "version": "1.0.6",
+  "description": "",
+  "main": "./dist/index.js",
+  "typings":"./types/index.d.ts",
+  "scripts": {
+    "start": "node test/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tosee",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.3.2",
+    "glob": "^7.1.2",
+    "koa": "^2.5.0",
+    "koa-router": "^7.4.0",
+    "moment": "^2.21.0",
+    "restc": "^0.3.2"
+  },
+  "devDependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/glob": "^5.0.35",
+    "@types/koa": "^2.0.44",
+    "@types/koa-router": "^7.0.27",
+    "@types/node": "^9.4.6",
+    "ts-node": "^5.0.1"
+  }
+}
