@@ -1,17 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Koa = require("koa");
 const core_1 = require("./core/core");
 const log_1 = require("./utils/log");
-class Misc extends Koa {
+class Misc extends core_1.Core {
     constructor(rootPath) {
-        log_1.Log.info('Misc start');
-        log_1.Log.info('Platform:' + process.platform + ' version:' + process.version);
         super();
         this.rootPath = rootPath;
-        this.core = new core_1.Core(this);
-        this.core.fileScan(this.rootPath);
-        this.core.registerRouters();
+        log_1.Log.info('Misc start');
+        log_1.Log.info('Platform:' + process.platform + ' node:' + process.version);
+        super.fileScan(this.rootPath);
+        super.registerRouters();
         log_1.Log.info('Misc start success');
     }
 }

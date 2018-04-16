@@ -1,18 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const reqLog_1 = require("./../middleware/reqLog");
+const Koa = require("koa");
 const Router = require("koa-router");
 const glob = require("glob");
 const path = require("path");
 const restc_1 = require("restc");
 const log_1 = require("../utils/log");
-const router = new Router();
 exports.symbolRoutePrefix = Symbol("routePrefix");
 exports.symbolConfig = Symbol('config');
-class Core {
-    constructor(app, config) {
-        this.app = app;
-        this.router = router;
+class Core extends Koa {
+    constructor(config) {
+        super();
     }
     fileScan(dir) {
         try {
@@ -24,7 +23,8 @@ class Core {
     }
     registerRouters() {
         log_1.Log.info('Router loading...');
-        this.app.use(reqLog_1.logger);
+        this.use(reqLog_1.logger);
+        const router = new Router();
         for (let [controller, config] of Core.__DecoratedRouters) {
             let controllers = Array.isArray(controller) ? controller : [controller];
             let prefixPath = config.target[exports.symbolRoutePrefix];
@@ -33,19 +33,19 @@ class Core {
                 prefixPath = '/' + prefixPath;
             }
             if (_config && _config.restc == true) {
-                this.router.use(prefixPath, restc_1.koa2());
+                router.use(prefixPath, restc_1.koa2());
             }
             let routerPath = prefixPath + config.path;
             controllers.forEach((controller) => {
                 if (config.restc === true) {
-                    this.router.use(routerPath, restc_1.koa2());
+                    router.use(routerPath, restc_1.koa2());
                 }
                 log_1.Log.warn(config.method.toUpperCase() + ':' + routerPath + (config.describe ? '   description:' + config.describe : ''));
-                this.router[config.method](routerPath, controller);
+                router[config.method](routerPath, controller);
             });
         }
-        this.app.use(this.router.routes());
-        this.app.use(this.router.allowedMethods());
+        this.use(router.routes());
+        this.use(router.allowedMethods());
     }
 }
 Core.__DecoratedRouters = new Map();

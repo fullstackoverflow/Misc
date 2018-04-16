@@ -1,6 +1,6 @@
 {
   "name": "@tosee/misc",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "",
   "main": "./dist/index.js",
   "typings":"./types/index.d.ts",

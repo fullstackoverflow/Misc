@@ -18,6 +18,7 @@ exports.logger = function (ctx, next) {
         else {
             log_1.Log.info('URL:' + ctx.url + ' Method:' + method + ' Params:' + JSON.stringify(ctx.body));
         }
+        next();
     });
 };
 //# sourceMappingURL=reqLog.js.map
