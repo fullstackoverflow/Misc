@@ -8,4 +8,5 @@ export const logger = async function(ctx:Koa.Context,next:Function){
     }else{
         Log.info('URL:'+ctx.url+' Method:'+method+' Params:'+ JSON.stringify(ctx.body));
     }
+    next();
 }

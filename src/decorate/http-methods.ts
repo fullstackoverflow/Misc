@@ -1,43 +1,29 @@
 import { Core,symbolRoutePrefix } from './../core/core';
 
-export function Get(path:string):MethodDecorator {
+function MethodFactory(method:string,path:string):MethodDecorator{
     return function (target, propertyKey: string, descriptor: PropertyDescriptor) {
         Core.__DecoratedRouters.set(target[propertyKey],{
             target:target,
             path:path,
-            method:'get'
+            method:method
         })
     }
+}
+
+export function Get(path:string):MethodDecorator {
+    return MethodFactory('get',path);
 }
 
 export function Post(path:string):MethodDecorator {
-    return function (target, propertyKey: string, descriptor: PropertyDescriptor) {
-        Core.__DecoratedRouters.set(target[propertyKey],{
-            target:target,
-            path:path,
-            method:'post'
-        })
-    }
+    return MethodFactory('post',path);
 }
 
 export function Put(path:string):MethodDecorator {
-    return function (target, propertyKey: string, descriptor: PropertyDescriptor) {
-        Core.__DecoratedRouters.set(target[propertyKey],{
-            target:target,
-            path:path,
-            method:'put'
-        })
-    }
+    return MethodFactory('put',path);
 }
 
 export function Delete(path:string):MethodDecorator {
-    return function (target, propertyKey: string, descriptor: PropertyDescriptor) {
-        Core.__DecoratedRouters.set(target[propertyKey],{
-            target:target,
-            path:path,
-            method:'delete'
-        })
-    }
+    return MethodFactory('delete',path);
 }
 
 
