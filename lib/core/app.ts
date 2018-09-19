@@ -23,13 +23,6 @@ export class Misc extends Koa {
         }else{
             this.use(body());
         }
-        if (opts.configpath) {
-            if (existsSync(opts.configpath)) {
-                Config.path = opts.configpath;
-            } else {
-                logger.error('Config path not exist');
-            }
-        }
         this.keys = opts.keys;
         if (opts.cors) {
             logger.success('cors true');

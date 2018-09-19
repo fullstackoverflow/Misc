@@ -8,8 +8,7 @@ export interface options {
     keys?: Keygrip | string[];
     beforeall?: Array<compose.Middleware<any>>,
     routerpath: string,
-    configpath: string,
-    body: body.IKoaBodyOptions,
+    body?: body.IKoaBodyOptions,
     protocol: "http" | "https",
     port: number,
     tls?: ServerOptions,

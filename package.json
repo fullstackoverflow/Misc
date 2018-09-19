@@ -1,9 +1,9 @@
 {
   "name": "@tosee/misc",
-  "version": "1.0.9",
+  "version": "1.2.0",
   "description": "",
   "main": "./dist/index.js",
-  "typings": "./types/index.d.ts",
+  "types":"./types/index.d.ts",
   "scripts": {
     "start": "node test/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
