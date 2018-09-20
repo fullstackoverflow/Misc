@@ -10,8 +10,6 @@ import https from 'https';
 import { options } from './type/opts';
 import cors from '@koa/cors';
 import session from 'koa-session';
-import { existsSync } from 'fs';
-import { Config } from '../util/config';
 import body from 'koa-body';
 
 export class Misc extends Koa {
@@ -20,7 +18,7 @@ export class Misc extends Koa {
         super();
         if (opts.body) {
             this.use(body(opts.body));
-        }else{
+        } else {
             this.use(body());
         }
         this.keys = opts.keys;
@@ -31,7 +29,9 @@ export class Misc extends Koa {
         if (opts.session) {
             this.use(session(opts.session, this));
         }
-        this.use(compose(opts.beforeall));
+        if (opts.beforeall) {
+            this.use(compose(opts.beforeall));
+        }
         let routerPath = [];
         glob.sync(join(opts.routerpath, './**/*.*{ts,js}')).forEach((item) => {
             if (require(item).default) {

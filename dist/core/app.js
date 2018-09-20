@@ -32,7 +32,9 @@ class Misc extends koa_1.default {
         if (opts.session) {
             this.use(koa_session_1.default(opts.session, this));
         }
-        this.use(koa_compose_1.default(opts.beforeall));
+        if (opts.beforeall) {
+            this.use(koa_compose_1.default(opts.beforeall));
+        }
         let routerPath = [];
         glob_1.default.sync(path_1.join(opts.routerpath, './**/*.*{ts,js}')).forEach((item) => {
             if (require(item).default) {
