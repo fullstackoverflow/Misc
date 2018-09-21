@@ -7,7 +7,7 @@ import { IKoaBodyOptions } from 'koa-body';
 export interface options {
     keys?: Keygrip | string[];
     beforeall?: Array<compose.Middleware<any>>,
-    routerpath: string,
+    routerpath?: string,
     body?: IKoaBodyOptions,
     protocol: "http" | "https",
     port: number,

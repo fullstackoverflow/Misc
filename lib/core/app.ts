@@ -33,23 +33,25 @@ export class Misc extends Koa {
             this.use(compose(opts.beforeall));
         }
         let routerPath = [];
-        glob.sync(join(opts.routerpath, './**/*.*{ts,js}')).forEach((item) => {
-            if (require(item).default) {
-                try {
-                    let router: Router = new (require(item).default)();
-                    if (router instanceof Router) {
-                        routerPath.push(item);
-                        this.use(router.routes()).use(router.allowedMethods());
-                    } else {
-                        logger.error('router is not a Router instance:', item);
+        if (opts.routerpath) {
+            glob.sync(join(opts.routerpath, './**/*.*{ts,js}')).forEach((item) => {
+                if (require(item).default) {
+                    try {
+                        let router: Router = new (require(item).default)();
+                        if (router instanceof Router) {
+                            routerPath.push(item);
+                            this.use(router.routes()).use(router.allowedMethods());
+                        } else {
+                            logger.error('router is not a Router instance:', item);
+                        }
+                    } catch (e) {
+                        logger.error('router load failed:', item);
                     }
-                } catch (e) {
-                    logger.error('router load failed:', item);
+                } else {
+                    logger.error('router without default export', item);
                 }
-            } else {
-                logger.error('router without default export', item);
-            }
-        }, this);
+            }, this);
+        }
         if (opts.protocol == 'http') {
             this.server = http.createServer(this.callback()).listen(opts.port);
         } else if (opts.protocol == 'https') {
@@ -57,9 +59,11 @@ export class Misc extends Koa {
         } else {
             logger.error('lack of protocol');
         }
-        logger.success('Router Loading:', routerPath.map((item) => {
-            return item.split('/').pop();
-        }));
+        if (opts.routerpath) {
+            logger.success('Router Loading:', routerPath.map((item) => {
+                return item.split('/').pop();
+            }));
+        }
         logger.success('NODE_ENV:' + process.env.NODE_ENV);
         logger.success('server start at:' + opts.port);
         logger.success('protocol:', opts.protocol);

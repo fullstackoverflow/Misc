@@ -36,26 +36,28 @@ class Misc extends koa_1.default {
             this.use(koa_compose_1.default(opts.beforeall));
         }
         let routerPath = [];
-        glob_1.default.sync(path_1.join(opts.routerpath, './**/*.*{ts,js}')).forEach((item) => {
-            if (require(item).default) {
-                try {
-                    let router = new (require(item).default)();
-                    if (router instanceof koa_router_1.default) {
-                        routerPath.push(item);
-                        this.use(router.routes()).use(router.allowedMethods());
+        if (opts.routerpath) {
+            glob_1.default.sync(path_1.join(opts.routerpath, './**/*.*{ts,js}')).forEach((item) => {
+                if (require(item).default) {
+                    try {
+                        let router = new (require(item).default)();
+                        if (router instanceof koa_router_1.default) {
+                            routerPath.push(item);
+                            this.use(router.routes()).use(router.allowedMethods());
+                        }
+                        else {
+                            log_1.logger.error('router is not a Router instance:', item);
+                        }
                     }
-                    else {
-                        log_1.logger.error('router is not a Router instance:', item);
+                    catch (e) {
+                        log_1.logger.error('router load failed:', item);
                     }
                 }
-                catch (e) {
-                    log_1.logger.error('router load failed:', item);
+                else {
+                    log_1.logger.error('router without default export', item);
                 }
-            }
-            else {
-                log_1.logger.error('router without default export', item);
-            }
-        }, this);
+            }, this);
+        }
         if (opts.protocol == 'http') {
             this.server = http_1.default.createServer(this.callback()).listen(opts.port);
         }
@@ -65,9 +67,11 @@ class Misc extends koa_1.default {
         else {
             log_1.logger.error('lack of protocol');
         }
-        log_1.logger.success('Router Loading:', routerPath.map((item) => {
-            return item.split('/').pop();
-        }));
+        if (opts.routerpath) {
+            log_1.logger.success('Router Loading:', routerPath.map((item) => {
+                return item.split('/').pop();
+            }));
+        }
         log_1.logger.success('NODE_ENV:' + process.env.NODE_ENV);
         log_1.logger.success('server start at:' + opts.port);
         log_1.logger.success('protocol:', opts.protocol);
