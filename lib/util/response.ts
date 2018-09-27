@@ -10,8 +10,6 @@ export class Res {
     }
 }
 
-
-
 export class ResSuccess {
     public code;
     public message;

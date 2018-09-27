@@ -166,3 +166,54 @@ class Test{
   async test(ctx:Koa.Context)
 }
 ```
+
+## 工具
+
+# Config
+配置加载类,使用前需要设置```Config.path```,```Config.instance```会加载与当前环境变量中```NODE_ENV```相同的ts文件,并监控文件修改事件实时更新。
+
+config/development.ts
+```
+export default {
+    db: localhost:27017/xxxx
+}
+```
+test.ts
+```
+Config.path = './config';
+console.log(Config.instance.db);
+```
+
+```
+$ export NODE_ENV=development&&ts-node ./test.ts
+```
+
+# logger
+
+打印信息，分为error,info,和succuess,带时间戳和不同颜色
+
+# response
+
+## ResSuccess
+
+```
+ctx.body = new ResSuccess('success',null);
+
+'{code:2,message:"success",data:null}'
+```
+
+## ResWarn
+
+```
+throw new ResWarn('warn',null);
+
+'{code:1,message:"warn",data:null}'
+```
+
+## ResError
+
+```
+throw new ResError('error',null);
+
+'{code:0,message:"error",data:null}'
+```

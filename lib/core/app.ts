@@ -11,10 +11,13 @@ import { options } from './type/opts';
 import cors from '@koa/cors';
 import session from 'koa-session';
 import body from 'koa-body';
+import pkg from 'read-pkg-up';
 
 export class Misc extends Koa {
     server: any;
     constructor(opts: options) {
+        const pack = pkg.sync().pkg;
+        logger.info('project:', pack.name);
         super();
         if (opts.body) {
             this.use(body(opts.body));
