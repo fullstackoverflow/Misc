@@ -15,8 +15,11 @@ const https_1 = __importDefault(require("https"));
 const cors_1 = __importDefault(require("@koa/cors"));
 const koa_session_1 = __importDefault(require("koa-session"));
 const koa_body_1 = __importDefault(require("koa-body"));
+const read_pkg_up_1 = __importDefault(require("read-pkg-up"));
 class Misc extends koa_1.default {
     constructor(opts) {
+        const pack = read_pkg_up_1.default.sync().pkg;
+        log_1.logger.info('project:', pack.name);
         super();
         if (opts.body) {
             this.use(koa_body_1.default(opts.body));

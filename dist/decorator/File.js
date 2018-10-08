@@ -13,7 +13,7 @@ function File() {
         const originFunction = descriptor.value;
         descriptor.value = function (ctx, next) {
             return __awaiter(this, arguments, void 0, function* () {
-                ctx.request.body = Object.assign({}, ctx.request.body.fields, ctx.request.body.files);
+                ctx.request.body = Object.assign({}, ctx.request.body, ctx.request.files);
                 yield originFunction.apply(this, arguments);
             });
         };
