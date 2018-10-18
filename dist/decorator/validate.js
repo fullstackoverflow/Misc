@@ -17,20 +17,20 @@ function Validate(schema, options) {
         descriptor.value = function (ctx) {
             return __awaiter(this, arguments, void 0, function* () {
                 const config = Reflect.getOwnMetadata(key, target);
-                if (config.method == 'post') {
+                if (config.method == "post") {
                     const { error } = joi_1.validate(ctx.request.body, schema, options);
                     if (error) {
-                        throw new response_1.ResWarn('params error', null);
+                        throw new response_1.ResWarn("params error", error);
                     }
                 }
-                else if (config.method == 'get') {
+                else if (config.method == "get") {
                     const { error } = joi_1.validate(ctx.request.query, schema, options);
                     if (error) {
-                        throw new response_1.ResWarn('params error', null);
+                        throw new response_1.ResWarn("params error", error);
                     }
                 }
                 else {
-                    log_1.logger.error('unsupport http method');
+                    log_1.logger.error("unsupport http method");
                 }
                 yield originFunction.apply(this, arguments);
             });

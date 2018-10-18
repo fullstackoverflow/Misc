@@ -29,8 +29,8 @@ class Misc extends koa_1.default {
         }
         this.keys = opts.keys;
         if (opts.cors) {
-            log_1.logger.success('cors true');
-            this.use(cors_1.default());
+            log_1.logger.success(`cors:${opts.cors}`);
+            this.use(cors_1.default(opts.cors));
         }
         if (opts.session) {
             this.use(koa_session_1.default(opts.session, this));
