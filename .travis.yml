@@ -14,6 +14,7 @@ jobs:
       script: echo "Deploying to npm ..."
       deploy:
         provider: npm
+        email: "yx136649111@qq.com"
         api_key:
           secure: PAQ+WByifIqIaa28YaXSCYDuUbLEXm7DLcyOaWubo9hNwClaMQkz3BQUbvPKoXm1/Uzt78ZiiFjrFx+oJTOCy/4nDwrgPng2CALhQDYAKX7Wd3rTwkfkmPH3HRAa9NCJNvzAOHU5LrOU4IwA+j4mGy/Q7K84xLiSfUw3AMjtwBzjCvUKLBH180D1CxtURap6uwAjqnEtOhPa8pb8aJQYq05dcW/K9HU8AOHhQT5TeBC8IsySjWrhMWSLlkOwKpem4yjHVmM1GFXQBgno2Xkp+k8Lex/Fd4082OAOTKpyyQag2isA5NJqGPf/nwzsZOjyuSrrcPkqNblxHeHM6ACk0PW3q8ztsXXhBCUalrX7xLSMeqMi2SlTrL4Zwj1pG7Bl+XHqV55hOmLqOr0cotz4lXzBbb7JjKVUD9rGVcWBXrrqHTs1DeX2kBJ6P1qEMLDoQc+kO8qY6LPuG1IGzfFtQQg5KUNeOsZEqOgubwTESagtdPMbi/cSxpHZ24/v1AZGNAM62KAerhemMHZz309HKh3KDUaAXKtK8w7rKlmFh9DXwNA5upkX9vrx5nzzKCC+og9JBxWqYpotOwCYBk8Qv023JNcGnK0sbQcHTcMwe4G7CAhS6MlepfgCrH3qstzcducPl9Eaklcj6Wv4WXxo8ZnA1LvbjcJl1lACHd6GuEk=
       on:
