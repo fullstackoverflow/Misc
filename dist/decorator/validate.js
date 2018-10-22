@@ -11,26 +11,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const joi_1 = require("joi");
 const log_1 = require("../util/log");
 const response_1 = require("../util/response");
-function Validate(schema, options) {
+var HttpMap;
+(function (HttpMap) {
+    HttpMap["post"] = "body";
+    HttpMap["get"] = "query";
+})(HttpMap || (HttpMap = {}));
+function Validate(ValidateOptions, property) {
+    const { schema, options } = ValidateOptions;
     return function (target, key, descriptor) {
         const originFunction = descriptor.value;
         descriptor.value = function (ctx) {
             return __awaiter(this, arguments, void 0, function* () {
                 const config = Reflect.getOwnMetadata(key, target);
-                if (config.method == "post") {
-                    const { error } = joi_1.validate(ctx.request.body, schema, options);
-                    if (error) {
-                        throw new response_1.ResWarn("params error", error);
-                    }
-                }
-                else if (config.method == "get") {
-                    const { error } = joi_1.validate(ctx.request.query, schema, options);
-                    if (error) {
-                        throw new response_1.ResWarn("params error", error);
-                    }
+                if (HttpMap[config.method] == undefined) {
+                    log_1.logger.error("unsupport http method");
                 }
                 else {
-                    log_1.logger.error("unsupport http method");
+                    const prop = property ? property : HttpMap[config.method];
+                    const { error } = joi_1.validate(ctx.request[prop], schema, options);
+                    if (error) {
+                        throw new response_1.ResWarn("params error", error);
+                    }
                 }
                 yield originFunction.apply(this, arguments);
             });
@@ -38,4 +39,4 @@ function Validate(schema, options) {
     };
 }
 exports.Validate = Validate;
-//# sourceMappingURL=validate.js.map
+//# sourceMappingURL=Validate.js.map

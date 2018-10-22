@@ -8,7 +8,7 @@ __export(require("./decorator/Autowired"));
 __export(require("./decorator/File"));
 __export(require("./decorator/Http"));
 __export(require("./decorator/Log"));
-__export(require("./decorator/validate"));
+__export(require("./decorator/Validate"));
 __export(require("./util/config"));
 __export(require("./util/log"));
 __export(require("./util/response"));
