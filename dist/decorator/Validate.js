@@ -16,8 +16,9 @@ var HttpMap;
     HttpMap["post"] = "body";
     HttpMap["get"] = "query";
 })(HttpMap || (HttpMap = {}));
-function Validate(ValidateOptions, property) {
+function Validate(ValidateOptions, ValidateObject = { params: false }) {
     const { schema, options } = ValidateOptions;
+    const { params } = ValidateObject;
     return function (target, key, descriptor) {
         const originFunction = descriptor.value;
         descriptor.value = function (ctx) {
@@ -27,8 +28,8 @@ function Validate(ValidateOptions, property) {
                     log_1.logger.error("unsupport http method");
                 }
                 else {
-                    const prop = property ? property : HttpMap[config.method];
-                    const { error } = joi_1.validate(ctx.request[prop], schema, options);
+                    const prop = params === true ? ctx.params : ctx.request[HttpMap[config.method]];
+                    const { error } = joi_1.validate(prop, schema, options);
                     if (error) {
                         throw new response_1.ResWarn("params error", error);
                     }

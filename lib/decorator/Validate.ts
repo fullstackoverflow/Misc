@@ -8,8 +8,12 @@ enum HttpMap {
 	get = "query"
 }
 
-export function Validate(ValidateOptions: { schema: SchemaLike; options?: ValidationOptions }, property?: string): MethodDecorator {
+export function Validate(
+	ValidateOptions: { schema: SchemaLike; options?: ValidationOptions },
+	ValidateObject: { params?: Boolean } = { params: false }
+): MethodDecorator {
 	const { schema, options } = ValidateOptions;
+	const { params } = ValidateObject;
 	return function(target: any, key: string, descriptor: PropertyDescriptor) {
 		const originFunction: Function = descriptor.value;
 		descriptor.value = async function(ctx: Koa.Context) {
@@ -17,8 +21,8 @@ export function Validate(ValidateOptions: { schema: SchemaLike; options?: Valida
 			if (HttpMap[config.method] == undefined) {
 				logger.error("unsupport http method");
 			} else {
-				const prop = property ? property : HttpMap[config.method];
-				const { error } = validate(ctx.request[prop], schema, options);
+				const prop = params === true ? ctx.params : ctx.request[HttpMap[config.method]];
+				const { error } = validate(prop, schema, options);
 				if (error) {
 					throw new ResWarn("params error", error);
 				}
