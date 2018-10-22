@@ -11,8 +11,6 @@ jobs:
   include:
     - stage: npm release
       node_js: "10"
-      script: 
-        - npm run build
       deploy:
         provider: npm
         email: "yx136649111@qq.com"
