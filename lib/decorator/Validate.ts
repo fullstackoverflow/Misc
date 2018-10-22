@@ -8,7 +8,7 @@ enum HttpMap {
 	get = "query"
 }
 
-export function Validate(ValidateOptions: { schema: SchemaLike; options: ValidationOptions }, property?: string): MethodDecorator {
+export function Validate(ValidateOptions: { schema: SchemaLike; options?: ValidationOptions }, property?: string): MethodDecorator {
 	const { schema, options } = ValidateOptions;
 	return function(target: any, key: string, descriptor: PropertyDescriptor) {
 		const originFunction: Function = descriptor.value;
