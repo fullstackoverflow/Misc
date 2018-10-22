@@ -3,7 +3,7 @@ export * from './decorator/Autowired';
 export * from './decorator/File';
 export * from './decorator/Http';
 export * from './decorator/Log';
-export * from './decorator/validate';
+export * from './decorator/Validate';
 export * from './util/config';
 export * from './util/log';
 export * from './util/response';
