@@ -4,8 +4,10 @@ const config_1 = require("../util/config");
 exports.Value = (params) => {
     return (target, propertyKey) => {
         const originDescriptor = Reflect.getOwnPropertyDescriptor((target && target.prototype) || target, propertyKey);
-        const descriptor = originDescriptor || { writable: true, configurable: true };
-        descriptor.value = config_1.Config.instance[params];
+        const descriptor = originDescriptor || { configurable: true };
+        descriptor.get = () => {
+            return config_1.Config.instance[params];
+        };
         Reflect.defineProperty((target && target.prototype) || target, propertyKey, descriptor);
     };
 };

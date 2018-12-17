@@ -16,7 +16,7 @@ class Config {
 		if (this._instance == undefined) {
 			if (existsSync(default_path) && existsSync(config_path)) {
 				this._instance = Object.assign({}, require(default_path).default, require(config_path).default);
-				logger.success(`Config file load: ${process.env.NODE_ENV}.ts, default file:${default_path}`);
+				logger.success(`Config file load: ${process.env.NODE_ENV}.ts(merged default.ts)`);
 			} else if (existsSync(config_path)) {
 				this._instance = require(config_path).default;
 				logger.success(`Config file load: ${process.env.NODE_ENV}.ts`);
@@ -31,7 +31,7 @@ class Config {
 				if (existsSync(default_path)) {
 					delete require.cache[default_path];
 					this._instance = Object.assign({}, require(default_path).default, require(config_path).default);
-					logger.success(`Config file load: ${process.env.NODE_ENV}.ts, default file:${default_path}`);
+					logger.success(`Config file load: ${process.env.NODE_ENV}.ts(merged default.ts)`);
 				} else {
 					this._instance = require(config_path).default;
 					logger.success("Config file reload:", `${process.env.NODE_ENV}.ts`);
