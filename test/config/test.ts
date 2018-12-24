@@ -1,4 +1,3 @@
 export default {
-				test: "value2"
-			};
-			
+	test: "value"
+};

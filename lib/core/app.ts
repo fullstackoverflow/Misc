@@ -56,9 +56,9 @@ export class Misc extends Koa {
 			}, this);
 		}
 		if (opts.protocol == "http") {
-			this.server = http.createServer(this.callback()).listen(opts.port);
+			this.server = http.createServer(this.callback()).listen(opts.port, opts.callback);
 		} else if (opts.protocol == "https") {
-			this.server = https.createServer(opts.tls, this.callback()).listen(opts.port);
+			this.server = https.createServer(opts.tls, this.callback()).listen(opts.port, opts.callback);
 		} else {
 			logger.error("lack of protocol");
 		}

@@ -4,30 +4,39 @@ import request from "supertest";
 import Koa from "koa";
 import "jest";
 import { resolve } from "path";
-import { readFileSync, writeFileSync } from "fs";
 
 Config.path = resolve(__dirname, "../config");
 
-const app = new Misc({
-	protocol: "http",
-	routerpath: resolve(__dirname, "../router"),
-	body: {
-		multipart: true
-	},
-	port: 7890
-});
-export const agent = request.agent(app.server);
+let app;
+let agent;
 
 describe("app", () => {
-	test("should be instance of koa", () => {
+	beforeAll(done => {
+        app =  new Misc({
+			protocol: "http",
+			routerpath: resolve(__dirname, "../router"),
+			body: {
+				multipart: true
+			},
+			callback:done,
+			port: 7890
+		});
+		agent = request.agent(app.server);
+    });
+
+	afterAll(async done => {
+		app.server.close(done);
+    });
+
+	it("should be instance of koa", () => {
 		expect(app instanceof Koa).toBe(true);
 	});
 
-	test("should parse body default", async () => {
+	it("should parse body default", async () => {
 		const response = await agent.post("/basetest").send({ test: true });
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual({ code: 2, message: "", data: { test: true } });
-	}, 9000);
+	});
 
 	it("should parse formdata with option", async () => {
 		const response = await agent.post("/formdata").attach("file", resolve(__dirname, "../assets/test.md"));
@@ -71,9 +80,5 @@ describe("app", () => {
 		expect(response.body).toEqual({ code: 2, message: "", data: "success" });
 		const response2 = await agent.post("/validate");
 		expect(response2.status).toBe(500);
-	});
-
-	afterAll(() => {
-		app.server.close();
 	});
 });
