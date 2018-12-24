@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/util/config.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">lib/util</a> config.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">76.67% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>23/30</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">58.33% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>7/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">76.67% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>23/30</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { resolve } from "path";
+import { watch } from "chokidar";
+import { logger } from "./log";
+import { existsSync, readFileSync } from "fs";
+&nbsp;
+class Config {
+	static path: string;
+	private static _instance: any;
+&nbsp;
+	static get instance() {
+		<span class="missing-if-branch" title="if path not taken" >I</span>if (this.path === undefined) {
+<span class="cstat-no" title="statement not covered" >			throw new Error("Config path is not init, set path first");</span>
+		}
+		const config_path = resolve(this.path, `./${process.env.NODE_ENV}.ts`);
+		const default_path = resolve(this.path, `./default.ts`);
+		if (this._instance == undefined) {
+			<span class="missing-if-branch" title="if path not taken" >I</span>if (existsSync(default_path) &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >existsSync(config_path))</span> {
+<span class="cstat-no" title="statement not covered" >				this._instance = Object.assign({}, require(default_path).default, require(config_path).default);</span>
+<span class="cstat-no" title="statement not covered" >				logger.success(`Config file load: ${process.env.NODE_ENV}.ts(merged default.ts)`);</span>
+			} else <span class="missing-if-branch" title="else path not taken" >E</span>if (existsSync(config_path)) {
+				this._instance = require(config_path).default;
+				logger.success(`Config file load: ${process.env.NODE_ENV}.ts`);
+			} else {
+<span class="cstat-no" title="statement not covered" >				throw new Error(`Config file ${config_path} load failed, file not exist`);</span>
+			}
+			watch(this.path, {
+				ignored: /(^|[\/\\])\../,
+				persistent: true
+			}).on("change", () =&gt; {
+				delete require.cache[config_path];
+				<span class="missing-if-branch" title="if path not taken" >I</span>if (existsSync(default_path)) {
+<span class="cstat-no" title="statement not covered" >					delete require.cache[default_path];</span>
+<span class="cstat-no" title="statement not covered" >					this._instance = Object.assign({}, require(default_path).default, require(config_path).default);</span>
+<span class="cstat-no" title="statement not covered" >					logger.success(`Config file load: ${process.env.NODE_ENV}.ts(merged default.ts)`);</span>
+				} else {
+					this._instance = require(config_path).default;
+					console.log(readFileSync(config_path).toString());
+					delete require.cache[config_path];
+					console.log(require(config_path));
+					console.log(this._instance);
+					logger.success("Config file reload:", `${process.env.NODE_ENV}.ts`);
+				}
+			});
+		}
+		return this._instance;
+	}
+}
+&nbsp;
+export { Config };
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Dec 24 2018 13:44:30 GMT+0800 (中国标准时间)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

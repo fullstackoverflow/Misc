@@ -1,4 +1,5 @@
 [![Build Status](https://www.travis-ci.org/fullstackoverflow/Misc.svg?branch=master)](https://www.travis-ci.org/fullstackoverflow/Misc.svg?branch=master)
+[![codecov](https://codecov.io/gh/fullstackoverflow/Misc/branch/master/graph/badge.svg)](https://codecov.io/gh/fullstackoverflow/Misc)
 
 # 介绍
 

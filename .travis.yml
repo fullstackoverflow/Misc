@@ -5,7 +5,7 @@ cache:
   directories:
   - node_modules
   - "$HOME/.npm"
-script: echo "Running tests against $(node -v) ..."
+script: echo "Running tests against $(node -v) ..."&&npm run test&&npm run codecov
 
 jobs:
   include:

@@ -6,8 +6,9 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "jest --coverage --forceExit --detectOpenHandles",
-    "start": "node test/index.js"
+    "test": "jest --coverage",
+    "start": "node test/index.js",
+    "codecov": "codecov"
   },
   "author": "tosee",
   "license": "MIT",
@@ -33,13 +34,14 @@
     "koa-session": "^5.9.0",
     "moment": "^2.21.0",
     "read-pkg-up": "^4.0.0",
-    "reflect-metadata": "^0.1.12",
-    "supertest": "^3.3.0"
+    "reflect-metadata": "^0.1.12"
   },
   "devDependencies": {
     "@types/jest": "^23.3.2",
     "@types/supertest": "^2.0.6",
+    "codecov": "^3.1.0",
     "jest": "^23.6.0",
+    "supertest": "^3.3.0",
     "ts-jest": "^23.10.2",
     "ts-node": "^5.0.1",
     "typescript": "^3.0.3"

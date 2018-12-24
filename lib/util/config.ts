@@ -1,7 +1,7 @@
 import { resolve } from "path";
 import { watch } from "chokidar";
 import { logger } from "./log";
-import { existsSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 
 class Config {
 	static path: string;
