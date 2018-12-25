@@ -76,6 +76,9 @@ https配置，详见[https参数](http://nodejs.cn/api/https.html#https_https_cr
 ## session
 session配置使用```koa-session```,参照[koa-session](https://github.com/koajs/session)。
 
+## callback
+传入作为http(https)的listen函数的第二参数，配合```--detectOpenHandles```和```--forceExit```伪修复jest的测试结束无法退出的问题
+
 ## port(必须)
 监听端口号。
 
@@ -165,8 +168,24 @@ class Test{
   UserService:UserService
 
   @GET('/test)
-  @Validate(Login)
+  @Validate({schema:Login})
   async test(ctx:Koa.Context)
+}
+```
+
+>@Value
+
+配置注入装饰器,传入配置属性（即`Config.instance`下的属性）。
+```
+@Controller('/hello');
+class Test{
+  @Value("test")  //类似于Config.instance.test
+  test:string
+
+  @GET('/test)
+  async test(ctx:Koa.Context){
+    ctx.body = this.test;
+  }
 }
 ```
 
