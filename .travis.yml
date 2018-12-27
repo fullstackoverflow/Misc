@@ -7,8 +7,9 @@ cache:
   - "$HOME/.npm"
 script: echo "Running tests against $(node -v) ..."&&npm run test&&npm run codecov
 notifications:
-  email:
-    - yx136649111@qq.com
+  slack:
+    on_success: always
+    on_failure: always
 
 jobs:
   include:
