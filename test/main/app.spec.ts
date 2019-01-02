@@ -4,6 +4,7 @@ import request from "supertest";
 import Koa from "koa";
 import "jest";
 import { resolve } from "path";
+import { logger } from "../../lib/util/log";
 
 Config.path = resolve(__dirname, "../config");
 
@@ -12,21 +13,21 @@ let agent;
 
 describe("app", () => {
 	beforeAll(done => {
-        app =  new Misc({
+		app = new Misc({
 			protocol: "http",
 			routerpath: resolve(__dirname, "../router"),
 			body: {
 				multipart: true
 			},
-			callback:done,
+			callback: done,
 			port: 7890
 		});
 		agent = request.agent(app.server);
-    });
+	});
 
 	afterAll(async done => {
 		app.server.close(done);
-    });
+	});
 
 	it("should be instance of koa", () => {
 		expect(app instanceof Koa).toBe(true);
@@ -79,6 +80,7 @@ describe("app", () => {
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual({ code: 2, message: "", data: "success" });
 		const response2 = await agent.post("/validate");
+		logger.info(response2);
 		expect(response2.status).toBe(500);
 	});
 });

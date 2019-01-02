@@ -1,5 +1,6 @@
 import Koa from "koa";
-import { validate, ValidationOptions, SchemaLike } from "joi";
+import { plainToClass } from "class-transformer";
+import { validate, ValidatorOptions, IsInt } from "class-validator";
 import { logger } from "../util/log";
 import { ResWarn } from "../util/response";
 
@@ -9,7 +10,7 @@ enum HttpMap {
 }
 
 export function Validate(
-	ValidateOptions: { schema: SchemaLike; options?: ValidationOptions },
+	ValidateOptions: { schema: any; options?: ValidatorOptions },
 	ValidateObject: { params?: Boolean } = { params: false }
 ): MethodDecorator {
 	const { schema, options } = ValidateOptions;
@@ -22,9 +23,10 @@ export function Validate(
 				logger.error("unsupport http method");
 			} else {
 				const prop = params === true ? ctx.params : ctx.request[HttpMap[config.method]];
-				const { error } = validate(prop, schema, options);
-				if (error) {
-					throw new ResWarn("params error", error);
+				const obj = plainToClass(schema, prop);
+				const errors = await validate(obj, options);
+				if (errors && errors.length > 0) {
+					throw new ResWarn("params error", errors);
 				}
 			}
 			await originFunction.apply(this, arguments);

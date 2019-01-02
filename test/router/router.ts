@@ -1,19 +1,15 @@
 import Koa from "koa";
-import {
-	Controller,
-	Autowired,
-	POST,
-	Validate,
-	ResSuccess,
-	GET,
-	File,
-	DELETE,
-	PUT,
-	Value,
-    Config
-} from "../../lib/index";
+import { Controller, Autowired, POST, Validate, ResSuccess, GET, File, DELETE, PUT, Value, Config } from "../../lib/index";
 import { TestService } from "../service/TestService";
-import { object, boolean } from "joi";
+import { IsBoolean } from "class-validator";
+
+export class Test {
+	/**
+	 * test describe
+	 */
+	@IsBoolean()
+	test: boolean;
+}
 
 @Controller()
 export default class Router {
@@ -59,17 +55,21 @@ export default class Router {
 		ctx.body = new ResSuccess("", "success");
 	}
 
+	/**
+	 * @api {post} /basetest basetest
+	 * @apiGroup test
+	 * @apiName basetest
+	 * @apiParamClass (test/router/router.ts) {Test}
+	 */
 	@POST("/validate")
 	@Validate({
-		schema: object({
-			test: boolean().required()
-		})
+		schema: Test
 	})
 	async validate(ctx: Koa.Context) {
 		ctx.body = new ResSuccess("", "success");
-    }
-    
-    @POST("/config")
+	}
+
+	@POST("/config")
 	async config(ctx: Koa.Context) {
 		ctx.body = new ResSuccess("", Config.instance.test);
 	}
