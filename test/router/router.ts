@@ -1,5 +1,5 @@
 import Koa from "koa";
-import { Controller, Autowired, POST, Validate, ResSuccess, GET, File, DELETE, PUT, Value, Config } from "../../lib/index";
+import { Controller, Autowired, POST, Validate, ResSuccess, GET, File, DELETE, PUT, Value, Config, logger, ResWarn, ResError } from "../../lib/index";
 import { TestService } from "../service/TestService";
 import { IsBoolean } from "class-validator";
 
@@ -72,5 +72,33 @@ export default class Router {
 	@POST("/config")
 	async config(ctx: Koa.Context) {
 		ctx.body = new ResSuccess("", Config.instance.test);
+	}
+
+	@POST("/beforealltest")
+	async beforealltest(ctx: Koa.Context) {
+		logger.info(ctx.body);
+	}
+
+	@POST("/session")
+	async session(ctx: Koa.Context) {
+		ctx.session.user = true;
+		ctx.body = new ResSuccess("", null);
+	}
+
+	@POST("/sessionCheck")
+	async sessionCheck(ctx: Koa.Context) {
+		ctx.body = ctx.session.user;
+	}
+
+	@POST("/reswarn")
+	async reswarn(ctx: Koa.Context) {
+		logger.info('reswarn');
+		throw new ResWarn('reswarn',null);
+	}
+
+	@POST("/reserr")
+	async reserr(ctx: Koa.Context) {
+		logger.error('reserr');
+		throw new ResError('reserr',null);
 	}
 }

@@ -5,82 +5,130 @@ import Koa from "koa";
 import "jest";
 import { resolve } from "path";
 import { logger } from "../../lib/util/log";
-
-Config.path = resolve(__dirname, "../config");
-
-let app;
-let agent;
+import { Res } from "../../lib/util/response";
 
 describe("app", () => {
-	beforeAll(done => {
-		app = new Misc({
+	it("should be instance of koa", () => {
+		const app = new Misc({
+			protocol: "http",
+			port: 8001
+		});
+		expect(app instanceof Koa).toBe(true);
+		app.server.close();
+	});
+
+	it("should parse body default", async () => {
+		const app = new Misc({
+			protocol: "http",
+			routerpath: resolve(__dirname, "../router"),
+			port: 8002
+		});
+		const response = await request(app.server)
+			.post("/basetest")
+			.send({ test: true });
+		expect(response.status).toBe(200);
+		expect(response.body).toEqual({ code: 2, message: "", data: { test: true } });
+		app.server.close();
+	});
+
+	it("should parse formdata with option", async () => {
+		const app = new Misc({
 			protocol: "http",
 			routerpath: resolve(__dirname, "../router"),
 			body: {
 				multipart: true
 			},
-			callback: done,
-			port: 7890
+			port: 8003
 		});
-		agent = request.agent(app.server);
-	});
-
-	afterAll(async done => {
-		app.server.close(done);
-	});
-
-	it("should be instance of koa", () => {
-		expect(app instanceof Koa).toBe(true);
-	});
-
-	it("should parse body default", async () => {
-		const response = await agent.post("/basetest").send({ test: true });
+		const response = await request(app.server)
+			.post("/formdata")
+			.attach("file", resolve(__dirname, "../assets/test.md"));
 		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ code: 2, message: "", data: { test: true } });
+		expect(response.body).toEqual({ code: 2, message: "", data: "test.md" });
+		app.server.close();
 	});
 
 	it("should parse formdata with option", async () => {
-		const response = await agent.post("/formdata").attach("file", resolve(__dirname, "../assets/test.md"));
+		const app = new Misc({
+			protocol: "http",
+			routerpath: resolve(__dirname, "../router"),
+			body: {
+				multipart: true
+			},
+			port: 8004
+		});
+		const response = await request(app.server)
+			.post("/formdata")
+			.attach("file", resolve(__dirname, "../assets/test.md"));
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual({ code: 2, message: "", data: "test.md" });
+		app.server.close();
 	});
 
-	it("should autowired decorator worked", async () => {
-		const response = await agent.post("/autowired");
+	it("should beforeall option worked", async () => {
+		const middleware = async (ctx, next) => {
+			ctx.body = "test";
+			await next();
+		};
+		const app = new Misc({
+			protocol: "http",
+			routerpath: resolve(__dirname, "../router"),
+			beforeall: [middleware],
+			port: 8005
+		});
+		const response = await request(app.server).post("/beforealltest");
 		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ code: 2, message: "", data: "success" });
+		expect(response.text).toBe("test");
+		app.server.close();
 	});
 
-	it("should value decorator worked", async () => {
-		const response = await agent.post("/value");
-		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ code: 2, message: "", data: "value" });
+	it("should session worked", async () => {
+		const app = new Misc({
+			protocol: "http",
+			routerpath: resolve(__dirname, "../router"),
+			keys: ["test"],
+			session: {
+				maxAge: 30 * 60 * 1000,
+				overwrite: true,
+				httpOnly: true,
+				signed: true
+			},
+			port: 8006
+		});
+		const agent = request.agent(app.server);
+		const response1 = await agent.post("/session");
+		expect(response1.status).toBe(200);
+		response1.header["set-cookie"][0]
+			.split(",")
+			.map(item => item.split(";")[0])
+			.forEach(c => agent.jar.setCookie(c));
+		const response2 = await agent.post("/sessionCheck");
+		expect(response2.status).toBe(200);
+		expect(response2.text).toBe("true");
 	});
 
-	it("should get decorator worked", async () => {
-		const response = await agent.get("/get");
-		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ code: 2, message: "", data: "success" });
-	});
-
-	it("should delete decorator worked", async () => {
-		const response = await agent.delete("/delete");
-		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ code: 2, message: "", data: "success" });
-	});
-
-	it("should put decorator worked", async () => {
-		const response = await agent.put("/put");
-		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ code: 2, message: "", data: "success" });
-	});
-
-	it("should validate decorator worked", async () => {
-		const response = await agent.post("/validate").send({ test: true });
-		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ code: 2, message: "", data: "success" });
-		const response2 = await agent.post("/validate");
-		logger.info(response2);
-		expect(response2.status).toBe(500);
+	it("should return value correct", async () => {
+		const errorHandler = async (ctx, next) => {
+			try {
+				await next();
+			} catch (err) {
+				if (err.code!=undefined) {
+					ctx.body = new Res(err.code, err.message, err.data);
+				}
+			}
+		};
+		const app = new Misc({
+			protocol: "http",
+			routerpath: resolve(__dirname, "../router"),
+			beforeall: [errorHandler],
+			port: 8007
+		});
+		const agent = request.agent(app.server);
+		const response1 = await agent.post("/reswarn");
+		expect(response1.status).toBe(200);
+		expect(response1.body).toEqual({ code: 1, message: "reswarn", data: null });
+		const response2 = await agent.post("/reserr");
+		expect(response2.status).toBe(200);
+		expect(response2.body).toEqual({ code: 0, message: "reserr", data: null });
 	});
 });
