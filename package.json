@@ -5,9 +5,9 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
     "test": "jest --coverage --detectOpenHandles --forceExit",
     "start": "node test/index.js",
+    "version":"rf -rf ./dist/*&&tsc",
     "codecov": "codecov"
   },
   "author": "tosee",
