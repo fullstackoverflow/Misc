@@ -2,7 +2,7 @@ language: node_js
 node_js:
 - lts/*
 cache: npm
-script: echo "Running tests against $(node -v) ..."&&npm i typescript&&npm run build&&npm run test&&npm run codecov
+script: echo "Running tests against $(node -v) ..."npm run test&&npm run codecov
 notifications:
   email:
     on_success: always
