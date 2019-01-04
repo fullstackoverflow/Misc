@@ -1,13 +1,13 @@
 {
   "name": "@tosee/misc",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "test": "jest --coverage --detectOpenHandles --forceExit",
     "start": "node test/index.js",
-    "version":"rf -rf ./dist/*&&tsc",
+    "version": "rm -rf ./dist/*&&tsc",
     "codecov": "codecov"
   },
   "author": "tosee",
