@@ -16,8 +16,6 @@ const cors_1 = __importDefault(require("@koa/cors"));
 const koa_session_1 = __importDefault(require("koa-session"));
 const koa_body_1 = __importDefault(require("koa-body"));
 const read_pkg_up_1 = __importDefault(require("read-pkg-up"));
-const cluster_1 = __importDefault(require("cluster"));
-const os_1 = __importDefault(require("os"));
 const default_options = { body: koa_body_1.default, cors: cors_1.default, session: koa_session_1.default, beforeall: koa_compose_1.default };
 class Misc extends koa_1.default {
     constructor(opts) {
@@ -68,25 +66,14 @@ class Misc extends koa_1.default {
         log_1.logger.success("Router Loading:", routerPath.map(item => {
             return item.split("/").pop();
         }));
-        if (cluster_1.default.isMaster) {
-            log_1.logger.info(`[Master] ${process.pid} Start`);
-            for (let i = 0; i < os_1.default.cpus().length; i++) {
-                cluster_1.default.fork();
-            }
-            cluster_1.default.on("exit", (worker, code, signal) => {
-                log_1.logger.info(`[Slave] ${worker.process.pid} exit`);
-            });
+        if (opts.protocol == "http") {
+            this.server = http_1.default.createServer(this.callback()).listen(opts.port, opts.callback);
+        }
+        else if (opts.protocol == "https") {
+            this.server = https_1.default.createServer(opts.tls, this.callback()).listen(opts.port, opts.callback);
         }
         else {
-            if (opts.protocol == "http") {
-                this.server = http_1.default.createServer(this.callback()).listen(opts.port, opts.callback);
-            }
-            else if (opts.protocol == "https") {
-                this.server = https_1.default.createServer(opts.tls, this.callback()).listen(opts.port, opts.callback);
-            }
-            else {
-                throw new Error("protocol must be http or https");
-            }
+            throw new Error("protocol must be http or https");
         }
         log_1.logger.success("NODE_ENV:" + process.env.NODE_ENV);
         log_1.logger.success("server start at:" + opts.port);
