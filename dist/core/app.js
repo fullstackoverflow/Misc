@@ -16,64 +16,77 @@ const cors_1 = __importDefault(require("@koa/cors"));
 const koa_session_1 = __importDefault(require("koa-session"));
 const koa_body_1 = __importDefault(require("koa-body"));
 const read_pkg_up_1 = __importDefault(require("read-pkg-up"));
+const cluster_1 = __importDefault(require("cluster"));
+const os_1 = __importDefault(require("os"));
+const default_options = { body: koa_body_1.default, cors: cors_1.default, session: koa_session_1.default, beforeall: koa_compose_1.default };
 class Misc extends koa_1.default {
     constructor(opts) {
         const pack = read_pkg_up_1.default.sync().pkg;
         log_1.logger.info("project:", pack.name);
+        log_1.logger.info("version:", pack.version);
         super();
-        if (opts.body) {
-            this.use(koa_body_1.default(opts.body));
-        }
-        else {
+        if (!opts.body) {
             this.use(koa_body_1.default());
         }
+        const indexs = [];
+        Object.keys(opts).forEach(key => {
+            const index = Object.keys(default_options).findIndex(i => i == key);
+            indexs.push(index);
+        });
+        indexs
+            .filter(i => i != -1)
+            .sort((a, b) => a - b)
+            .forEach(index => {
+            const key = Object.keys(default_options)[index];
+            const func = default_options[key];
+            const option = opts[key];
+            if (key === "session") {
+                this.use(func(option, this));
+            }
+            else {
+                this.use(func(option));
+            }
+        });
         this.keys = opts.keys;
-        if (opts.cors) {
-            log_1.logger.success(`cors:${JSON.stringify(opts.cors)}`);
-            this.use(cors_1.default(opts.cors));
-        }
-        if (opts.session) {
-            this.use(koa_session_1.default(opts.session, this));
-        }
-        if (opts.beforeall) {
-            this.use(koa_compose_1.default(opts.beforeall));
-        }
         let routerPath = [];
-        if (opts.routerpath) {
-            glob_1.default.sync(path_1.join(opts.routerpath, "./**/*.*{ts,js}")).forEach(item => {
-                if (require(item).default) {
-                    try {
-                        let router = new (require(item)).default();
-                        if (router instanceof koa_router_1.default) {
-                            routerPath.push(item);
-                            this.use(router.routes()).use(router.allowedMethods());
-                        }
-                        else {
-                            log_1.logger.error("router is not a Router instance:", item);
-                        }
-                    }
-                    catch (e) {
-                        log_1.logger.error("router load failed:", item);
-                    }
+        const base = opts.routerpath || "./src/router";
+        glob_1.default.sync(path_1.join(base, "**/*.*{ts,js}")).forEach(item => {
+            if (require(item).default) {
+                let router = new (require(item)).default();
+                if (router instanceof koa_router_1.default) {
+                    routerPath.push(item);
+                    this.use(router.routes()).use(router.allowedMethods());
                 }
                 else {
-                    log_1.logger.error("router without default export", item);
+                    log_1.logger.error("Without @Controller decorator");
                 }
-            }, this);
-        }
-        if (opts.protocol == "http") {
-            this.server = http_1.default.createServer(this.callback()).listen(opts.port, opts.callback);
-        }
-        else if (opts.protocol == "https") {
-            this.server = https_1.default.createServer(opts.tls, this.callback()).listen(opts.port, opts.callback);
+            }
+            else {
+                log_1.logger.error("Router without default export", item);
+            }
+        }, this);
+        log_1.logger.success("Router Loading:", routerPath.map(item => {
+            return item.split("/").pop();
+        }));
+        if (cluster_1.default.isMaster) {
+            log_1.logger.info(`[Master] ${process.pid} Start`);
+            for (let i = 0; i < os_1.default.cpus().length; i++) {
+                cluster_1.default.fork();
+            }
+            cluster_1.default.on("exit", (worker, code, signal) => {
+                log_1.logger.info(`[Slave] ${worker.process.pid} exit`);
+            });
         }
         else {
-            log_1.logger.error("lack of protocol");
-        }
-        if (opts.routerpath) {
-            log_1.logger.success("Router Loading:", routerPath.map(item => {
-                return item.split("/").pop();
-            }));
+            if (opts.protocol == "http") {
+                this.server = http_1.default.createServer(this.callback()).listen(opts.port, opts.callback);
+            }
+            else if (opts.protocol == "https") {
+                this.server = https_1.default.createServer(opts.tls, this.callback()).listen(opts.port, opts.callback);
+            }
+            else {
+                throw new Error("protocol must be http or https");
+            }
         }
         log_1.logger.success("NODE_ENV:" + process.env.NODE_ENV);
         log_1.logger.success("server start at:" + opts.port);

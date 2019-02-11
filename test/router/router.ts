@@ -1,7 +1,26 @@
 import Koa from "koa";
-import { Controller, Autowired, POST, Validate, ResSuccess, GET, File, DELETE, PUT, Value, Config, logger, ResWarn, ResError } from "../../lib/index";
+import {
+	Controller,
+	Autowired,
+	POST,
+	Validate,
+	ResSuccess,
+	GET,
+	File,
+	DELETE,
+	PUT,
+	Value,
+	Config,
+	logger,
+	ResWarn,
+	ResError,
+	Schedule
+} from "../../lib/index";
 import { TestService } from "../service/TestService";
 import { IsBoolean } from "class-validator";
+import { writeFileSync } from "fs";
+import { resolve } from "path";
+import moment = require("moment");
 
 export class Test {
 	/**
@@ -92,13 +111,22 @@ export default class Router {
 
 	@POST("/reswarn")
 	async reswarn(ctx: Koa.Context) {
-		logger.info('reswarn');
-		throw new ResWarn('reswarn',null);
+		logger.info("reswarn");
+		throw new ResWarn("reswarn", null);
 	}
 
 	@POST("/reserr")
 	async reserr(ctx: Koa.Context) {
-		logger.error('reserr');
-		throw new ResError('reserr',null);
+		logger.error("reserr");
+		throw new ResError("reserr", null);
 	}
+
+	// @Schedule(
+	// 	moment()
+	// 		.add(2, "seconds")
+	// 		.toDate()
+	// )
+	// async function() {
+	// 	writeFileSync(resolve(__dirname, "../test.md"), "1111");
+	// }
 }

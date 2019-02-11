@@ -4,6 +4,7 @@ export * from "./decorator/File";
 export * from "./decorator/Http";
 export * from "./decorator/Validate";
 export * from "./decorator/Value";
+export * from "./decorator/Schedule";
 export * from "./util/config";
 export * from "./util/log";
 export * from "./util/response";

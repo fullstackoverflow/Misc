@@ -12,64 +12,83 @@ import cors from "@koa/cors";
 import session from "koa-session";
 import body from "koa-body";
 import pkg from "read-pkg-up";
+import cluster from "cluster";
+import os from "os";
 
+const default_options = { body: body, cors: cors, session: session, beforeall: compose };
 export class Misc extends Koa {
 	server: httpServer | httpsServer;
 	constructor(opts: options) {
 		const pack = pkg.sync().pkg;
 		logger.info("project:", pack.name);
+		logger.info("version:", pack.version);
 		super();
-		if (opts.body) {
-			this.use(body(opts.body));
-		} else {
+		/**
+		 * 内置插件
+		 */
+		if (!opts.body) {
 			this.use(body());
 		}
-		this.keys = opts.keys;
-		if (opts.cors) {
-			logger.success(`cors:${JSON.stringify(opts.cors)}`);
-			this.use(cors(opts.cors));
-		}
-		if (opts.session) {
-			this.use(session(opts.session, this));
-		}
-		if (opts.beforeall) {
-			this.use(compose(opts.beforeall));
-		}
-		let routerPath = [];
-		if (opts.routerpath) {
-			glob.sync(join(opts.routerpath, "./**/*.*{ts,js}")).forEach(item => {
-				if (require(item).default) {
-					try {
-						let router: Router = new (require(item)).default();
-						if (router instanceof Router) {
-							routerPath.push(item);
-							this.use(router.routes()).use(router.allowedMethods());
-						} else {
-							logger.error("router is not a Router instance:", item);
-						}
-					} catch (e) {
-						logger.error("router load failed:", item);
-					}
+		const indexs = [];
+		Object.keys(opts).forEach(key => {
+			const index = Object.keys(default_options).findIndex(i => i == key);
+			indexs.push(index);
+		});
+
+		indexs
+			.filter(i => i != -1)
+			.sort((a, b) => a - b)
+			.forEach(index => {
+				const key = Object.keys(default_options)[index];
+				const func = default_options[key];
+				const option = opts[key];
+				if (key === "session") {
+					this.use(func(option, this));
 				} else {
-					logger.error("router without default export", item);
+					this.use(func(option));
 				}
-			}, this);
-		}
+			});
+		this.keys = opts.keys;
+		let routerPath = [];
+		const base = opts.routerpath || "./src/router";
+		glob.sync(join(base, "**/*.*{ts,js}")).forEach(item => {
+			if (require(item).default) {
+				let router: Router = new (require(item)).default();
+				if (router instanceof Router) {
+					routerPath.push(item);
+					this.use(router.routes()).use(router.allowedMethods());
+				} else {
+					logger.error("Without @Controller decorator");
+				}
+			} else {
+				logger.error("Router without default export", item);
+			}
+		}, this);
+		logger.success(
+			"Router Loading:",
+			routerPath.map(item => {
+				return item.split("/").pop();
+			})
+		);
+		// if (cluster.isMaster) {
+		// 	logger.info(`[Master] ${process.pid} Start`);
+		// 	for (let i = 0; i < os.cpus().length; i++) {
+		// 		cluster.fork();
+		// 	}
+
+		// 	cluster.on("exit", (worker, code, signal) => {
+		// 		logger.info(`[Slave] ${worker.process.pid} exit`);
+		// 	});
+		// } else {
 		if (opts.protocol == "http") {
 			this.server = http.createServer(this.callback()).listen(opts.port, opts.callback);
 		} else if (opts.protocol == "https") {
 			this.server = https.createServer(opts.tls, this.callback()).listen(opts.port, opts.callback);
 		} else {
-			logger.error("lack of protocol");
+			throw new Error("protocol must be http or https");
 		}
-		if (opts.routerpath) {
-			logger.success(
-				"Router Loading:",
-				routerPath.map(item => {
-					return item.split("/").pop();
-				})
-			);
-		}
+		//}
+
 		logger.success("NODE_ENV:" + process.env.NODE_ENV);
 		logger.success("server start at:" + opts.port);
 		logger.success("protocol:", opts.protocol);
