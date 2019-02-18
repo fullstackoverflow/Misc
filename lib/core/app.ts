@@ -2,7 +2,7 @@ import "reflect-metadata";
 import Koa from "koa";
 import compose from "koa-compose";
 import glob from "glob";
-import { join } from "path";
+import { join, resolve } from "path";
 import Router from "koa-router";
 import { logger } from "../util/log";
 import http, { Server as httpServer } from "http";
@@ -50,7 +50,7 @@ export class Misc extends Koa {
 			});
 		this.keys = opts.keys;
 		let routerPath = [];
-		const base = opts.routerpath || "./src/router";
+		const base = opts.routerpath || resolve("src/router");
 		glob.sync(join(base, "**/*.*{ts,js}")).forEach(item => {
 			if (require(item).default) {
 				let router: Router = new (require(item)).default();
@@ -58,7 +58,7 @@ export class Misc extends Koa {
 					routerPath.push(item);
 					this.use(router.routes()).use(router.allowedMethods());
 				} else {
-					logger.error("Without @Controller decorator");
+					logger.error("Without @Controller decorator", item);
 				}
 			} else {
 				logger.error("Router without default export", item);
@@ -70,16 +70,6 @@ export class Misc extends Koa {
 				return item.split("/").pop();
 			})
 		);
-		// if (cluster.isMaster) {
-		// 	logger.info(`[Master] ${process.pid} Start`);
-		// 	for (let i = 0; i < os.cpus().length; i++) {
-		// 		cluster.fork();
-		// 	}
-
-		// 	cluster.on("exit", (worker, code, signal) => {
-		// 		logger.info(`[Slave] ${worker.process.pid} exit`);
-		// 	});
-		// } else {
 		if (opts.protocol == "http") {
 			this.server = http.createServer(this.callback()).listen(opts.port, opts.callback);
 		} else if (opts.protocol == "https") {
@@ -87,7 +77,6 @@ export class Misc extends Koa {
 		} else {
 			throw new Error("protocol must be http or https");
 		}
-		//}
 
 		logger.success("NODE_ENV:" + process.env.NODE_ENV);
 		logger.success("server start at:" + opts.port);

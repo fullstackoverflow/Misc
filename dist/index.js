@@ -10,6 +10,7 @@ __export(require("./decorator/Http"));
 __export(require("./decorator/Validate"));
 __export(require("./decorator/Value"));
 __export(require("./decorator/Schedule"));
+__export(require("./decorator/Middleware"));
 __export(require("./util/config"));
 __export(require("./util/log"));
 __export(require("./util/response"));

@@ -14,10 +14,12 @@ import {
 	logger,
 	ResWarn,
 	ResError,
-	Schedule
+	Schedule,
+	Before,
+	After
 } from "../../lib/index";
 import { TestService } from "../service/TestService";
-import { IsBoolean } from "class-validator";
+import { IsBoolean, IsString } from "class-validator";
 import { writeFileSync } from "fs";
 import { resolve } from "path";
 import moment = require("moment");
@@ -28,6 +30,9 @@ export class Test {
 	 */
 	@IsBoolean()
 	test: boolean;
+
+	@IsString()
+	test2:string;
 }
 
 @Controller()
@@ -121,6 +126,32 @@ export default class Router {
 		throw new ResError("reserr", null);
 	}
 
+	@POST("/before")
+	@Before((ctx: Koa.Context, next: Function) => {
+		ctx.state = "test";
+	})
+	async before(ctx: Koa.Context) {
+		ctx.body = ctx.state;
+	}
+
+	@POST("/after")
+	@After((ctx: Koa.Context, next: Function) => {
+		ctx.body = "test";
+	})
+	async after(ctx: Koa.Context) {
+		ctx.body = "after";
+	}
+
+	@POST("/combin")
+	@Before((ctx: Koa.Context, next: Function) => {
+		ctx.state = "test1";
+	})
+	@After((ctx: Koa.Context, next: Function) => {
+		ctx.body = "test2";
+	})
+	async combin(ctx: Koa.Context) {
+		ctx.body = "after";
+	}
 	// @Schedule(
 	// 	moment()
 	// 		.add(2, "seconds")

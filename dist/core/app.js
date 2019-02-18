@@ -47,7 +47,7 @@ class Misc extends koa_1.default {
         });
         this.keys = opts.keys;
         let routerPath = [];
-        const base = opts.routerpath || "./src/router";
+        const base = opts.routerpath || path_1.resolve("src/router");
         glob_1.default.sync(path_1.join(base, "**/*.*{ts,js}")).forEach(item => {
             if (require(item).default) {
                 let router = new (require(item)).default();
@@ -56,7 +56,7 @@ class Misc extends koa_1.default {
                     this.use(router.routes()).use(router.allowedMethods());
                 }
                 else {
-                    log_1.logger.error("Without @Controller decorator");
+                    log_1.logger.error("Without @Controller decorator", item);
                 }
             }
             else {

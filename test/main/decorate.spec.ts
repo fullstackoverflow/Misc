@@ -60,10 +60,28 @@ describe("app", () => {
 	});
 
 	it("should validate decorator worked", async () => {
-		const response = await agent.post("/validate").send({ test: true });
+		const response = await agent.post("/validate").send({ test: true, test2: "aaa" });
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual({ code: 2, message: "", data: "success" });
 		const response2 = await agent.post("/validate");
 		expect(response2.status).toBe(500);
+	});
+
+	it("should before decorator worked", async () => {
+		const response = await agent.post("/before").send({ test: true });
+		expect(response.status).toBe(200);
+		expect(response.text).toEqual("test");
+	});
+
+	it("should after decorator worked", async () => {
+		const response = await agent.post("/after").send({ test: true });
+		expect(response.status).toBe(200);
+		expect(response.text).toEqual("test");
+	});
+
+	it("should after and before decorator worked", async () => {
+		const response = await agent.post("/combin").send({ test: true });
+		expect(response.status).toBe(200);
+		expect(response.text).toEqual("test2");
 	});
 });
