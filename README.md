@@ -201,7 +201,9 @@ class Test{
   UserService:UserService
 
   @GET('/test)
-  @Validate({schema:Login})
+  @Validate({schema:Login,error:(errors)=>{
+    throw new Error(`${errors.map(error=>Object.value(error.constraints))}`);
+  }})
   async test(ctx:Koa.Context)
 }
 ```
@@ -219,6 +221,59 @@ class Test{
   @GET('/test)
   async test(ctx:Koa.Context){
     ctx.body = this.test;
+  }
+}
+```
+
+> @Before
+
+中间件装饰器，在路由处理之前生效。
+
+```
+@Controller('/hello');
+class Test{
+  @GET('/test)
+  @Before((ctx,next)=>{
+    ctx.state = 'test';
+  })
+  async test(ctx:Koa.Context){
+    ctx.body = ctx.state;
+  }
+}
+```
+
+> @After
+
+中间件装饰器，在路由处理之后生效。
+
+```
+@Controller('/hello');
+class Test{
+  @GET('/test)
+  @After((ctx,next)=>{
+    ctx.body = 'changed';
+  })
+  async test(ctx:Koa.Context){
+    ctx.body = 'origin';
+  }
+}
+```
+
+> @Schedule
+
+定时任务中间件，使用[node-schedule](https://github.com/node-schedule/node-schedule)实现。
+
+```
+@Controller('/hello');
+class Test{
+  @GET('/test)
+  async test(ctx:Koa.Context){
+    ctx.body = 'origin';
+  }
+
+  @Schedule('*/5 * * * *')  //每五分钟触发一次
+  schedule(){
+    console.log('tigger');
   }
 }
 ```
