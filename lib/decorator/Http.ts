@@ -1,4 +1,4 @@
-import Router from 'koa-router';
+import Router from "koa-router";
 
 export function USE(url: string): MethodDecorator {
 	return function(target: any, key: string, descriptor: PropertyDescriptor) {
@@ -6,10 +6,10 @@ export function USE(url: string): MethodDecorator {
 			key,
 			{
 				path: url,
-				method: 'use',
-				value: descriptor.value,
+				method: "use",
+				value: descriptor.value
 			},
-			target,
+			target
 		);
 	};
 }
@@ -20,10 +20,10 @@ export function POST(url: string): MethodDecorator {
 			key,
 			{
 				path: url,
-				method: 'post',
-				value: descriptor.value,
+				method: "post",
+				value: descriptor.value
 			},
-			target,
+			target
 		);
 	};
 }
@@ -34,10 +34,10 @@ export function GET(url: string): MethodDecorator {
 			key,
 			{
 				path: url,
-				method: 'get',
-				value: descriptor.value,
+				method: "get",
+				value: descriptor.value
 			},
-			target,
+			target
 		);
 	};
 }
@@ -48,10 +48,10 @@ export function DELETE(url: string): MethodDecorator {
 			key,
 			{
 				path: url,
-				method: 'delete',
-				value: descriptor.value,
+				method: "delete",
+				value: descriptor.value
 			},
-			target,
+			target
 		);
 	};
 }
@@ -62,21 +62,34 @@ export function PUT(url: string): MethodDecorator {
 			key,
 			{
 				path: url,
-				method: 'put',
-				value: descriptor.value,
+				method: "put",
+				value: descriptor.value
 			},
-			target,
+			target
 		);
 	};
 }
 
-export function Controller(prefix = ''): ClassDecorator {
+/**
+ * rewrite class constructor
+ * @param prefix router prefix
+ * @example
+ * ```
+ * 	
+ * 	@Controller('/prefix')
+ * 	export default class Router {
+ * 	}
+ * 
+ * ```
+ */
+
+export function Controller(prefix = ""): ClassDecorator {
 	return function(constructor: Function) {
 		const originalConstructor = constructor;
 		function instanciate(constructor: any, ...args) {
 			const instance = new constructor(...args);
 			let router: Router = new Router({
-				prefix,
+				prefix
 			});
 			Reflect.getMetadataKeys(instance).forEach(key => {
 				const config = Reflect.getMetadata(key, instance);

@@ -15,10 +15,21 @@ import pkg from "read-pkg-up";
 import cluster from "cluster";
 import os from "os";
 
-const default_options = { body: body, cors: cors, session: session, beforeall: compose };
 export class Misc extends Koa {
 	server: httpServer | httpsServer;
+	/**
+	 * create application instance
+	 * @example
+	 * ```typescript
+	 * 
+	 * const app = new Misc({
+	 * 	protocol:'http',
+	 * 	port:8080
+	 * })
+	 * ```
+	 */
 	constructor(opts: options) {
+		const default_options = { body: body, cors: cors, session: session, beforeall: compose };
 		const pack = pkg.sync().pkg;
 		logger.info("project:", pack.name);
 		logger.info("version:", pack.version);

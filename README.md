@@ -2,61 +2,27 @@
 [![codecov](https://codecov.io/gh/fullstackoverflow/Misc/branch/master/graph/badge.svg)](https://codecov.io/gh/fullstackoverflow/Misc)
 [![NPM version](https://img.shields.io/npm/v/@tosee/misc.svg)](https://www.npmjs.com/@tosee/misc)
 
-# 介绍
+Misc
 
-TypeScript+Koa。
+> 基于Koa与Typescript构建的框架
 
 # 快速开始
 
-1. 新建目录
-2. 加入`tsconfig.json`文件,例如:
-
+1. 安装命令行工具
 ```
-{
-  "compilerOptions": {
-    "module": "commonjs",
-    "declaration": false,
-    "noImplicitAny": false,
-    "removeComments": true,
-    "noLib": false,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "target": "es2017",
-    "sourceMap": true,
-    "allowJs": true,
-    "outDir": "./dist",
-    "resolveJsonModule": true,
-    "esModuleInterop": true
-  },
-  "exclude": [
-    "node_modules/**/*",
-    "**/*.spec.ts"
-  ]
-}
+npm i @tosee/misc-cli -g
 ```
-
-3. 安装`npm install @tosee/misc -S`
-4. 新建 app.ts,例如:
-
+2. 初始化项目并运行
 ```
-import { Misc } from '@tosee/misc';
-
-const app = new Misc({
-    protocol: 'http',
-    port: 6060
-});
-
-const server = app.server;
-
-export { server }
+mkdir project
+misc new ./project
+cd project
+npm run dev
 ```
-
-5. 安装 ts-node`npm install -g ts-node`
-6. 运行`ts-node ./app.ts`
 
 # 配置项
 
-Misc 继承自 Koa,实例化 Misc 时可以传入不同的参数来配置 Koa 实例,Misc 自带`koa-body`,`@koa/cors`,`koa-session`依赖,可以通过不同的配置来实现不同的功能。
+Misc继承自Koa,实例化Misc时可以传入不同的参数来配置Koa实例,Misc自带`koa-body`,`@koa/cors`,`koa-session`依赖,可以通过不同的配置来实现不同的功能，具体的参数细节查看[API](http://fullstackoverflow.github.io/Misc)。
 
 ## keys
 
@@ -64,11 +30,11 @@ Misc 继承自 Koa,实例化 Misc 时可以传入不同的参数来配置 Koa �
 
 ## beforeall
 
-中间件数组,Misc 会使用`koa-compose`组合数组中的中间件,这些中间处于`koa-body`,`@koa/cors`和`koa-session`之后(如果有配置的话),routerpath 目录中的各路由之前。
+中间件数组,Misc会使用`koa-compose`组合数组中的中间件,这些中间处于`koa-body`,`@koa/cors`和`koa-session`之后(如果有配置的话),routerpath目录中的各路由之前。
 
 ## routerpath
 
-Misc 会加载该配置目录及其子目录下的所有 js 与 ts 文件,并获取它们的默认导出(export default)，如果是`koa-router`实例则 Misc 会加载这些实例。
+Misc会加载该配置目录及其子目录下的所有ts文件,并获取它们的默认导出(export default)，如果是`koa-router`实例(使用@Controller装饰器)则Misc会加载这些实例,默认路径```src/router```。
 
 ## body
 
@@ -98,7 +64,7 @@ session 配置使用`koa-session`,参照[koa-session](https://github.com/koajs/s
 
 监听端口号。
 
-## 装饰器
+# 装饰器
 
 > @Controller
 
@@ -278,9 +244,9 @@ class Test{
 }
 ```
 
-## 工具
+# 工具
 
-# Config
+## Config
 
 配置加载类,使用前需要设置`Config.path`,`Config.instance`会加载与当前环境变量中`NODE_ENV`相同的 ts 文件,并监控文件修改事件实时更新。
 
@@ -303,36 +269,8 @@ console.log(Config.instance.db);
 $ export NODE_ENV=development&&ts-node ./test.ts
 ```
 
-# logger
+## logger
 
 打印信息，分为 error,info,和 succuess,带时间戳和不同颜色
 
-# response
 
-## ResSuccess
-
-```
-ctx.body = new ResSuccess('success',null);
-
-'{code:2,message:"success",data:null}'
-```
-
-## ResWarn
-
-```
-throw new ResWarn('warn',null);
-
-'{code:1,message:"warn",data:null}'
-```
-
-## ResError
-
-```
-throw new ResError('error',null);
-
-'{code:0,message:"error",data:null}'
-```
-
-## doc
-
-使用`apidoc`配合`apidoc-plugin-class-validator`即可方便的生成文档

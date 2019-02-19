@@ -1,6 +1,9 @@
 
 import Koa from 'koa';
 
+/**
+ * merge ctx.request.files to ctx.request.body
+ */
 export function File() {
     return function (target: any, key: string, descriptor: PropertyDescriptor) {
         const originFunction: Function = descriptor.value;

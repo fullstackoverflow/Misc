@@ -7,8 +7,12 @@
   "scripts": {
     "test": "jest --coverage --detectOpenHandles --forceExit",
     "start": "node test/index.js",
-    "version": "rm -rf ./dist/*&&tsc",
+    "version": "rm -rf ./dist/*&&tsc&&typedoc --out ./doc ./lib",
     "codecov": "codecov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fullstackoverflow/Misc"
   },
   "author": "tosee",
   "license": "MIT",
