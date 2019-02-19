@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest --coverage --detectOpenHandles --forceExit",
     "start": "node test/index.js",
-    "version": "rm -rf ./dist/*&&tsc&&typedoc --out ./doc ./lib",
+    "version": "rm -rf ./dist/*&&tsc&&typedoc --out ./docs ./lib",
     "codecov": "codecov"
   },
   "repository": {
