@@ -1,2 +1,5 @@
 import { RecurrenceRule, RecurrenceSpecDateRange, RecurrenceSpecObjLit } from "node-schedule";
-export declare const Schedule: (rule: string | Date | RecurrenceRule | RecurrenceSpecDateRange | RecurrenceSpecObjLit) => MethodDecorator;
+export interface ISchedule {
+    exec: Function;
+}
+export declare function Schedule(rule: RecurrenceRule | RecurrenceSpecDateRange | RecurrenceSpecObjLit | Date | string): ClassDecorator;

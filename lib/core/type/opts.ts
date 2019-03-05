@@ -9,6 +9,7 @@ export interface options {
 	keys?: Keygrip | string[];
 	beforeall?: Array<compose.Middleware<any>>;
 	routerpath?: string;
+	schedulepath?: string;
 	body?: IKoaBodyOptions;
 	protocol: "http" | "https";
 	callback?: Function;

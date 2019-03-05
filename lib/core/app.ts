@@ -14,6 +14,8 @@ import body from "koa-body";
 import pkg from "read-pkg-up";
 import cluster from "cluster";
 import os from "os";
+import { routerLoader } from "./loader/routerLoader";
+import { scheduleLoader } from "./loader/scheduleLoader";
 
 export class Misc extends Koa {
 	server: httpServer | httpsServer;
@@ -21,7 +23,7 @@ export class Misc extends Koa {
 	 * create application instance
 	 * @example
 	 * ```typescript
-	 * 
+	 *
 	 * const app = new Misc({
 	 * 	protocol:'http',
 	 * 	port:8080
@@ -60,27 +62,8 @@ export class Misc extends Koa {
 				}
 			});
 		this.keys = opts.keys;
-		let routerPath = [];
-		const base = opts.routerpath || resolve("src/router");
-		glob.sync(join(base, "**/*.*{ts,js}")).forEach(item => {
-			if (require(item).default) {
-				let router: Router = new (require(item)).default();
-				if (router instanceof Router) {
-					routerPath.push(item);
-					this.use(router.routes()).use(router.allowedMethods());
-				} else {
-					logger.error("Without @Controller decorator", item);
-				}
-			} else {
-				logger.error("Router without default export", item);
-			}
-		}, this);
-		logger.success(
-			"Router Loading:",
-			routerPath.map(item => {
-				return item.split("/").pop();
-			})
-		);
+		routerLoader(this, opts.routerpath || resolve("src/router"));
+		scheduleLoader(opts.schedulepath || resolve("src/schedule"));
 		if (opts.protocol == "http") {
 			this.server = http.createServer(this.callback()).listen(opts.port, opts.callback);
 		} else if (opts.protocol == "https") {

@@ -1,1 +1,1 @@
-export declare const Autowired: (params?: any) => PropertyDecorator;
+export declare function Autowired(params?: any): PropertyDecorator;

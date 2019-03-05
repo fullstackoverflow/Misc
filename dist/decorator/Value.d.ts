@@ -1,1 +1,1 @@
-export declare const Value: (params: string) => PropertyDecorator;
+export declare function Value(params: string): PropertyDecorator;

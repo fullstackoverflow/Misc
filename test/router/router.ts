@@ -19,10 +19,11 @@ import {
 	After
 } from "../../lib/index";
 import { TestService } from "../service/TestService";
-import { IsBoolean, IsString } from "class-validator";
+import { IsBoolean, IsString, ValidateNested } from "class-validator";
 import { writeFileSync } from "fs";
 import { resolve } from "path";
 import moment = require("moment");
+import { Type } from "class-transformer";
 
 export class Test {
 	/**
@@ -34,6 +35,18 @@ export class Test {
 	@IsString()
 	test2:string;
 }
+
+class FormFile {
+	@IsString()
+	path: string;
+}
+
+export class Upload {
+	@ValidateNested()
+	@Type(() => FormFile)
+	file: FormFile;
+}
+
 
 @Controller()
 export default class Router {
@@ -49,6 +62,7 @@ export default class Router {
 	}
 
 	@POST("/formdata")
+	@Validate({schema:Upload})
 	@File()
 	async formdata(ctx: Koa.Context) {
 		ctx.body = new ResSuccess("", ctx.request.body.file.name);

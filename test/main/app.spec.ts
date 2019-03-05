@@ -112,7 +112,7 @@ describe("app", () => {
 			try {
 				await next();
 			} catch (err) {
-				if (err.code!=undefined) {
+				if (err.code != undefined) {
 					ctx.body = new Res(err.code, err.message, err.data);
 				}
 			}
@@ -131,4 +131,13 @@ describe("app", () => {
 		expect(response2.status).toBe(200);
 		expect(response2.body).toEqual({ code: 0, message: "reserr", data: null });
 	});
+
+	it("should schedule worked", async () => {
+		const app = new Misc({
+			protocol: "http",
+			routerpath: resolve(__dirname, "../router"),
+			schedulepath: resolve(__dirname, "../schedule"),
+			port: 8008
+		});
+	},2000);
 });

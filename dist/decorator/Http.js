@@ -8,8 +8,8 @@ function USE(url) {
     return function (target, key, descriptor) {
         Reflect.defineMetadata(key, {
             path: url,
-            method: 'use',
-            value: descriptor.value,
+            method: "use",
+            value: descriptor.value
         }, target);
     };
 }
@@ -18,8 +18,8 @@ function POST(url) {
     return function (target, key, descriptor) {
         Reflect.defineMetadata(key, {
             path: url,
-            method: 'post',
-            value: descriptor.value,
+            method: "post",
+            value: descriptor.value
         }, target);
     };
 }
@@ -28,8 +28,8 @@ function GET(url) {
     return function (target, key, descriptor) {
         Reflect.defineMetadata(key, {
             path: url,
-            method: 'get',
-            value: descriptor.value,
+            method: "get",
+            value: descriptor.value
         }, target);
     };
 }
@@ -38,8 +38,8 @@ function DELETE(url) {
     return function (target, key, descriptor) {
         Reflect.defineMetadata(key, {
             path: url,
-            method: 'delete',
-            value: descriptor.value,
+            method: "delete",
+            value: descriptor.value
         }, target);
     };
 }
@@ -48,19 +48,19 @@ function PUT(url) {
     return function (target, key, descriptor) {
         Reflect.defineMetadata(key, {
             path: url,
-            method: 'put',
-            value: descriptor.value,
+            method: "put",
+            value: descriptor.value
         }, target);
     };
 }
 exports.PUT = PUT;
-function Controller(prefix = '') {
+function Controller(prefix = "") {
     return function (constructor) {
         const originalConstructor = constructor;
         function instanciate(constructor, ...args) {
             const instance = new constructor(...args);
             let router = new koa_router_1.default({
-                prefix,
+                prefix
             });
             Reflect.getMetadataKeys(instance).forEach(key => {
                 const config = Reflect.getMetadata(key, instance);
