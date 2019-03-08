@@ -62,13 +62,24 @@
 					<a href="_core_app_.misc.html">Misc</a>
 				</li>
 			</ul>
-			<h1>Class Misc</h1>
+			<h1>Class Misc&lt;StateT, CustomT&gt;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>StateT</h4>
+					</li>
+					<li>
+						<h4>CustomT</h4>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -101,7 +112,8 @@
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-class tsd-is-static"><a href="_core_app_.misc.html#middleware" class="tsd-kind-icon">Middleware</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="_core_app_.misc.html#middleware" class="tsd-kind-icon">Middleware</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="_core_app_.misc.html#parameterizedcontext" class="tsd-kind-icon">Parameterized<wbr>Context</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -131,7 +143,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_core_app_.misc.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_core_app_.misc.html#callback" class="tsd-kind-icon">callback</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_core_app_.misc.html#createcontext" class="tsd-kind-icon">create<wbr>Context</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="_core_app_.misc.html#createcontext" class="tsd-kind-icon">create<wbr>Context</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_core_app_.misc.html#emit" class="tsd-kind-icon">emit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_core_app_.misc.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_core_app_.misc.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a></li>
@@ -139,6 +151,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_core_app_.misc.html#listen" class="tsd-kind-icon">listen</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_core_app_.misc.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_core_app_.misc.html#listeners" class="tsd-kind-icon">listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_core_app_.misc.html#off" class="tsd-kind-icon">off</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_core_app_.misc.html#on" class="tsd-kind-icon">on</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_core_app_.misc.html#once" class="tsd-kind-icon">once</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_core_app_.misc.html#onerror" class="tsd-kind-icon">onerror</a></li>
@@ -149,7 +162,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_core_app_.misc.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_core_app_.misc.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_core_app_.misc.html#tojson" class="tsd-kind-icon">toJSON</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_core_app_.misc.html#use" class="tsd-kind-icon">use</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="_core_app_.misc.html#use" class="tsd-kind-icon">use</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="_core_app_.misc.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a></li>
 							</ul>
 						</section>
@@ -158,13 +171,23 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Type aliases</h2>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-class tsd-is-static">
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
 					<a name="middleware" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> Middleware</h3>
-					<div class="tsd-signature tsd-kind-icon">Middleware<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">compose.Middleware</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Context</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">Middleware<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">compose.Middleware</span><span class="tsd-signature-symbol">&lt;</span><a href="_core_app_.misc.html#parameterizedcontext" class="tsd-signature-type">ParameterizedContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">StateT</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CustomT</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:527</li>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:529</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
+					<a name="parameterizedcontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> Parameterized<wbr>Context</h3>
+					<div class="tsd-signature tsd-kind-icon">Parameterized<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">BaseContext</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">CustomT</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:689</li>
 						</ul>
 					</aside>
 				</section>
@@ -182,7 +205,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Application.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/71f9b5e/lib/core/app.ts#L21">core/app.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/deda6c9/lib/core/app.ts#L21">core/app.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -215,7 +238,7 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="context-1" class="tsd-anchor"></a>
 					<h3>context</h3>
-					<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">BaseContext</span></div>
+					<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">BaseContext</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">CustomT</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from Application.context</p>
 						<ul>
@@ -248,7 +271,7 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="middleware-1" class="tsd-anchor"></a>
 					<h3>middleware</h3>
-					<div class="tsd-signature tsd-kind-icon">middleware<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Application.Middleware</span><span class="tsd-signature-symbol">[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">middleware<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Application.Middleware</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">StateT</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CustomT</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from Application.middleware</p>
 						<ul>
@@ -295,7 +318,7 @@
 					<div class="tsd-signature tsd-kind-icon">server<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">httpServer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">httpsServer</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/71f9b5e/lib/core/app.ts#L21">core/app.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/deda6c9/lib/core/app.ts#L21">core/app.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -328,7 +351,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from EventEmitter.defaultMaxListeners</p>
 						<ul>
-							<li>Defined in E:/fy/Misc/node_modules/@types/node/index.d.ts:1024</li>
+							<li>Defined in E:/fy/Misc/node_modules/@types/node/events.d.ts:8</li>
 						</ul>
 					</aside>
 				</section>
@@ -347,7 +370,7 @@
 								<p>Inherited from EventEmitter.addListener</p>
 								<p>Overrides EventEmitter.addListener</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/node/index.d.ts:1026</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/node/events.d.ts:10</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -392,7 +415,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Application.callback</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:506</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:508</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -426,18 +449,18 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 					<a name="createcontext" class="tsd-anchor"></a>
 					<h3>create<wbr>Context</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Context<span class="tsd-signature-symbol">(</span>req<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IncomingMessage</span>, res<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ServerResponse</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Context</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Context&lt;StateT&gt;<span class="tsd-signature-symbol">(</span>req<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IncomingMessage</span>, res<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ServerResponse</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Application.ParameterizedContext</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">StateT</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from Application.createContext</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:513</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:515</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -450,6 +473,12 @@
 									</dd>
 								</dl>
 							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>StateT</h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -459,7 +488,7 @@
 									<h5>res: <span class="tsd-signature-type">ServerResponse</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Context</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Application.ParameterizedContext</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">StateT</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -475,7 +504,7 @@
 								<p>Inherited from EventEmitter.emit</p>
 								<p>Overrides EventEmitter.emit</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/node/index.d.ts:1037</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/node/events.d.ts:22</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -503,7 +532,7 @@
 								<p>Inherited from EventEmitter.eventNames</p>
 								<p>Overrides EventEmitter.eventNames</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/node/index.d.ts:1038</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/node/events.d.ts:23</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -522,7 +551,7 @@
 								<p>Inherited from EventEmitter.getMaxListeners</p>
 								<p>Overrides EventEmitter.getMaxListeners</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/node/index.d.ts:1034</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/node/events.d.ts:19</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -876,7 +905,7 @@
 								<p>Inherited from EventEmitter.listenerCount</p>
 								<p>Overrides EventEmitter.listenerCount</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/node/index.d.ts:1039</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/node/events.d.ts:24</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -901,7 +930,7 @@
 								<p>Inherited from EventEmitter.listeners</p>
 								<p>Overrides EventEmitter.listeners</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/node/index.d.ts:1035</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/node/events.d.ts:20</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -911,6 +940,52 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a name="off" class="tsd-anchor"></a>
+					<h3>off</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">off<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from EventEmitter.off</p>
+								<p>Overrides EventEmitter.off</p>
+								<ul>
+									<li>Defined in E:/fy/Misc/node_modules/@types/node/events.d.ts:16</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>event: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+								</li>
+								<li>
+									<h5>listener: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -926,7 +1001,7 @@
 								<p>Inherited from EventEmitter.on</p>
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/node/index.d.ts:1027</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/node/events.d.ts:11</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -972,7 +1047,7 @@
 								<p>Inherited from EventEmitter.once</p>
 								<p>Overrides EventEmitter.once</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/node/index.d.ts:1028</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/node/events.d.ts:12</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1017,7 +1092,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Application.onerror</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:523</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:525</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1052,7 +1127,7 @@
 								<p>Inherited from EventEmitter.prependListener</p>
 								<p>Overrides EventEmitter.prependListener</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/node/index.d.ts:1029</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/node/events.d.ts:13</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1098,7 +1173,7 @@
 								<p>Inherited from EventEmitter.prependOnceListener</p>
 								<p>Overrides EventEmitter.prependOnceListener</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/node/index.d.ts:1030</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/node/events.d.ts:14</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1144,7 +1219,7 @@
 								<p>Inherited from EventEmitter.rawListeners</p>
 								<p>Overrides EventEmitter.rawListeners</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/node/index.d.ts:1036</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/node/events.d.ts:21</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1169,7 +1244,7 @@
 								<p>Inherited from EventEmitter.removeAllListeners</p>
 								<p>Overrides EventEmitter.removeAllListeners</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/node/index.d.ts:1032</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/node/events.d.ts:17</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1194,7 +1269,7 @@
 								<p>Inherited from EventEmitter.removeListener</p>
 								<p>Overrides EventEmitter.removeListener</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/node/index.d.ts:1031</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/node/events.d.ts:15</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1240,7 +1315,7 @@
 								<p>Inherited from EventEmitter.setMaxListeners</p>
 								<p>Overrides EventEmitter.setMaxListeners</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/node/index.d.ts:1033</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/node/events.d.ts:18</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1277,11 +1352,11 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 					<a name="use" class="tsd-anchor"></a>
 					<h3>use</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">use<span class="tsd-signature-symbol">(</span>middleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Application.Middleware</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">use&lt;NewStateT, NewCustomT&gt;<span class="tsd-signature-symbol">(</span>middleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Application.Middleware</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">StateT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewStateT</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CustomT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewCustomT</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_core_app_.misc.application.html" class="tsd-signature-type">Application</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">StateT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewStateT</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CustomT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewCustomT</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -1297,13 +1372,22 @@
 								</div>
 								<p>Old-style middleware will be converted.</p>
 							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>NewStateT</h4>
+								</li>
+								<li>
+									<h4>NewCustomT</h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>middleware: <span class="tsd-signature-type">Application.Middleware</span></h5>
+									<h5>middleware: <span class="tsd-signature-type">Application.Middleware</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">StateT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewStateT</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CustomT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewCustomT</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_core_app_.misc.application.html" class="tsd-signature-type">Application</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">StateT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewStateT</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CustomT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewCustomT</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1318,9 +1402,16 @@
 							<aside class="tsd-sources">
 								<p>Inherited from EventEmitter.listenerCount</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/node/index.d.ts:1023</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/node/events.d.ts:7</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd><p>since v4.0.0</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -1382,6 +1473,9 @@
 						<a href="../modules/_util_config_.html">"util/config"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/_util_context_.html">"util/context"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_util_log_.html">"util/log"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -1393,7 +1487,7 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_core_app_.misc.html" class="tsd-kind-icon">Misc</a>
 						<ul>
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
@@ -1417,8 +1511,11 @@
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
 								<a href="../interfaces/_core_app_.misc.response.html" class="tsd-kind-icon">Response</a>
 							</li>
-							<li class=" tsd-kind-type-alias tsd-parent-kind-class tsd-is-static">
+							<li class=" tsd-kind-type-alias tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
 								<a href="_core_app_.misc.html#middleware" class="tsd-kind-icon">Middleware</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
+								<a href="_core_app_.misc.html#parameterizedcontext" class="tsd-kind-icon">Parameterized<wbr>Context</a>
 							</li>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 								<a href="_core_app_.misc.html#constructor" class="tsd-kind-icon">constructor</a>
@@ -1462,7 +1559,7 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_core_app_.misc.html#callback" class="tsd-kind-icon">callback</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 								<a href="_core_app_.misc.html#createcontext" class="tsd-kind-icon">create<wbr>Context</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
@@ -1485,6 +1582,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 								<a href="_core_app_.misc.html#listeners" class="tsd-kind-icon">listeners</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="_core_app_.misc.html#off" class="tsd-kind-icon">off</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 								<a href="_core_app_.misc.html#on" class="tsd-kind-icon">on</a>
@@ -1516,7 +1616,7 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_core_app_.misc.html#tojson" class="tsd-kind-icon">toJSON</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 								<a href="_core_app_.misc.html#use" class="tsd-kind-icon">use</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">

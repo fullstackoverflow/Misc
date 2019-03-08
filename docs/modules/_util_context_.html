@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;decorator/Value&quot; | @tosee/misc</title>
+	<title>&quot;util/context&quot; | @tosee/misc</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_decorator_value_.html">&quot;decorator/Value&quot;</a>
+					<a href="_util_context_.html">&quot;util/context&quot;</a>
 				</li>
 			</ul>
-			<h1>External module &quot;decorator/Value&quot;</h1>
+			<h1>External module &quot;util/context&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -71,52 +71,114 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_util_context_.namespace.html" class="tsd-kind-icon">Namespace</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported"><a href="_util_context_.html#namespaces" class="tsd-kind-icon">namespaces</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_decorator_value_.html#value" class="tsd-kind-icon">Value</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_util_context_.html#createhooks" class="tsd-kind-icon">create<wbr>Hooks</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_util_context_.html#createnamespace" class="tsd-kind-icon">create<wbr>Namespace</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_util_context_.html#getnamespace" class="tsd-kind-icon">get<wbr>Namespace</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+					<a name="namespaces" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> namespaces</h3>
+					<div class="tsd-signature tsd-kind-icon">namespaces<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/deda6c9/lib/util/context.ts#L22">util/context.ts:22</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+						</ul>
+					</div>
+				</section>
+			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="value" class="tsd-anchor"></a>
-					<h3>Value</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">Value<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyDecorator</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+					<a name="createhooks" class="tsd-anchor"></a>
+					<h3>create<wbr>Hooks</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Hooks<span class="tsd-signature-symbol">(</span>namespace<span class="tsd-signature-symbol">: </span><a href="../classes/_util_context_.namespace.html" class="tsd-signature-type">Namespace</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/deda6c9/lib/decorator/Value.ts#L16">decorator/Value.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/deda6c9/lib/util/context.ts#L24">util/context.ts:24</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Inject value from local config file</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>example</dt>
-									<dd><pre><code class="language-typescript">
-<span class="hljs-keyword">class</span> Test{
-    <span class="hljs-meta">@Value</span>(<span class="hljs-string">'param'</span>)
-    param:<span class="hljs-built_in">string</span>;
-}</code></pre>
-									</dd>
-								</dl>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>params: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
+									<h5>namespace: <a href="../classes/_util_context_.namespace.html" class="tsd-signature-type">Namespace</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PropertyDecorator</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="createnamespace" class="tsd-anchor"></a>
+					<h3>create<wbr>Namespace</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Namespace<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_util_context_.namespace.html" class="tsd-signature-type">Namespace</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/deda6c9/lib/util/context.ts#L40">util/context.ts:40</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/_util_context_.namespace.html" class="tsd-signature-type">Namespace</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getnamespace" class="tsd-anchor"></a>
+					<h3>get<wbr>Namespace</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Namespace<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_util_context_.namespace.html" class="tsd-signature-type">Namespace</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/deda6c9/lib/util/context.ts#L53">util/context.ts:53</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/_util_context_.namespace.html" class="tsd-signature-type">Namespace</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -158,7 +220,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="_decorator_validate_.html">"decorator/<wbr>Validate"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="_decorator_value_.html">"decorator/<wbr>Value"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -167,7 +229,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="_util_config_.html">"util/config"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="_util_context_.html">"util/context"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -180,8 +242,20 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/_util_context_.namespace.html" class="tsd-kind-icon">Namespace</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_util_context_.html#namespaces" class="tsd-kind-icon">namespaces</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_util_context_.html#createhooks" class="tsd-kind-icon">create<wbr>Hooks</a>
+					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_decorator_value_.html#value" class="tsd-kind-icon">Value</a>
+						<a href="_util_context_.html#createnamespace" class="tsd-kind-icon">create<wbr>Namespace</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_util_context_.html#getnamespace" class="tsd-kind-icon">get<wbr>Namespace</a>
 					</li>
 				</ul>
 			</nav>
