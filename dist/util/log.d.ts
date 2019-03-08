@@ -1,11 +1,9 @@
 /// <reference types="koa-session" />
 import Koa from "koa";
-import { Namespace } from "./context";
 declare class Logger {
-    private initNameSpace;
+    private NameSpace;
     constructor();
-    readonly NameSpace: Namespace;
-    Middleware(ctx: Koa.Context, next: Function): void;
+    Middleware(): (ctx: Koa.Context, next: Function) => Promise<void>;
     info(...args: any[]): void;
     success(...args: any[]): void;
     error(...args: any[]): void;

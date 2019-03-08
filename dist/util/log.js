@@ -10,17 +10,17 @@ const uuid_1 = require("uuid");
 const context_1 = require("./context");
 class Logger {
     constructor() {
-        this.initNameSpace = context_1.createNamespace(read_pkg_up_1.default.sync().pkg.name);
+        this.NameSpace = context_1.createNamespace(read_pkg_up_1.default.sync().pkg.name);
     }
-    get NameSpace() {
-        return context_1.getNamespace(read_pkg_up_1.default.sync().pkg.name);
-    }
-    Middleware(ctx, next) {
-        this.initNameSpace.run(async () => {
-            const tid = uuid_1.v1();
-            this.initNameSpace.context.set("tid", tid);
-            await next();
-        });
+    Middleware() {
+        const namespace = this.NameSpace;
+        return async function (ctx, next) {
+            namespace.run(async () => {
+                const tid = uuid_1.v1();
+                namespace.context.set("tid", tid);
+                await next();
+            });
+        };
     }
     info(...args) {
         if (!this.NameSpace.context) {

@@ -6,21 +6,20 @@ import Koa from "koa";
 import { createNamespace, getNamespace, Namespace } from "./context";
 
 class Logger {
-	private initNameSpace:Namespace
+	private NameSpace: Namespace;
 	constructor() {
-		this.initNameSpace = createNamespace(pkg.sync().pkg.name);
+		this.NameSpace = createNamespace(pkg.sync().pkg.name);
 	}
 
-	get NameSpace() {
-		return getNamespace(pkg.sync().pkg.name);
-	}
-
-	Middleware(ctx: Koa.Context, next: Function) {
-		this.initNameSpace.run(async () => {
-			const tid = uuid();
-			this.initNameSpace.context.set("tid", tid);
-			await next();
-		});
+	Middleware() {
+		const namespace = this.NameSpace;
+		return async function(ctx: Koa.Context, next: Function) {
+			namespace.run(async () => {
+				const tid = uuid();
+				namespace.context.set("tid", tid);
+				await next();
+			});
+		};
 	}
 
 	info(...args) {

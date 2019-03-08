@@ -1,4 +1,3 @@
-/// <reference types="node" />
 /// <reference types="koa__cors" />
 import Keygrip from "keygrip";
 import compose from "koa-compose";
