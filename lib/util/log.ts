@@ -3,11 +3,12 @@ import moment from "moment";
 import pkg from "read-pkg-up";
 import { v1 as uuid } from "uuid";
 import Koa from "koa";
-import { createNamespace, getNamespace } from "./context";
+import { createNamespace, getNamespace, Namespace } from "./context";
 
 class Logger {
+	private initNameSpace:Namespace
 	constructor() {
-		createNamespace(pkg.sync().pkg.name);
+		this.initNameSpace = createNamespace(pkg.sync().pkg.name);
 	}
 
 	get NameSpace() {
@@ -15,9 +16,9 @@ class Logger {
 	}
 
 	Middleware(ctx: Koa.Context, next: Function) {
-		this.NameSpace.run(async () => {
+		this.initNameSpace.run(async () => {
 			const tid = uuid();
-			this.NameSpace.context.set("tid", tid);
+			this.initNameSpace.context.set("tid", tid);
 			await next();
 		});
 	}
