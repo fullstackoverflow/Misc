@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import "reflect-metadata";
 import Koa from "koa";
 import { Server as httpServer } from "http";
