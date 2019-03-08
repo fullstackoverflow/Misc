@@ -10,15 +10,15 @@ const uuid_1 = require("uuid");
 const context_1 = require("./context");
 class Logger {
     constructor() {
-        context_1.createNamespace(read_pkg_up_1.default.sync().pkg.name);
+        this.initNameSpace = context_1.createNamespace(read_pkg_up_1.default.sync().pkg.name);
     }
     get NameSpace() {
         return context_1.getNamespace(read_pkg_up_1.default.sync().pkg.name);
     }
     Middleware(ctx, next) {
-        this.NameSpace.run(async () => {
+        this.initNameSpace.run(async () => {
             const tid = uuid_1.v1();
-            this.NameSpace.context.set("tid", tid);
+            this.initNameSpace.context.set("tid", tid);
             await next();
         });
     }
