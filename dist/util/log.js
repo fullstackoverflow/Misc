@@ -7,13 +7,13 @@ const chalk_1 = __importDefault(require("chalk"));
 const moment_1 = __importDefault(require("moment"));
 class Logger {
     info(...args) {
-        console.log(chalk_1.default.yellow(`[${moment_1.default().format('YYYY-MM-DD')}] [${moment_1.default().format('HH:mm:ss')}] `), ...args);
+        console.log(chalk_1.default.yellow(`[${moment_1.default().format("YYYY-MM-DD")}] [${moment_1.default().format("HH:mm:ss")}] `), ...args);
     }
     success(...args) {
-        console.log(chalk_1.default.green(`[${moment_1.default().format('YYYY-MM-DD')}] [${moment_1.default().format('HH:mm:ss')}] `), ...args);
+        console.log(chalk_1.default.green(`[${moment_1.default().format("YYYY-MM-DD")}] [${moment_1.default().format("HH:mm:ss")}] `), ...args);
     }
     error(...args) {
-        console.log(chalk_1.default.red(`[${moment_1.default().format('YYYY-MM-DD')}] [${moment_1.default().format('HH:mm:ss')}] `), ...args);
+        console.log(chalk_1.default.red(`[${moment_1.default().format("YYYY-MM-DD")}] [${moment_1.default().format("HH:mm:ss")}] `), ...args);
     }
 }
 const logger = new Logger();
