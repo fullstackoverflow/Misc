@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;decorator/Value&quot; | @tosee/misc</title>
+	<title>MODE | @tosee/misc</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_decorator_value_.html">&quot;decorator/Value&quot;</a>
+					<a href="../modules/_decorator_autowired_.html">&quot;decorator/Autowired&quot;</a>
+				</li>
+				<li>
+					<a href="_decorator_autowired_.mode.html">MODE</a>
 				</li>
 			</ul>
-			<h1>External module &quot;decorator/Value&quot;</h1>
+			<h1>Enumeration MODE</h1>
 		</div>
 	</div>
 </header>
@@ -71,54 +74,36 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Functions</h3>
+							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_decorator_value_.html#value" class="tsd-kind-icon">Value</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_decorator_autowired_.mode.html#ordinary" class="tsd-kind-icon">Ordinary</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_decorator_autowired_.mode.html#singleton" class="tsd-kind-icon">Singleton</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="value" class="tsd-anchor"></a>
-					<h3>Value</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">Value<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyDecorator</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/291668b/lib/decorator/Value.ts#L16">decorator/Value.ts:16</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Inject value from local config file</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>example</dt>
-									<dd><pre><code class="language-typescript">
-<span class="hljs-keyword">class</span> Test{
-    <span class="hljs-meta">@Value</span>(<span class="hljs-string">'param'</span>)
-    param:<span class="hljs-built_in">string</span>;
-}</code></pre>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>params: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PropertyDecorator</span></h4>
-						</li>
-					</ul>
+				<h2>Enumeration members</h2>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="ordinary" class="tsd-anchor"></a>
+					<h3>Ordinary</h3>
+					<div class="tsd-signature tsd-kind-icon">Ordinary<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/291668b/lib/decorator/Autowired.ts#L3">decorator/Autowired.ts:3</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="singleton" class="tsd-anchor"></a>
+					<h3>Singleton</h3>
+					<div class="tsd-signature tsd-kind-icon">Singleton<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/291668b/lib/decorator/Autowired.ts#L2">decorator/Autowired.ts:2</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -129,59 +114,77 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_core_app_.html">"core/app"</a>
+						<a href="../modules/_core_app_.html">"core/app"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_core_loader_routerloader_.html">"core/loader/router<wbr>Loader"</a>
+						<a href="../modules/_core_loader_routerloader_.html">"core/loader/router<wbr>Loader"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_core_loader_scheduleloader_.html">"core/loader/schedule<wbr>Loader"</a>
+						<a href="../modules/_core_loader_scheduleloader_.html">"core/loader/schedule<wbr>Loader"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_core_type_opts_.html">"core/type/opts"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_decorator_autowired_.html">"decorator/<wbr>Autowired"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_decorator_file_.html">"decorator/<wbr>File"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_decorator_http_.html">"decorator/<wbr>Http"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_decorator_middleware_.html">"decorator/<wbr>Middleware"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_decorator_schedule_.html">"decorator/<wbr>Schedule"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_decorator_validate_.html">"decorator/<wbr>Validate"</a>
+						<a href="../modules/_core_type_opts_.html">"core/type/opts"</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_decorator_value_.html">"decorator/<wbr>Value"</a>
+						<a href="../modules/_decorator_autowired_.html">"decorator/<wbr>Autowired"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_index_.html">"index"</a>
+						<a href="../modules/_decorator_file_.html">"decorator/<wbr>File"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_util_config_.html">"util/config"</a>
+						<a href="../modules/_decorator_http_.html">"decorator/<wbr>Http"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_util_context_.html">"util/context"</a>
+						<a href="../modules/_decorator_middleware_.html">"decorator/<wbr>Middleware"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_util_log_.html">"util/log"</a>
+						<a href="../modules/_decorator_schedule_.html">"decorator/<wbr>Schedule"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_util_response_.html">"util/response"</a>
+						<a href="../modules/_decorator_validate_.html">"decorator/<wbr>Validate"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_decorator_value_.html">"decorator/<wbr>Value"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_index_.html">"index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_util_config_.html">"util/config"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_util_context_.html">"util/context"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_util_log_.html">"util/log"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_util_response_.html">"util/response"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="_decorator_autowired_.mode.html" class="tsd-kind-icon">MODE</a>
+						<ul>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="_decorator_autowired_.mode.html#ordinary" class="tsd-kind-icon">Ordinary</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="_decorator_autowired_.mode.html#singleton" class="tsd-kind-icon">Singleton</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../modules/_decorator_autowired_.html#container" class="tsd-kind-icon">Container</a>
+					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_decorator_value_.html#value" class="tsd-kind-icon">Value</a>
+						<a href="../modules/_decorator_autowired_.html#autowired" class="tsd-kind-icon">Autowired</a>
 					</li>
 				</ul>
 			</nav>
