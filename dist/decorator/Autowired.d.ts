@@ -1,5 +1,5 @@
 export declare enum MODE {
-    Sigleton = 0,
+    Singleton = 0,
     Ordinary = 1
 }
 export declare function Autowired(options?: {

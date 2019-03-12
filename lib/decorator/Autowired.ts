@@ -1,5 +1,5 @@
 export enum MODE {
-	Sigleton = 0,
+	Singleton = 0,
 	Ordinary
 }
 
@@ -26,7 +26,7 @@ export function Autowired(options: { mode: MODE; arguments?: any[] } = { mode: M
 		const typeClass = Reflect.getMetadata("design:type", target, propertyKey);
 		const originDescriptor = Reflect.getOwnPropertyDescriptor((target && target.prototype) || target, propertyKey);
 		const descriptor = originDescriptor || { writable: true, configurable: true };
-		if (mode == MODE.Sigleton) {
+		if (mode == MODE.Singleton) {
 			if (!Container.has(typeClass)) {
 				Container.set(typeClass, new typeClass());
 			}

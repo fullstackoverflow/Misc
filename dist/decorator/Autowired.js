@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var MODE;
 (function (MODE) {
-    MODE[MODE["Sigleton"] = 0] = "Sigleton";
+    MODE[MODE["Singleton"] = 0] = "Singleton";
     MODE[MODE["Ordinary"] = 1] = "Ordinary";
 })(MODE = exports.MODE || (exports.MODE = {}));
 const Container = new Map();
@@ -12,7 +12,7 @@ function Autowired(options = { mode: MODE.Ordinary, arguments: [] }) {
         const typeClass = Reflect.getMetadata("design:type", target, propertyKey);
         const originDescriptor = Reflect.getOwnPropertyDescriptor((target && target.prototype) || target, propertyKey);
         const descriptor = originDescriptor || { writable: true, configurable: true };
-        if (mode == MODE.Sigleton) {
+        if (mode == MODE.Singleton) {
             if (!Container.has(typeClass)) {
                 Container.set(typeClass, new typeClass());
             }
