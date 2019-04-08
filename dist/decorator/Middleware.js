@@ -27,12 +27,10 @@ function Before(...func) {
     return function (target, key, descriptor) {
         const originFunction = descriptor.value;
         descriptor.value = async function (ctx, next) {
-            console.log(Reflect.getMetadata("config", target).value);
-            const middlewares = koa_compose_1.default(func.map(f => f.apply(Reflect.getMetadata("config", target).value)));
+            const middlewares = koa_compose_1.default(func);
             await middlewares(ctx, next);
             await originFunction.apply(this, arguments);
         };
-        // descriptor.value.prototype = originFunction.prototype;
     };
 }
 exports.Before = Before;
