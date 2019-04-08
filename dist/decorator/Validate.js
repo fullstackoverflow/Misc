@@ -7,6 +7,30 @@ var HttpMap;
     HttpMap["post"] = "body";
     HttpMap["get"] = "query";
 })(HttpMap || (HttpMap = {}));
+/**
+ * use class-validator to validate request object
+ * @param ValidateOptions
+ * @param ValidateObject
+ * @example
+ * ```typescript
+ *
+ * class Test{
+ * 	@IsBoolean()
+ * 	test:Boolean;
+ * }
+ *
+ * export class Router{
+ * 	@GET('/test')
+ * 	@Validate({schema:Test,error:(errors)=> {
+ *		throw new Error(`${errors.map(error=>Object.value(error.constraints))}`)
+ * 	})
+ * 	async test(){
+ * 		ctx.body = 'origin';
+ * 	}
+ * }
+ *
+ * ```
+ */
 function Validate(ValidateOptions, ValidateObject = { params: false }) {
     const { schema, options, error } = ValidateOptions;
     const { params } = ValidateObject;

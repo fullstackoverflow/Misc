@@ -1,12 +1,6 @@
-/// <reference types="koa-session" />
-import Koa from "koa";
-declare class Logger {
-    private NameSpace;
-    constructor();
-    Middleware(): (ctx: Koa.Context, next: Function) => Promise<void>;
-    info(...args: any[]): void;
-    success(...args: any[]): void;
-    error(...args: any[]): void;
+import { Logger as Log } from "@tosee/log";
+declare class Logger extends Log {
+    constructor(namespace: string);
 }
 declare const logger: Logger;
 export { logger };

@@ -1,5 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * merge ctx.request.files to ctx.request.body
+ */
 function File() {
     return function (target, key, descriptor) {
         const originFunction = descriptor.value;

@@ -6,6 +6,21 @@ var MODE;
     MODE[MODE["Ordinary"] = 1] = "Ordinary";
 })(MODE = exports.MODE || (exports.MODE = {}));
 const Container = new Map();
+/**
+ * Inject a class instance
+ * @param params class constructor params
+ * @example
+ * ```typescript
+ *
+ * class Service{
+ * }
+ *
+ * class Test{
+ *  @Autowired()
+ *  Service:Service
+ * }
+ * ```
+ */
 function Autowired(options = { mode: MODE.Ordinary, arguments: [] }) {
     return (target, propertyKey) => {
         const { mode } = options;

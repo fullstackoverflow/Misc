@@ -18,6 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "@koa/cors": "^2.2.3",
+    "@tosee/log": "^1.0.1",
     "@types/glob": "^7.1.1",
     "@types/joi": "^14.3.2",
     "@types/keygrip": "^1.0.1",

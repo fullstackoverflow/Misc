@@ -17,12 +17,26 @@ const read_pkg_up_1 = __importDefault(require("read-pkg-up"));
 const routerLoader_1 = require("./loader/routerLoader");
 const scheduleLoader_1 = require("./loader/scheduleLoader");
 class Misc extends koa_1.default {
+    /**
+     * create application instance
+     * @example
+     * ```typescript
+     *
+     * const app = new Misc({
+     * 	protocol:'http',
+     * 	port:8080
+     * })
+     * ```
+     */
     constructor(opts) {
         const default_options = { body: koa_body_1.default, cors: cors_1.default, session: koa_session_1.default, beforeall: koa_compose_1.default };
         const pack = read_pkg_up_1.default.sync().pkg;
         log_1.logger.info("project:", pack.name);
         log_1.logger.info("version:", pack.version);
         super();
+        /**
+         * 内置插件
+         */
         if (!opts.body) {
             this.use(koa_body_1.default());
         }

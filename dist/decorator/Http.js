@@ -54,6 +54,18 @@ function PUT(url) {
     };
 }
 exports.PUT = PUT;
+/**
+ * rewrite class constructor
+ * @param prefix router prefix
+ * @example
+ * ```
+ *
+ * 	@Controller('/prefix')
+ * 	export default class Router {
+ * 	}
+ *
+ * ```
+ */
 function Controller(prefix = "") {
     return function (constructor) {
         const originalConstructor = constructor;
@@ -68,10 +80,13 @@ function Controller(prefix = "") {
             });
             return router;
         }
+        // the new constructor behaviour
         const newConstructor = function (...args) {
             return instanciate(originalConstructor, args);
         };
+        // copy prototype so instanceof operator still works
         newConstructor.prototype = originalConstructor.prototype;
+        // return new constructor (will override original)
         return newConstructor;
     };
 }

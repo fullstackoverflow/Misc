@@ -56,6 +56,8 @@ export default class Router {
 	@Autowired()
 	TestService: TestService;
 
+	test:"test"
+
 	@POST("/basetest")
 	async staus(ctx: Koa.Context) {
 		ctx.body = new ResSuccess("", ctx.request.body);
@@ -142,7 +144,7 @@ export default class Router {
 
 	@POST("/before")
 	@Before((ctx: Koa.Context, next: Function) => {
-		ctx.state = "test";
+		ctx.state = this.test;
 	})
 	async before(ctx: Koa.Context) {
 		ctx.body = ctx.state;
