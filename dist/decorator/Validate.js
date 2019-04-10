@@ -43,7 +43,7 @@ function Validate(ValidateOptions, ValidateObject = { params: false }) {
             }
             else {
                 const prop = params === true ? ctx.params : ctx.request[HttpMap[config.method]];
-                const obj = class_transformer_1.plainToClass(schema, prop);
+                const obj = class_transformer_1.plainToClass(schema, prop, { excludePrefixes: ["_", "__"] });
                 const errors = await class_validator_1.validate(obj, options);
                 if (errors && errors.length > 0) {
                     if (error) {

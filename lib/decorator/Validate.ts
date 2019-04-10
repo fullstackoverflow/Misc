@@ -24,7 +24,7 @@ enum HttpMap {
  * export class Router{
  * 	@GET('/test')
  * 	@Validate({schema:Test,error:(errors)=> {
- *		throw new Error(`${errors.map(error=>Object.value(error.constraints))}`)	
+ *		throw new Error(`${errors.map(error=>Object.value(error.constraints))}`)
  * 	})
  * 	async test(){
  * 		ctx.body = 'origin';
@@ -47,7 +47,7 @@ export function Validate(
 				throw new Error("Unsupported HTTP methods");
 			} else {
 				const prop = params === true ? ctx.params : ctx.request[HttpMap[config.method]];
-				const obj = plainToClass(schema, prop);
+				const obj = plainToClass(schema, prop, { excludePrefixes: ["_", "__"] });
 				const errors = await validate(obj, options);
 				if (errors && errors.length > 0) {
 					if (error) {
