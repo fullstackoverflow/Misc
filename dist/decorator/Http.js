@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const koa_router_1 = __importDefault(require("koa-router"));
+require("reflect-metadata");
 function USE(url) {
     return function (target, key, descriptor) {
         Reflect.defineMetadata(key, {
@@ -68,6 +69,7 @@ exports.PUT = PUT;
  */
 function Controller(prefix = "") {
     return function (constructor) {
+        Reflect.defineMetadata("test", "test-value", constructor.prototype);
         const originalConstructor = constructor;
         function instanciate(constructor, ...args) {
             const instance = new constructor(...args);

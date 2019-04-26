@@ -1,9 +1,6 @@
 import "reflect-metadata";
 import Koa from "koa";
 import compose from "koa-compose";
-import glob from "glob";
-import { join, resolve } from "path";
-import Router from "koa-router";
 import { logger } from "../util/log";
 import http, { Server as httpServer } from "http";
 import https, { Server as httpsServer } from "https";
@@ -12,10 +9,9 @@ import cors from "@koa/cors";
 import session from "koa-session";
 import body from "koa-body";
 import pkg from "read-pkg-up";
-import cluster from "cluster";
-import os from "os";
-import { routerLoader } from "./loader/routerLoader";
-import { scheduleLoader } from "./loader/scheduleLoader";
+import { ClassScanner } from "./ClassScanner";
+import { Type } from "./type/enum";
+import { Dispatch } from "./loader/dispatch";
 
 export class Misc extends Koa {
 	server: httpServer | httpsServer;
@@ -62,8 +58,11 @@ export class Misc extends Koa {
 				}
 			});
 		this.keys = opts.keys;
-		routerLoader(this, opts.routerpath || resolve("src/router"));
-		scheduleLoader(opts.schedulepath || resolve("src/schedule"));
+		const dipatch = new Dispatch();
+		new ClassScanner("**/*.ts").scan().forEach(clazz => {
+			const ClassType = Reflect.getMetadata(Type.MethodType, clazz);
+			dipatch[ClassType](clazz,this);
+		});
 		if (opts.protocol == "http") {
 			this.server = http.createServer(this.callback()).listen(opts.port, opts.callback);
 		} else if (opts.protocol == "https") {

@@ -1,3 +1,4 @@
+import "reflect-metadata";
 export declare function USE(url: string): MethodDecorator;
 export declare function POST(url: string): MethodDecorator;
 export declare function GET(url: string): MethodDecorator;

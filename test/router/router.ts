@@ -48,7 +48,7 @@ export class Upload {
 }
 
 
-@Controller()
+@Controller('/test')
 export default class Router {
 	@Value("test")
 	value_test: string;
