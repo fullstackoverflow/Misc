@@ -3,6 +3,8 @@ export enum MODE {
 	Ordinary
 }
 
+const Container = new Map();
+
 /**
  * Inject a class instance
  * @param params class constructor params

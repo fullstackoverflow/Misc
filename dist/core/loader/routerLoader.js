@@ -29,7 +29,4 @@ function routerLoader(instance, basePath) {
     }));
 }
 exports.routerLoader = routerLoader;
-class test {
-}
-exports.test = test;
 //# sourceMappingURL=routerLoader.js.map

@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 const koa_1 = __importDefault(require("koa"));
 const koa_compose_1 = __importDefault(require("koa-compose"));
-const path_1 = require("path");
 const log_1 = require("../util/log");
 const http_1 = __importDefault(require("http"));
 const https_1 = __importDefault(require("https"));
@@ -14,8 +13,10 @@ const cors_1 = __importDefault(require("@koa/cors"));
 const koa_session_1 = __importDefault(require("koa-session"));
 const koa_body_1 = __importDefault(require("koa-body"));
 const read_pkg_up_1 = __importDefault(require("read-pkg-up"));
-const routerLoader_1 = require("./loader/routerLoader");
-const scheduleLoader_1 = require("./loader/scheduleLoader");
+const ClassScanner_1 = require("./ClassScanner");
+const enum_1 = require("./type/enum");
+const dispatch_1 = require("./loader/dispatch");
+const fs_1 = require("fs");
 class Misc extends koa_1.default {
     /**
      * create application instance
@@ -60,8 +61,12 @@ class Misc extends koa_1.default {
             }
         });
         this.keys = opts.keys;
-        routerLoader_1.routerLoader(this, opts.routerpath || path_1.resolve("src/router"));
-        scheduleLoader_1.scheduleLoader(opts.schedulepath || path_1.resolve("src/schedule"));
+        const dipatch = new dispatch_1.Dispatch();
+        console.log(opts.root || JSON.parse(fs_1.readFileSync("tsconfig.json").toString()).include || "**/*.ts");
+        new ClassScanner_1.ClassScanner(opts.root || JSON.parse(fs_1.readFileSync("tsconfig.json").toString()).include || "**/*.ts").scan().forEach(clazz => {
+            const ClassType = Reflect.getMetadata(enum_1.Type.MethodType, clazz);
+            dipatch[ClassType](clazz, this);
+        });
         if (opts.protocol == "http") {
             this.server = http_1.default.createServer(this.callback()).listen(opts.port, opts.callback);
         }

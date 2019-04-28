@@ -12,6 +12,7 @@ import pkg from "read-pkg-up";
 import { ClassScanner } from "./ClassScanner";
 import { Type } from "./type/enum";
 import { Dispatch } from "./loader/dispatch";
+import { readFileSync } from "fs";
 
 export class Misc extends Koa {
 	server: httpServer | httpsServer;
@@ -59,9 +60,9 @@ export class Misc extends Koa {
 			});
 		this.keys = opts.keys;
 		const dipatch = new Dispatch();
-		new ClassScanner("**/*.ts").scan().forEach(clazz => {
+		new ClassScanner(opts.root).scan().forEach(clazz => {
 			const ClassType = Reflect.getMetadata(Type.MethodType, clazz);
-			dipatch[ClassType](clazz,this);
+			dipatch[ClassType](clazz, this);
 		});
 		if (opts.protocol == "http") {
 			this.server = http.createServer(this.callback()).listen(opts.port, opts.callback);

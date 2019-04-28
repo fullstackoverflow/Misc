@@ -1,6 +1,5 @@
-import "reflect-metadata";
 export declare class ClassScanner {
-    path: string;
-    constructor(path: string);
+    private path;
+    constructor(path: string | string[]);
     scan(): any[];
 }
