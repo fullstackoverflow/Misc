@@ -5,6 +5,8 @@ export enum Type {
 
 export enum ClassDecoratorType {
 	Controller = "controller",
+	Schedule = "schedule",
+	Config = "config",
 	Component = "component"
 }
 
@@ -16,6 +18,14 @@ export enum ControllerType {
 	PREFIX = "prefix",
 	PATH = "path",
 	METHOD = "method"
+}
+
+export enum ScheduleType {
+	SCHEDULE = "schedule"
+}
+
+export enum ConfigType {
+	ENV = "env"
 }
 
 export enum Methods {

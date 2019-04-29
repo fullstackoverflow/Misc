@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const enum_1 = require("../../core/type/enum");
 /**
  *
  * @param rule
@@ -13,11 +14,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
  *
  * ```
  */
-function Schedule(rule, obj) {
-    console.log(11111, obj);
-    return function (target, key, descriptor) {
-        console.log(this);
+exports.Schedule = (rule) => {
+    return target => {
+        Reflect.defineMetadata(enum_1.ScheduleType.SCHEDULE, rule, target);
+        Reflect.defineMetadata(enum_1.Type.ClassType, enum_1.ClassDecoratorType.Schedule, target);
     };
-}
-exports.Schedule = Schedule;
+};
 //# sourceMappingURL=Schedule.js.map

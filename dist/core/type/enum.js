@@ -8,6 +8,8 @@ var Type;
 var ClassDecoratorType;
 (function (ClassDecoratorType) {
     ClassDecoratorType["Controller"] = "controller";
+    ClassDecoratorType["Schedule"] = "schedule";
+    ClassDecoratorType["Config"] = "config";
     ClassDecoratorType["Component"] = "component";
 })(ClassDecoratorType = exports.ClassDecoratorType || (exports.ClassDecoratorType = {}));
 var MethodDecoratorType;
@@ -20,6 +22,14 @@ var ControllerType;
     ControllerType["PATH"] = "path";
     ControllerType["METHOD"] = "method";
 })(ControllerType = exports.ControllerType || (exports.ControllerType = {}));
+var ScheduleType;
+(function (ScheduleType) {
+    ScheduleType["SCHEDULE"] = "schedule";
+})(ScheduleType = exports.ScheduleType || (exports.ScheduleType = {}));
+var ConfigType;
+(function (ConfigType) {
+    ConfigType["ENV"] = "env";
+})(ConfigType = exports.ConfigType || (exports.ConfigType = {}));
 var Methods;
 (function (Methods) {
     Methods["GET"] = "get";

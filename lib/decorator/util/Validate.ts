@@ -1,8 +1,6 @@
 import Koa from "koa";
 import { plainToClass } from "class-transformer";
 import { validate, ValidatorOptions, IsInt, ValidationError } from "class-validator";
-import { logger } from "../util/log";
-import { ResWarn } from "../util/response";
 
 enum HttpMap {
 	post = "body",
@@ -24,7 +22,7 @@ enum HttpMap {
  * export class Router{
  * 	@GET('/test')
  * 	@Validate({schema:Test,error:(errors)=> {
- *		throw new Error(`${errors.map(error=>Object.value(error.constraints))}`)
+ *		throw new Error(`${errors.map(error=>Object.values(error.constraints))}`)
  * 	})
  * 	async test(){
  * 		ctx.body = 'origin';

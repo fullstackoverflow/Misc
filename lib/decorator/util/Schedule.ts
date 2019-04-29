@@ -1,5 +1,5 @@
-import { scheduleJob, RecurrenceRule, RecurrenceSpecDateRange, RecurrenceSpecObjLit } from "node-schedule";
-import { Container } from "./Autowired";
+import { RecurrenceRule, RecurrenceSpecDateRange, RecurrenceSpecObjLit } from "node-schedule";
+import { Type, ClassDecoratorType, ScheduleType } from "../../core/type/enum";
 
 export interface ISchedule {
 	exec: Function;
@@ -18,8 +18,10 @@ export interface ISchedule {
  *
  * ```
  */
-export function Schedule(rule: RecurrenceRule | RecurrenceSpecDateRange | RecurrenceSpecObjLit | Date | string): MethodDecorator {
-	return function(target: any, key: string, descriptor: PropertyDescriptor) {
-		console.log(this);
+
+export const Schedule = (rule: RecurrenceRule | RecurrenceSpecDateRange | RecurrenceSpecObjLit | Date | string): ClassDecorator => {
+	return target => {
+		Reflect.defineMetadata(ScheduleType.SCHEDULE, rule, target);
+		Reflect.defineMetadata(Type.ClassType, ClassDecoratorType.Schedule, target);
 	};
-}
+};

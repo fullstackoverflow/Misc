@@ -15,4 +15,4 @@ export interface ISchedule {
  *
  * ```
  */
-export declare function Schedule(rule: RecurrenceRule | RecurrenceSpecDateRange | RecurrenceSpecObjLit | Date | string, obj: any): MethodDecorator;
+export declare const Schedule: (rule: string | Date | RecurrenceRule | RecurrenceSpecDateRange | RecurrenceSpecObjLit) => ClassDecorator;

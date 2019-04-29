@@ -20,7 +20,7 @@ describe("app", () => {
 	it("should parse body default", async () => {
 		const app = new Misc({
 			protocol: "http",
-			routerpath: resolve(__dirname, "../router"),
+			root: resolve(__dirname, "../"),
 			port: 8002
 		});
 		const response = await request(app.server)
@@ -34,7 +34,7 @@ describe("app", () => {
 	it("should parse formdata with option", async () => {
 		const app = new Misc({
 			protocol: "http",
-			routerpath: resolve(__dirname, "../router"),
+			root: resolve(__dirname, "../"),
 			body: {
 				multipart: true
 			},
@@ -51,7 +51,7 @@ describe("app", () => {
 	it("should parse formdata with option", async () => {
 		const app = new Misc({
 			protocol: "http",
-			routerpath: resolve(__dirname, "../router"),
+			root: resolve(__dirname, "../"),
 			body: {
 				multipart: true
 			},
@@ -72,7 +72,7 @@ describe("app", () => {
 		};
 		const app = new Misc({
 			protocol: "http",
-			routerpath: resolve(__dirname, "../router"),
+			root: resolve(__dirname, "../"),
 			beforeall: [middleware],
 			port: 8005
 		});
@@ -85,7 +85,7 @@ describe("app", () => {
 	it("should session worked", async () => {
 		const app = new Misc({
 			protocol: "http",
-			routerpath: resolve(__dirname, "../router"),
+			root: resolve(__dirname, "../"),
 			keys: ["test"],
 			session: {
 				maxAge: 30 * 60 * 1000,
@@ -119,7 +119,7 @@ describe("app", () => {
 		};
 		const app = new Misc({
 			protocol: "http",
-			routerpath: resolve(__dirname, "../router"),
+			root: resolve(__dirname, "../"),
 			beforeall: [errorHandler],
 			port: 8007
 		});
@@ -132,12 +132,12 @@ describe("app", () => {
 		expect(response2.body).toEqual({ code: 0, message: "reserr", data: null });
 	});
 
-	it("should schedule worked", async () => {
-		const app = new Misc({
-			protocol: "http",
-			routerpath: resolve(__dirname, "../router"),
-			schedulepath: resolve(__dirname, "../schedule"),
-			port: 8008
-		});
-	},2000);
+	// it("should schedule worked", async () => {
+	// 	const app = new Misc({
+	// 		protocol: "http",
+	// 		root: resolve(__dirname, "../"),
+	// 		schedulepath: resolve(__dirname, "../schedule"),
+	// 		port: 8008
+	// 	});
+	// },2000);
 });

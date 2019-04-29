@@ -15,7 +15,7 @@ describe("app", () => {
 	beforeAll(done => {
 		app = new Misc({
 			protocol: "http",
-			routerpath: resolve(__dirname, "../router"),
+			root: resolve(__dirname, "../"),
 			body: {
 				multipart: true
 			},

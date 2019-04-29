@@ -1,11 +1,11 @@
-import { Config } from "../util/config";
+import { Config } from "../../util/config";
 
 /**
  * Inject value from local config file
  *
  * @example
  * ```typescript
- * 
+ *
  * class Test{
  * 	@Value('param')
  * 	param:string;

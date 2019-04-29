@@ -23,8 +23,6 @@ export class ControllerLoader implements ClassLoader {
 			if (MethodType != undefined) {
 				this[MethodType].Load(fn, instance, router);
 			}
-			Object.defineProperty(prototype,methodName,fn.bind(instance));
-			// prototype[methodName] = fn.bind(instance);
 		});
 		app.use(router.routes()).use(router.allowedMethods());
 	}

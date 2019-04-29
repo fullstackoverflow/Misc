@@ -53,7 +53,7 @@ export default class Router {
 	@Value("test")
 	value_test: string;
 
-	@Autowired()
+	@Autowired
 	TestService: TestService;
 
 	test:"test"

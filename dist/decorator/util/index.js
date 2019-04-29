@@ -7,4 +7,5 @@ __export(require("./Autowired"));
 __export(require("./File"));
 __export(require("./Aop"));
 __export(require("./Schedule"));
+__export(require("./Async"));
 //# sourceMappingURL=index.js.map
