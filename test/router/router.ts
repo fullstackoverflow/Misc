@@ -14,15 +14,11 @@ import {
 	logger,
 	ResWarn,
 	ResError,
-	Schedule,
 	Before,
 	After
 } from "../../lib/index";
 import { TestService } from "../service/TestService";
 import { IsBoolean, IsString, ValidateNested } from "class-validator";
-import { writeFileSync } from "fs";
-import { resolve } from "path";
-import moment = require("moment");
 import { Type } from "class-transformer";
 
 export class Test {
@@ -131,19 +127,19 @@ export default class Router {
 	}
 
 	@POST("/reswarn")
-	async reswarn(ctx: Koa.Context) {
+	async reswarn() {
 		logger.info("reswarn");
 		throw new ResWarn("reswarn", null);
 	}
 
 	@POST("/reserr")
-	async reserr(ctx: Koa.Context) {
+	async reserr() {
 		logger.error("reserr");
 		throw new ResError("reserr", null);
 	}
 
 	@POST("/before")
-	@Before((ctx: Koa.Context, next: Function) => {
+	@Before((ctx: Koa.Context) => {
 		ctx.state = this.test;
 	})
 	async before(ctx: Koa.Context) {
@@ -151,7 +147,7 @@ export default class Router {
 	}
 
 	@POST("/after")
-	@After((ctx: Koa.Context, next: Function) => {
+	@After((ctx: Koa.Context) => {
 		ctx.body = "test";
 	})
 	async after(ctx: Koa.Context) {
@@ -159,10 +155,10 @@ export default class Router {
 	}
 
 	@POST("/combin")
-	@Before((ctx: Koa.Context, next: Function) => {
+	@Before((ctx: Koa.Context) => {
 		ctx.state = "test1";
 	})
-	@After((ctx: Koa.Context, next: Function) => {
+	@After((ctx: Koa.Context) => {
 		ctx.body = "test2";
 	})
 	async combin(ctx: Koa.Context) {
