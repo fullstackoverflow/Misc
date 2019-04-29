@@ -5,9 +5,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const glob_1 = __importDefault(require("glob"));
 const fs_1 = require("fs");
+const path_1 = require("path");
 class ClassScanner {
     constructor(path) {
-        this.path = path;
+        if (Array.isArray(path)) {
+            this.path = path.map(p => path_1.resolve(p));
+        }
+        else {
+            this.path = path_1.resolve(path);
+        }
     }
     scan() {
         if (Array.isArray(this.path)) {

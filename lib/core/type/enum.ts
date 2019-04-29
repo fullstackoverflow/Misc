@@ -9,7 +9,7 @@ export enum ClassDecoratorType {
 }
 
 export enum MethodDecoratorType {
-	Http = "http"
+	Http = "Http"
 }
 
 export enum ControllerType {

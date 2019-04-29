@@ -4,14 +4,13 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./core/app"));
-__export(require("./decorator/Autowired"));
-__export(require("./decorator/File"));
-__export(require("./decorator/Http"));
+// export * from "./decorator/Autowired";
+// export * from "./decorator/File";
+// export * from "./decorator/Http";
 __export(require("./decorator/Validate"));
 __export(require("./decorator/Value"));
-__export(require("./decorator/Schedule"));
-__export(require("./decorator/Middleware"));
 __export(require("./util/config"));
 __export(require("./util/log"));
 __export(require("./util/response"));
+__export(require("./decorator"));
 //# sourceMappingURL=index.js.map

@@ -7,7 +7,7 @@ export declare enum ClassDecoratorType {
     Component = "component"
 }
 export declare enum MethodDecoratorType {
-    Http = "http"
+    Http = "Http"
 }
 export declare enum ControllerType {
     PREFIX = "prefix",

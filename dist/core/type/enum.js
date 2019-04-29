@@ -12,7 +12,7 @@ var ClassDecoratorType;
 })(ClassDecoratorType = exports.ClassDecoratorType || (exports.ClassDecoratorType = {}));
 var MethodDecoratorType;
 (function (MethodDecoratorType) {
-    MethodDecoratorType["Http"] = "http";
+    MethodDecoratorType["Http"] = "Http";
 })(MethodDecoratorType = exports.MethodDecoratorType || (exports.MethodDecoratorType = {}));
 var ControllerType;
 (function (ControllerType) {

@@ -12,4 +12,4 @@ exports.GET = createMappingDecorator(enum_1.Methods.GET);
 exports.POST = createMappingDecorator(enum_1.Methods.POST);
 exports.PUT = createMappingDecorator(enum_1.Methods.PUT);
 exports.DELETE = createMappingDecorator(enum_1.Methods.DELETE);
-//# sourceMappingURL=Method.js.map
+//# sourceMappingURL=method.js.map

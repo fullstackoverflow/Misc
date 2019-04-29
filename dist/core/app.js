@@ -16,7 +16,7 @@ const read_pkg_up_1 = __importDefault(require("read-pkg-up"));
 const ClassScanner_1 = require("./ClassScanner");
 const enum_1 = require("./type/enum");
 const dispatch_1 = require("./loader/dispatch");
-const fs_1 = require("fs");
+const path_1 = require("path");
 class Misc extends koa_1.default {
     /**
      * create application instance
@@ -62,10 +62,11 @@ class Misc extends koa_1.default {
         });
         this.keys = opts.keys;
         const dipatch = new dispatch_1.Dispatch();
-        console.log(opts.root || JSON.parse(fs_1.readFileSync("tsconfig.json").toString()).include || "**/*.ts");
-        new ClassScanner_1.ClassScanner(opts.root || JSON.parse(fs_1.readFileSync("tsconfig.json").toString()).include || "**/*.ts").scan().forEach(clazz => {
-            const ClassType = Reflect.getMetadata(enum_1.Type.MethodType, clazz);
-            dipatch[ClassType](clazz, this);
+        new ClassScanner_1.ClassScanner(opts.root || require(path_1.resolve("tsconfig.json")).include || "src/**/*.ts").scan().forEach(clazz => {
+            const ClassType = Reflect.getMetadata(enum_1.Type.ClassType, clazz);
+            if (ClassType != undefined) {
+                dipatch[ClassType](clazz, this);
+            }
         });
         if (opts.protocol == "http") {
             this.server = http_1.default.createServer(this.callback()).listen(opts.port, opts.callback);
