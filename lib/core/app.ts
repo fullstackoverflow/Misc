@@ -61,9 +61,11 @@ export class Misc extends Koa {
 			});
 		this.keys = opts.keys;
 		const dipatch = new Dispatch();
-		new ClassScanner(opts.root || require(resolve("tsconfig.json")).include || "src/**/*.ts").scan().forEach(clazz => {
+		logger.info("start scan", opts.scan);
+		new ClassScanner(opts.scan || require(resolve("tsconfig.json")).include || "src/**/*.ts").scan().forEach(clazz => {
 			const ClassType = Reflect.getMetadata(Type.ClassType, clazz);
 			if (ClassType != undefined) {
+				logger.info(ClassType);
 				dipatch[ClassType](clazz, this);
 			}
 		});

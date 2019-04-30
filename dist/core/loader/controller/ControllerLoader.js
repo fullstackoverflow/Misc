@@ -17,10 +17,12 @@ const enum_1 = require("../../type/enum");
 const koa_router_1 = __importDefault(require("koa-router"));
 const Autowired_1 = require("../../../decorator/util/Autowired");
 const Http_1 = require("./methods/Http");
+const log_1 = require("../../../util/log");
 class ControllerLoader {
     Load(clazz, app) {
         const prefix = Reflect.getMetadata(enum_1.ControllerType.PREFIX, clazz);
         const router = new koa_router_1.default(prefix ? { prefix } : null);
+        log_1.logger.success(`Load router ${prefix}`);
         const instance = new clazz();
         const prototype = Object.getPrototypeOf(instance);
         const methodsNames = Object.getOwnPropertyNames(prototype).filter(item => typeof prototype[item] == "function" && item != "constructor");

@@ -22,7 +22,7 @@ var HttpMap;
  * export class Router{
  * 	@GET('/test')
  * 	@Validate({schema:Test,error:(errors)=> {
- *		throw new Error(`${errors.map(error=>Object.value(error.constraints))}`)
+ *		throw new Error(`${errors.map(error=>Object.values(error.constraints))}`)
  * 	})
  * 	async test(){
  * 		ctx.body = 'origin';

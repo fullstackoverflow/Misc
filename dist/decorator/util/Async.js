@@ -28,7 +28,6 @@ function Retry(opts) {
                 const boundFn = fn.bind(this);
                 return async function () {
                     return new Promise((resolve, reject) => {
-                        console.log(typeof boundFn);
                         async_1.retry(opts, boundFn, function (err, result) {
                             if (err) {
                                 reject(err);

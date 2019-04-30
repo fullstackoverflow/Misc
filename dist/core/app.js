@@ -62,9 +62,11 @@ class Misc extends koa_1.default {
         });
         this.keys = opts.keys;
         const dipatch = new dispatch_1.Dispatch();
-        new ClassScanner_1.ClassScanner(opts.root || require(path_1.resolve("tsconfig.json")).include || "src/**/*.ts").scan().forEach(clazz => {
+        log_1.logger.info("start scan", opts.scan);
+        new ClassScanner_1.ClassScanner(opts.scan || require(path_1.resolve("tsconfig.json")).include || "src/**/*.ts").scan().forEach(clazz => {
             const ClassType = Reflect.getMetadata(enum_1.Type.ClassType, clazz);
             if (ClassType != undefined) {
+                log_1.logger.info(ClassType);
                 dipatch[ClassType](clazz, this);
             }
         });

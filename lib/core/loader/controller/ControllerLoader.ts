@@ -4,6 +4,7 @@ import Koa from "koa";
 import Router from "koa-router";
 import { Autowired, Container } from "../../../decorator/util/Autowired";
 import { Http } from "./methods/Http";
+import { logger } from "../../../util/log";
 
 export class ControllerLoader implements ClassLoader {
 	@Autowired
@@ -12,6 +13,7 @@ export class ControllerLoader implements ClassLoader {
 	Load(clazz: FunctionConstructor, app: Koa) {
 		const prefix = Reflect.getMetadata(ControllerType.PREFIX, clazz);
 		const router: Router = new Router(prefix ? { prefix } : null);
+		logger.success(`Load router ${prefix}`);
 		const instance = new clazz();
 		const prototype = Object.getPrototypeOf(instance);
 		const methodsNames = Object.getOwnPropertyNames(prototype).filter(

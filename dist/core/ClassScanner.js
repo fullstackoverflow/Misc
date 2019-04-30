@@ -9,39 +9,33 @@ const path_1 = require("path");
 class ClassScanner {
     constructor(path) {
         if (Array.isArray(path)) {
-            this.path = path.map(p => path_1.resolve(p));
+            this.path = path.map(p => {
+                return this.pathResolve(p);
+            });
         }
         else {
-            this.path = path_1.resolve(path);
+            this.path = [this.pathResolve(path)];
         }
     }
+    pathResolve(path) {
+        return path_1.resolve(path);
+    }
     scan() {
-        if (Array.isArray(this.path)) {
-            return this.path
-                .map(p => {
-                return glob_1.default.sync(p).reduce((pre, curr) => {
-                    if (fs_1.statSync(curr).isFile()) {
-                        return pre.concat(Object.values(require(curr)));
-                    }
-                    else {
-                        return pre;
-                    }
-                }, []);
-            })
-                .reduce((pre, curr) => {
-                return pre.concat(curr);
-            }, []);
-        }
-        else {
-            return glob_1.default.sync(this.path).reduce((pre, curr) => {
+        return this.path
+            .map(p => {
+            return glob_1.default.sync(p).reduce((pre, curr) => {
                 if (fs_1.statSync(curr).isFile()) {
+                    console.log(curr);
                     return pre.concat(Object.values(require(curr)));
                 }
                 else {
                     return pre;
                 }
             }, []);
-        }
+        })
+            .reduce((pre, curr) => {
+            return pre.concat(curr);
+        }, []);
     }
 }
 exports.ClassScanner = ClassScanner;

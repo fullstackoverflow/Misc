@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const config_1 = require("../util/config");
+const config_1 = require("../../util/config");
 /**
  * Inject value from local config file
  *

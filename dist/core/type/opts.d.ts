@@ -8,7 +8,7 @@ import session from "koa-session";
 export interface options {
     keys?: Keygrip | string[];
     beforeall?: Array<compose.Middleware<any>>;
-    root?: string;
+    scan?: string;
     body?: IKoaBodyOptions;
     protocol: "http" | "https";
     callback?: Function;
