@@ -1,5 +1,5 @@
-import { Controller } from "../../lib/decorator/controller/controller";
-import { GET, POST } from "../../lib/decorator/controller/method";
+import { Controller } from "../../dist";
+import { GET, POST } from "../../dist";
 import { Context } from "koa";
 
 @Controller()

@@ -7,7 +7,6 @@ export class Http implements MethodLoader {
 	Load(fn: Function, instance: any, router: Router) {
 		const path = Reflect.getMetadata(ControllerType.PATH, fn);
 		const method = Reflect.getMetadata(ControllerType.METHOD, fn);
-		logger.success(`Load method ${method} ${path}`);
 		router[method](path, fn.bind(instance));
 	}
 }

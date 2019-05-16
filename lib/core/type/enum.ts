@@ -1,31 +1,36 @@
-export enum Type {
-	ClassType = "ClassType",
-	MethodType = "MethodType"
+// export const Type = {
+// 	ClassType: Symbol("ClassType"),
+// 	MethodType: Symbol("MethodType")
+// };
+
+export class Type {
+	static readonly ClassType: unique symbol = Symbol("ClassType");
+	static readonly MethodType: unique symbol = Symbol("MethodType");
 }
 
-export enum ClassDecoratorType {
-	Controller = "controller",
-	Schedule = "schedule",
-	Config = "config",
-	Component = "component"
+export class ClassDecoratorType {
+	static readonly Controller: unique symbol = Symbol("controller");
+	static readonly Schedule: unique symbol = Symbol("schedule");
+	static readonly Config: unique symbol = Symbol("config");
+	static readonly Component: unique symbol = Symbol("component");
 }
 
 export enum MethodDecoratorType {
 	Http = "Http"
 }
 
-export enum ControllerType {
-	PREFIX = "prefix",
-	PATH = "path",
-	METHOD = "method"
+export class ControllerType {
+	static readonly PREFIX: unique symbol = Symbol("prefix");
+	static readonly PATH: unique symbol = Symbol("path");
+	static readonly METHOD: unique symbol = Symbol("method");
 }
 
-export enum ScheduleType {
-	SCHEDULE = "schedule"
+export class ScheduleType {
+	static readonly SCHEDULE: unique symbol = Symbol("schedule");
 }
 
-export enum ConfigType {
-	ENV = "env"
+export class ConfigType {
+	static readonly ENV: unique symbol = Symbol("env");
 }
 
 export enum Methods {

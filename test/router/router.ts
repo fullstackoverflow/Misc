@@ -16,7 +16,7 @@ import {
 	ResError,
 	Before,
 	After
-} from "../../lib/index";
+} from "../../dist";
 import { TestService } from "../service/TestService";
 import { IsBoolean, IsString, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";

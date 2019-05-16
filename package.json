@@ -4,9 +4,21 @@
   "description": "Framework based on Koa and Typescript",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "nyc": {
+    "include": [
+      "lib/**/*.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  },
   "scripts": {
-    "test": "jest --coverage --detectOpenHandles --forceExit",
-    "start": "node test/index.js",
+    "coverage": "nyc --reporter=lcov --reporter=html npm test&&nyc report",
+    "test": "cross-env NODE_ENV=test alsatian ./test/__tests__/*.spec.ts",
+    "start": "cross-env NODE_ENV=test node test/index.js",
     "version": "rm -rf ./dist/*&&tsc&&typedoc --out ./docs ./lib",
     "codecov": "codecov"
   },
@@ -46,12 +58,14 @@
     "reflect-metadata": "^0.1.12"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.9",
     "@types/supertest": "^2.0.7",
+    "alsatian": "^2.4.0",
     "codecov": "^3.1.0",
-    "jest": "^24.3.1",
+    "cross-env": "^5.2.0",
+    "nyc": "^14.1.1",
     "supertest": "^3.3.0",
-    "ts-jest": "^24.0.0",
+    "tap": "^13.1.9",
+    "tap-nyc": "^1.0.3",
     "ts-node": "^8.0.3",
     "typescript": "^3.2.2"
   }
