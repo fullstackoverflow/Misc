@@ -1,15 +1,15 @@
-import { resolve } from 'path';
-import { Config, Misc } from '../dist';
+import { Misc } from "../lib/core/app";
+import { resolve } from "path";
+import { Config } from "../lib";
 
-Config.path = resolve(__dirname, './config');
+console.log(resolve(__dirname,'./config'));
+Config.path = resolve(__dirname,'./config');
 
 const app = new Misc({
-	keys: ['web_platform'],
-	scan: resolve(__dirname, './**/*.ts'),
 	protocol: "http",
-	port: 7890,
+	scan: resolve(__dirname, "./router/**/*.ts"),
+	body: {
+		multipart: true
+	},
+	port: 7890
 });
-
-const Server = app.server;
-
-export { Server };

@@ -1,10 +1,8 @@
-import { Misc } from "../../lib/core/app";
-import { Config } from "../../lib/util/config";
+import { Misc } from "../../../lib/core/app";
+import { Config } from "../../../lib/util/config";
 import request from "supertest";
-import Koa from "koa";
 import "jest";
 import { resolve } from "path";
-import { logger } from "../../lib/util/log";
 
 Config.path = resolve(__dirname, "../config");
 
@@ -13,12 +11,13 @@ let agent;
 
 describe("app", () => {
 	beforeAll(done => {
+		Config.path = resolve(__dirname, "../../config");
 		app = new Misc({
 			protocol: "http",
-			root: resolve(__dirname, "../"),
 			body: {
 				multipart: true
 			},
+			scan:resolve(__dirname,'../router/**/*.ts'),
 			callback: done,
 			port: 7890
 		});

@@ -21,8 +21,8 @@ export function Before(func: Function) {
 	return function(target: any, key: string, descriptor: PropertyDescriptor) {
 		const method = descriptor.value;
 		descriptor.value = async function() {
-			func(this, arguments);
-			const result = method.apply(this, arguments);
+			func(...arguments);
+			const result = method(...arguments);
 			return result;
 		};
 	};
@@ -51,8 +51,8 @@ export function After(func: Function) {
 	return function(target: any, key: string, descriptor: PropertyDescriptor) {
 		const method = descriptor.value;
 		descriptor.value = async function() {
-			const result = method.apply(this, arguments);
-			func.apply(this, arguments);
+			const result = method(...arguments);
+			func(...arguments);
 			return result;
 		};
 	};
@@ -81,9 +81,9 @@ export function Around(func: Function) {
 	return function(target: any, key: string, descriptor: PropertyDescriptor) {
 		const method = descriptor.value;
 		descriptor.value = async function() {
-			func.apply(this, arguments);
-			const result = await method.apply(this, arguments);
-			func.apply(this, arguments);
+			func(...arguments);
+			const result = method(...arguments);
+			func(...arguments);
 			return result;
 		};
 	};

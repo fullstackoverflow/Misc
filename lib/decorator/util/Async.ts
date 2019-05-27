@@ -30,18 +30,32 @@ export function Retry(
 	return function(target: any, key: string, descriptor: PropertyDescriptor) {
 		const fn = descriptor.value;
 		return {
-			get() {
+			get(): any {
 				const boundFn = fn.bind(this);
-				return async function() {
-					return new Promise((resolve, reject) => {
-						retry(opts, boundFn, function(err, result) {
-							if (err) {
-								reject(err);
-							}
-							resolve(result);
+				if (fn.constructor.name === "AsyncFunction") {
+					return async function() {
+						return new Promise((resolve, reject) => {
+							retry(opts, boundFn, function(err, result) {
+								if (err) {
+									reject(err);
+								}
+								resolve(result);
+							});
 						});
-					});
-				};
+					};
+				} else {
+					return function() {
+						let error;
+						for (let count = 0; count < opts; count++) {
+							try {
+								return boundFn.apply(this, arguments);
+							} catch (e) {
+								error = e;
+							}
+						}
+						throw error;
+					};
+				}
 			}
 		};
 	};

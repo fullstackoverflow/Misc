@@ -3,8 +3,8 @@ import { plainToClass } from "class-transformer";
 import { validate, ValidatorOptions, IsInt, ValidationError } from "class-validator";
 
 enum HttpMap {
-	post = "body",
-	get = "query"
+	POST = "body",
+	GET = "query"
 }
 
 /**
@@ -40,11 +40,11 @@ export function Validate(
 	return function(target: any, key: string, descriptor: PropertyDescriptor) {
 		const originFunction: Function = descriptor.value;
 		descriptor.value = async function(ctx: Koa.Context) {
-			const config = Reflect.getOwnMetadata(key, target);
-			if (HttpMap[config.method] == undefined) {
+			const method = ctx.method;
+			if (HttpMap[method] == undefined) {
 				throw new Error("Unsupported HTTP methods");
 			} else {
-				const prop = params === true ? ctx.params : ctx.request[HttpMap[config.method]];
+				const prop = params === true ? ctx.params : ctx.request[HttpMap[method]];
 				const obj = plainToClass(schema, prop, { excludePrefixes: ["_", "__"] });
 				const errors = await validate(obj, options);
 				if (errors && errors.length > 0) {

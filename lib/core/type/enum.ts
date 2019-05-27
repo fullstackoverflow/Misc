@@ -13,6 +13,7 @@ export class ClassDecoratorType {
 	static readonly Schedule: unique symbol = Symbol("schedule");
 	static readonly Config: unique symbol = Symbol("config");
 	static readonly Component: unique symbol = Symbol("component");
+	static readonly Singleton: unique symbol = Symbol("singleton");
 }
 
 export enum MethodDecoratorType {
@@ -23,6 +24,7 @@ export class ControllerType {
 	static readonly PREFIX: unique symbol = Symbol("prefix");
 	static readonly PATH: unique symbol = Symbol("path");
 	static readonly METHOD: unique symbol = Symbol("method");
+	static readonly VALUE: unique symbol = Symbol("value");
 }
 
 export class ScheduleType {

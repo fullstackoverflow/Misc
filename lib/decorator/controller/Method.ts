@@ -2,6 +2,7 @@ import { ControllerType, Methods, MethodDecoratorType, Type } from "../../core/t
 
 const createMappingDecorator = (method: string) => (path: string): MethodDecorator => {
 	return (target, key, descriptor) => {
+		const originalValue = descriptor.value;
 		Reflect.defineMetadata(Type.MethodType, MethodDecoratorType.Http, descriptor.value);
 		Reflect.defineMetadata(ControllerType.PATH, path, descriptor.value);
 		Reflect.defineMetadata(ControllerType.METHOD, method, descriptor.value);
