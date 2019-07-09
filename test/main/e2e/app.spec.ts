@@ -32,7 +32,7 @@ describe("app", () => {
 				multipart: true
 			},
 			beforeall: [errorHandler, middleware],
-			scan: resolve(__dirname, "../router/**/*.ts"),
+			scan: resolve(__dirname, "../../router/**/*.ts"),
 			callback: done,
 			keys: ["test"],
 			session: {
@@ -52,35 +52,30 @@ describe("app", () => {
 
 	it("should be instance of koa", () => {
 		expect(app instanceof Koa).toBe(true);
-		app.server.close();
 	});
 
 	it("should parse body default", async () => {
 		const response = await agent.post("/basetest").send({ test: true });
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual({ code: 2, message: "", data: { test: true } });
-		app.server.close();
 	});
 
 	it("should parse formdata with option", async () => {
 		const response = await agent.post("/formdata").attach("file", resolve(__dirname, "../../assets/test.md"));
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual({ code: 2, message: "", data: "test.md" });
-		app.server.close();
 	});
 
 	it("should parse formdata with option", async () => {
 		const response = await agent.post("/formdata").attach("file", resolve(__dirname, "../../assets/test.md"));
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual({ code: 2, message: "", data: "test.md" });
-		app.server.close();
 	});
 
 	it("should beforeall option worked", async () => {
 		const response = await agent.post("/beforealltest");
 		expect(response.status).toBe(200);
 		expect(response.text).toBe("test");
-		app.server.close();
 	});
 
 	it("should session worked", async () => {

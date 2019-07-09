@@ -18,13 +18,19 @@
  * ```
  */
 export function Before(func: Function) {
-	return function(target: any, key: string, descriptor: PropertyDescriptor) {
+	return function (target: any, key: string, descriptor: PropertyDescriptor) {
 		const method = descriptor.value;
-		descriptor.value = async function() {
-			func(...arguments);
-			const result = method(...arguments);
-			return result;
-		};
+		if (method.constructor.name === "AsyncFunction") {
+			descriptor.value = async function () {
+				func(...arguments);
+				return await method.apply(this, arguments);
+			};
+		} else {
+			descriptor.value = function () {
+				func(...arguments);
+				return method.apply(this, arguments);
+			};
+		}
 	};
 }
 
@@ -48,13 +54,21 @@ export function Before(func: Function) {
  * ```
  */
 export function After(func: Function) {
-	return function(target: any, key: string, descriptor: PropertyDescriptor) {
+	return function (target: any, key: string, descriptor: PropertyDescriptor) {
 		const method = descriptor.value;
-		descriptor.value = async function() {
-			const result = method(...arguments);
-			func(...arguments);
-			return result;
-		};
+		if (method.constructor.name === "AsyncFunction") {
+			descriptor.value = async function () {
+				const result = await method.apply(this, arguments);
+				func(...arguments);
+				return result;
+			};
+		} else {
+			descriptor.value = function () {
+				const result = method.apply(this, arguments);
+				func(...arguments);
+				return result;
+			};
+		}
 	};
 }
 
@@ -78,14 +92,23 @@ export function After(func: Function) {
  * ```
  */
 export function Around(func: Function) {
-	return function(target: any, key: string, descriptor: PropertyDescriptor) {
+	return function (target: any, key: string, descriptor: PropertyDescriptor) {
 		const method = descriptor.value;
-		descriptor.value = async function() {
-			func(...arguments);
-			const result = method(...arguments);
-			func(...arguments);
-			return result;
-		};
+		if (method.constructor.name === "AsyncFunction") {
+			descriptor.value = async function () {
+				func(...arguments);
+				const result = await method.apply(this, arguments);
+				func(...arguments);
+				return result;
+			};
+		} else {
+			descriptor.value = function () {
+				func(...arguments);
+				const result = method.apply(this, arguments);
+				func(...arguments);
+				return result;
+			};
+		}
 	};
 }
 
@@ -109,9 +132,9 @@ export function Around(func: Function) {
  * ```
  */
 export function Catch(func: Function) {
-	return function(target: any, key: string, descriptor: PropertyDescriptor) {
+	return function (target: any, key: string, descriptor: PropertyDescriptor) {
 		const method = descriptor.value;
-		descriptor.value = async function() {
+		descriptor.value = async function () {
 			try {
 				const result = await method.apply(this, arguments);
 				return result;

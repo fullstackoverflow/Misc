@@ -1,1 +1,1 @@
-export declare const Config: (env?: string) => ClassDecorator;
+export declare const ConfigComponent: (env?: string) => ClassDecorator;

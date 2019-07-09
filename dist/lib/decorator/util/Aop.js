@@ -22,11 +22,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 function Before(func) {
     return function (target, key, descriptor) {
         const method = descriptor.value;
-        descriptor.value = async function () {
-            func(this, arguments);
-            const result = method.apply(this, arguments);
-            return result;
-        };
+        if (method.constructor.name === "AsyncFunction") {
+            descriptor.value = async function () {
+                func(...arguments);
+                return await method.apply(this, arguments);
+            };
+        }
+        else {
+            descriptor.value = function () {
+                func(...arguments);
+                return method.apply(this, arguments);
+            };
+        }
     };
 }
 exports.Before = Before;
@@ -52,11 +59,20 @@ exports.Before = Before;
 function After(func) {
     return function (target, key, descriptor) {
         const method = descriptor.value;
-        descriptor.value = async function () {
-            const result = method.apply(this, arguments);
-            func.apply(this, arguments);
-            return result;
-        };
+        if (method.constructor.name === "AsyncFunction") {
+            descriptor.value = async function () {
+                const result = await method.apply(this, arguments);
+                func(...arguments);
+                return result;
+            };
+        }
+        else {
+            descriptor.value = function () {
+                const result = method.apply(this, arguments);
+                func(...arguments);
+                return result;
+            };
+        }
     };
 }
 exports.After = After;
@@ -82,12 +98,22 @@ exports.After = After;
 function Around(func) {
     return function (target, key, descriptor) {
         const method = descriptor.value;
-        descriptor.value = async function () {
-            func.apply(this, arguments);
-            const result = await method.apply(this, arguments);
-            func.apply(this, arguments);
-            return result;
-        };
+        if (method.constructor.name === "AsyncFunction") {
+            descriptor.value = async function () {
+                func(...arguments);
+                const result = await method.apply(this, arguments);
+                func(...arguments);
+                return result;
+            };
+        }
+        else {
+            descriptor.value = function () {
+                func(...arguments);
+                const result = method.apply(this, arguments);
+                func(...arguments);
+                return result;
+            };
+        }
     };
 }
 exports.Around = Around;

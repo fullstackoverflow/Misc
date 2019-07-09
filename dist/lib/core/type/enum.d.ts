@@ -7,6 +7,7 @@ export declare class ClassDecoratorType {
     static readonly Schedule: unique symbol;
     static readonly Config: unique symbol;
     static readonly Component: unique symbol;
+    static readonly Singleton: unique symbol;
 }
 export declare enum MethodDecoratorType {
     Http = "Http"
@@ -15,6 +16,7 @@ export declare class ControllerType {
     static readonly PREFIX: unique symbol;
     static readonly PATH: unique symbol;
     static readonly METHOD: unique symbol;
+    static readonly VALUE: unique symbol;
 }
 export declare class ScheduleType {
     static readonly SCHEDULE: unique symbol;

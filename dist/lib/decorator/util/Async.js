@@ -26,16 +26,32 @@ function Retry(opts) {
         return {
             get() {
                 const boundFn = fn.bind(this);
-                return async function () {
-                    return new Promise((resolve, reject) => {
-                        async_1.retry(opts, boundFn, function (err, result) {
-                            if (err) {
-                                reject(err);
-                            }
-                            resolve(result);
+                if (fn.constructor.name === "AsyncFunction") {
+                    return async function () {
+                        return new Promise((resolve, reject) => {
+                            async_1.retry(opts, boundFn, function (err, result) {
+                                if (err) {
+                                    reject(err);
+                                }
+                                resolve(result);
+                            });
                         });
-                    });
-                };
+                    };
+                }
+                else {
+                    return function () {
+                        let error;
+                        for (let count = 0; count < opts; count++) {
+                            try {
+                                return boundFn.apply(this, arguments);
+                            }
+                            catch (e) {
+                                error = e;
+                            }
+                        }
+                        throw error;
+                    };
+                }
             }
         };
     };

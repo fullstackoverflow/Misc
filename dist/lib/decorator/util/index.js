@@ -10,4 +10,6 @@ __export(require("./Schedule"));
 __export(require("./Async"));
 __export(require("./Validate"));
 __export(require("./Value"));
+__export(require("./Singleton"));
+__export(require("./Config"));
 //# sourceMappingURL=index.js.map

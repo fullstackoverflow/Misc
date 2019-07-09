@@ -1,45 +1,37 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = require("path");
-const chokidar_1 = require("chokidar");
-const log_1 = require("./log");
-const fs_1 = require("fs");
+const ClassScanner_1 = require("../core/ClassScanner");
+const enum_1 = require("../core/type/enum");
+const loader_1 = require("../core/loader");
 class Config {
-    static get instance() {
-        if (this.path === undefined) {
-            throw new Error("Config path is not init, set path first");
-        }
-        const config_path = path_1.resolve(this.path, `./${process.env.NODE_ENV}.ts`);
-        const default_path = path_1.resolve(this.path, `./default.ts`);
-        if (this._instance == undefined) {
-            if (fs_1.existsSync(default_path) && fs_1.existsSync(config_path)) {
-                this._instance = Object.assign({}, require(default_path).default, require(config_path).default);
-                log_1.logger.success(`Config file load: ${process.env.NODE_ENV}.ts(merged default.ts)`);
+    static set path(path) {
+        const dipatch = new loader_1.Dispatch();
+        const configs = new ClassScanner_1.ClassScanner(path_1.resolve(path, "**/*.ts"))
+            .scan()
+            .map(clazz => {
+            const ClassType = Reflect.getMetadata(enum_1.Type.ClassType, clazz);
+            if (ClassType === enum_1.ClassDecoratorType.Config) {
+                return dipatch[enum_1.ClassDecoratorType.Config](clazz, null);
             }
-            else if (fs_1.existsSync(config_path)) {
-                this._instance = require(config_path).default;
-                log_1.logger.success(`Config file load: ${process.env.NODE_ENV}.ts`);
+        })
+            .filter(Boolean);
+        if (Config.instance == undefined) {
+            const defaultConfig = configs.find(i => i.env == "default");
+            const envConfig = configs.find(i => i.env == process.env.NODE_ENV);
+            if (defaultConfig && envConfig) {
+                Config.instance = Object.assign({}, defaultConfig.instance, envConfig.instance);
+            }
+            else if (defaultConfig && !envConfig) {
+                Config.instance = Object.assign({}, defaultConfig.instance);
+            }
+            else if (!defaultConfig && envConfig) {
+                Config.instance = Object.assign({}, envConfig.instance);
             }
             else {
-                throw new Error(`Config file ${config_path} load failed, file not exist`);
+                throw new Error(`Config file load failed`);
             }
-            chokidar_1.watch(this.path, {
-                ignored: /(^|[\/\\])\../,
-                persistent: true
-            }).on("change", () => {
-                delete require.cache[config_path];
-                if (fs_1.existsSync(default_path)) {
-                    delete require.cache[default_path];
-                    this._instance = Object.assign({}, require(default_path).default, require(config_path).default);
-                    log_1.logger.success(`Config file load: ${process.env.NODE_ENV}.ts(merged default.ts)`);
-                }
-                else {
-                    this._instance = require(config_path).default;
-                    log_1.logger.success("Config file reload:", `${process.env.NODE_ENV}.ts`);
-                }
-            });
         }
-        return this._instance;
     }
 }
 exports.Config = Config;

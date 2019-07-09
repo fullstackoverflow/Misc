@@ -15,6 +15,7 @@ ClassDecoratorType.Controller = Symbol("controller");
 ClassDecoratorType.Schedule = Symbol("schedule");
 ClassDecoratorType.Config = Symbol("config");
 ClassDecoratorType.Component = Symbol("component");
+ClassDecoratorType.Singleton = Symbol("singleton");
 exports.ClassDecoratorType = ClassDecoratorType;
 var MethodDecoratorType;
 (function (MethodDecoratorType) {
@@ -25,6 +26,7 @@ class ControllerType {
 ControllerType.PREFIX = Symbol("prefix");
 ControllerType.PATH = Symbol("path");
 ControllerType.METHOD = Symbol("method");
+ControllerType.VALUE = Symbol("value");
 exports.ControllerType = ControllerType;
 class ScheduleType {
 }

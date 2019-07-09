@@ -21,5 +21,5 @@ export declare function Retry(opts: number | {
     times: number;
     interval: number | ((retryCount: number) => number);
 }): (target: any, key: string, descriptor: PropertyDescriptor) => {
-    get(): () => Promise<{}>;
+    get(): any;
 };

@@ -4,8 +4,6 @@ import request from "supertest";
 import "jest";
 import { resolve } from "path";
 
-Config.path = resolve(__dirname, "../config");
-
 let app;
 let agent;
 
@@ -17,7 +15,7 @@ describe("app", () => {
 			body: {
 				multipart: true
 			},
-			scan:resolve(__dirname,'../router/**/*.ts'),
+			scan:resolve(__dirname,'../../router/**/*.ts'),
 			callback: done,
 			port: 7890
 		});

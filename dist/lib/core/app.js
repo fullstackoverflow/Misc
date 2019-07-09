@@ -53,6 +53,7 @@ class Misc extends koa_1.default {
             const key = Object.keys(default_options)[index];
             const func = default_options[key];
             const option = opts[key];
+            log_1.logger.info(`Load ${key}:${JSON.stringify(option)}`);
             if (key === "session") {
                 this.use(func(option, this));
             }

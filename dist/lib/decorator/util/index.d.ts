@@ -5,3 +5,5 @@ export * from "./Schedule";
 export * from "./Async";
 export * from "./Validate";
 export * from "./Value";
+export * from "./Singleton";
+export * from "./Config";
