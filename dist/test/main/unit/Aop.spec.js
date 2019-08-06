@@ -9,8 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("jest");
-const lib_1 = require("../../../lib");
+const index_1 = require("../../../lib/index");
 class Test {
     case1(param1) {
         return param1;
@@ -36,7 +35,7 @@ class Test {
     }
 }
 __decorate([
-    lib_1.Before(param1 => {
+    index_1.Before(param1 => {
         param1.test = 222;
     }),
     __metadata("design:type", Function),
@@ -44,7 +43,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], Test.prototype, "case1", null);
 __decorate([
-    lib_1.After(param1 => {
+    index_1.After(param1 => {
         param1.test = 333;
     }),
     __metadata("design:type", Function),
@@ -52,7 +51,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], Test.prototype, "case2", null);
 __decorate([
-    lib_1.Around(param1 => {
+    index_1.Around(param1 => {
         param1.test = 111;
     }),
     __metadata("design:type", Function),
@@ -60,7 +59,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], Test.prototype, "case3", null);
 __decorate([
-    lib_1.Before(param1 => {
+    index_1.Before(param1 => {
         param1.test = 222;
     }),
     __metadata("design:type", Function),
@@ -68,7 +67,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], Test.prototype, "case4", null);
 __decorate([
-    lib_1.After(param1 => {
+    index_1.After(param1 => {
         param1.test = 333;
     }),
     __metadata("design:type", Function),
@@ -76,7 +75,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], Test.prototype, "case5", null);
 __decorate([
-    lib_1.Around(param1 => {
+    index_1.Around(param1 => {
         param1.test = 111;
     }),
     __metadata("design:type", Function),

@@ -6,14 +6,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const lib_1 = require("../../lib");
+const index_1 = require("../../lib/index");
 let TestService = class TestService {
     test() {
         return "success";
     }
 };
 TestService = __decorate([
-    lib_1.Singleton
+    index_1.Singleton
 ], TestService);
 exports.TestService = TestService;
 //# sourceMappingURL=TestService.js.map

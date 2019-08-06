@@ -1,5 +1,4 @@
-import "jest";
-import { Retry } from "../../../lib";
+import { Retry } from "../../../lib/index";
 
 class Test {
 	retry = 0;

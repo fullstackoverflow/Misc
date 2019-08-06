@@ -1,1 +1,1 @@
-import "jest";
+export {};

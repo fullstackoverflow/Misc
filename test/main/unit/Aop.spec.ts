@@ -1,5 +1,4 @@
-import "jest";
-import { Before, After, Around } from "../../../lib";
+import { Before, After, Around } from "../../../lib/index";
 
 class Test {
 	@Before(param1 => {

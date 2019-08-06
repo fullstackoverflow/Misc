@@ -12,7 +12,7 @@ export interface options {
     scan?: string;
     body?: IKoaBodyOptions;
     protocol: "http" | "https";
-    callback?: Function;
+    callback?: () => void;
     port: number;
     tls?: ServerOptions;
     cors?: Options;

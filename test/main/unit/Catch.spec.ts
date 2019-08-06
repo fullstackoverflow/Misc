@@ -1,4 +1,4 @@
-import { Before, After, Around, Catch } from "../../../lib";
+import { Before, After, Around, Catch } from "../../../lib/index";
 import { Expect, TestFixture, AsyncTest, SetupFixture, Test } from 'alsatian';
 
 class test {

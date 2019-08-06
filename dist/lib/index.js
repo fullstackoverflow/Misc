@@ -12,5 +12,5 @@ __export(require("./core/app"));
 __export(require("./util/config"));
 __export(require("./util/log"));
 __export(require("./util/response"));
-__export(require("./decorator"));
+__export(require("./decorator/index"));
 //# sourceMappingURL=index.js.map

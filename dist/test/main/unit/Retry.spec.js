@@ -9,8 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("jest");
-const lib_1 = require("../../../lib");
+const index_1 = require("../../../lib/index");
 class Test {
     constructor() {
         this.retry = 0;
@@ -25,13 +24,13 @@ class Test {
     }
 }
 __decorate([
-    lib_1.Retry(3),
+    index_1.Retry(3),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], Test.prototype, "case1", null);
 __decorate([
-    lib_1.Retry(3),
+    index_1.Retry(3),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
