@@ -2,16 +2,17 @@ import { Misc } from "../../../lib/core/app";
 import { Config } from "../../../lib/util/config";
 import request from "supertest";
 import Koa from "koa";
-import "jest";
 import { resolve } from "path";
-import { logger } from "../../../lib/util/log";
 import { Res } from "../../../lib/util/response";
+import { Test, Expect, TestFixture, SetupFixture } from "alsatian";
 
-let app;
-let agent;
-console.log(process.env);
-describe("app", () => {
-	beforeAll(done => {
+@TestFixture('App test')
+export class ExampleTestFixture {
+	instance: request.SuperTest<request.Test>
+	app: Misc
+
+	@SetupFixture
+	setup() {
 		Config.path = resolve(__dirname, "../../config");
 		const middleware = async (ctx, next) => {
 			ctx.body = "test";
@@ -26,14 +27,13 @@ describe("app", () => {
 				}
 			}
 		};
-		app = new Misc({
+		this.app = new Misc({
 			protocol: "http",
 			body: {
 				multipart: true
 			},
 			beforeall: [errorHandler, middleware],
 			scan: resolve(__dirname, "../../router/**/*.ts"),
-			callback: done,
 			keys: ["test"],
 			session: {
 				maxAge: 30 * 60 * 1000,
@@ -43,60 +43,58 @@ describe("app", () => {
 			},
 			port: 7891
 		});
-		agent = request.agent(app.server);
-	});
+		this.instance = request(this.app.server);
+	}
 
-	afterAll(async done => {
-		app.server.close(done);
-	});
+	@Test("should be instance of koa")
+	public async test2() {
+		Expect(this.app instanceof Koa).toBe(true);
+	}
 
-	it("should be instance of koa", () => {
-		expect(app instanceof Koa).toBe(true);
-	});
+	@Test("should parse body default")
+	public async test3() {
+		const response = await this.instance.post("/basetest").send({ test: true });
+		Expect(response.status).toBe(200);
+		Expect(response.body).toEqual({ code: 2, message: "", data: { test: true } });
+	}
 
-	it("should parse body default", async () => {
-		const response = await agent.post("/basetest").send({ test: true });
-		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ code: 2, message: "", data: { test: true } });
-	});
+	@Test("should parse formdata with option")
+	public async test4() {
+		const response = await this.instance.post("/formdata").attach("file", resolve(__dirname, "../../assets/test.md"));
+		Expect(response.status).toBe(200);
+		Expect(response.body).toEqual({ code: 2, message: "", data: "test.md" });
+	}
 
-	it("should parse formdata with option", async () => {
-		const response = await agent.post("/formdata").attach("file", resolve(__dirname, "../../assets/test.md"));
-		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ code: 2, message: "", data: "test.md" });
-	});
+	@Test("should beforeall option worked")
+	public async test5() {
+		const response = await this.instance.post("/beforealltest");
+		Expect(response.status).toBe(200);
+		Expect(response.text).toBe("test");
+	}
 
-	it("should parse formdata with option", async () => {
-		const response = await agent.post("/formdata").attach("file", resolve(__dirname, "../../assets/test.md"));
-		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ code: 2, message: "", data: "test.md" });
-	});
+	// @Test("should session worked")
+	// public async test6() {
+	// 	const response1 = await this.instance.post("/session");
+	// 	Expect(response1.status).toBe(200);
+	// 	response1.header["set-cookie"][0]
+	// 		.split(",")
+	// 		.map(item => item.split(";")[0])
+	// 		.forEach(c => {
+	// 			console.log(this.instance.jar);
+	// 			return this.instance.jar.setCookie(c)
+	// 		});
+	// 	const response2 = await this.instance.post("/sessionCheck");
+	// 	Expect(response2.status).toBe(200);
+	// 	Expect(response2.text).toBe("true");
+	// }
 
-	it("should beforeall option worked", async () => {
-		const response = await agent.post("/beforealltest");
-		expect(response.status).toBe(200);
-		expect(response.text).toBe("test");
-	});
-
-	it("should session worked", async () => {
-		const agent = request.agent(app.server);
-		const response1 = await agent.post("/session");
-		expect(response1.status).toBe(200);
-		response1.header["set-cookie"][0]
-			.split(",")
-			.map(item => item.split(";")[0])
-			.forEach(c => agent.jar.setCookie(c));
-		const response2 = await agent.post("/sessionCheck");
-		expect(response2.status).toBe(200);
-		expect(response2.text).toBe("true");
-	});
-
-	it("should return value correct", async () => {
-		const response1 = await agent.post("/reswarn");
-		expect(response1.status).toBe(200);
-		expect(response1.body).toEqual({ code: 1, message: "reswarn", data: null });
-		const response2 = await agent.post("/reserr");
-		expect(response2.status).toBe(200);
-		expect(response2.body).toEqual({ code: 0, message: "reserr", data: null });
-	});
-});
+	@Test("should return value correct")
+	public async test7() {
+		const response1 = await this.instance.post("/reswarn");
+		Expect(response1.status).toBe(200);
+		Expect(response1.body).toEqual({ code: 1, message: "reswarn", data: null });
+		const response2 = await this.instance.post("/reserr");
+		Expect(response2.status).toBe(200);
+		Expect(response2.body).toEqual({ code: 0, message: "reserr", data: null });
+	}
+}

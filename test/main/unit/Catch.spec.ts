@@ -1,7 +1,7 @@
-import "jest";
 import { Before, After, Around, Catch } from "../../../lib";
+import { Expect, TestFixture, AsyncTest, SetupFixture, Test } from 'alsatian';
 
-class Test {
+class test {
 	@Catch(err => {
 		throw new Error("Catched");
 	})
@@ -10,22 +10,26 @@ class Test {
 	}
 }
 
-let instance = new Test();
+let instance = new test();
 
-describe("Catch", () => {
-	it("Catch should catch sync exception", () => {
+
+@TestFixture('Catch test')
+export class ExampleTestFixture {
+	@Test('test')
+	public async test1() {
 		try {
 			instance.case1({});
 		} catch (e) {
-			expect(e.message).toStrictEqual("Catched");
+			Expect(e.message).toEqual("Catched");
 		}
-	});
+	}
 
-	it("Catch should catch Async exception", async () => {
+	@Test('test')
+	public async test2() {
 		try {
 			await instance.case1({});
 		} catch (e) {
-			expect(e.message).toStrictEqual("Catched");
+			Expect(e.message).toEqual("Catched");
 		}
-	});
-});
+	}
+}

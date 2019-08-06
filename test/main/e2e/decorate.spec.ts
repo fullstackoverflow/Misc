@@ -1,84 +1,85 @@
 import { Misc } from "../../../lib/core/app";
 import { Config } from "../../../lib/util/config";
 import request from "supertest";
-import "jest";
 import { resolve } from "path";
+import { Test, Expect, TestFixture, SetupFixture } from "alsatian";
 
-let app;
-let agent;
 
-describe("app", () => {
-	beforeAll(done => {
+@TestFixture('Decorate test')
+export class ExampleTestFixture {
+	instance: request.SuperTest<request.Test>
+	app: Misc
+
+	@SetupFixture
+	setup() {
 		Config.path = resolve(__dirname, "../../config");
-		app = new Misc({
+		this.app = new Misc({
 			protocol: "http",
 			body: {
 				multipart: true
 			},
 			scan:resolve(__dirname,'../../router/**/*.ts'),
-			callback: done,
 			port: 7890
 		});
-		agent = request.agent(app.server);
-	});
+		this.instance = request(this.app.server);
+	}
 
-	afterAll(async done => {
-		app.server.close(done);
-	});
+	
+	@Test("should autowired decorator worked")
+	public async test1() {
+		const response = await this.instance.post("/autowired");
+		Expect(response.status).toBe(200);
+		Expect(response.body).toEqual({ code: 2, message: "", data: "success" });
+	}
 
-	it("should autowired decorator worked", async () => {
-		const response = await agent.post("/autowired");
-		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ code: 2, message: "", data: "success" });
-	});
+	@Test("should value decorator worked")
+	public async test2() {
+		const response = await this.instance.post("/value");
+		Expect(response.status).toBe(200);
+		Expect(response.body).toEqual({ code: 2, message: "", data: "value" });
+	}
 
-	it("should value decorator worked", async () => {
-		const response = await agent.post("/value");
-		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ code: 2, message: "", data: "value" });
-	});
+	@Test("should get decorator worked")
+	public async test3() {
+		const response = await this.instance.get("/get");
+		Expect(response.status).toBe(200);
+		Expect(response.body).toEqual({ code: 2, message: "", data: "success" });
+	}
 
-	it("should get decorator worked", async () => {
-		const response = await agent.get("/get");
-		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ code: 2, message: "", data: "success" });
-	});
+	@Test("should delete decorator worked")
+	public async test4() {
+		const response = await this.instance.delete("/delete");
+		Expect(response.status).toBe(200);
+		Expect(response.body).toEqual({ code: 2, message: "", data: "success" });
+	}
 
-	it("should delete decorator worked", async () => {
-		const response = await agent.delete("/delete");
-		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ code: 2, message: "", data: "success" });
-	});
+	@Test("should validate decorator worked")
+	public async test5() {
+		const response = await this.instance.post("/validate").send({ test: true, test2: "aaa" });
+		Expect(response.status).toBe(200);
+		Expect(response.body).toEqual({ code: 2, message: "", data: "success" });
+		const response2 = await this.instance.post("/validate");
+		Expect(response2.status).toBe(500);
+	}
 
-	it("should put decorator worked", async () => {
-		const response = await agent.put("/put");
-		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ code: 2, message: "", data: "success" });
-	});
+	@Test("should before decorator worked")
+	public async test6() {
+		const response = await this.instance.post("/before").send({ test: true });
+		Expect(response.status).toBe(200);
+		Expect(response.text).toEqual("test");
+	}
 
-	it("should validate decorator worked", async () => {
-		const response = await agent.post("/validate").send({ test: true, test2: "aaa" });
-		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ code: 2, message: "", data: "success" });
-		const response2 = await agent.post("/validate");
-		expect(response2.status).toBe(500);
-	});
+	@Test("should after decorator worked")
+	public async test7() {
+		const response = await this.instance.post("/after").send({ test: true });
+		Expect(response.status).toBe(200);
+		Expect(response.text).toEqual("test");
+	}
 
-	it("should before decorator worked", async () => {
-		const response = await agent.post("/before").send({ test: true });
-		expect(response.status).toBe(200);
-		expect(response.text).toEqual("test");
-	});
-
-	it("should after decorator worked", async () => {
-		const response = await agent.post("/after").send({ test: true });
-		expect(response.status).toBe(200);
-		expect(response.text).toEqual("test");
-	});
-
-	it("should after and before decorator worked", async () => {
-		const response = await agent.post("/combin").send({ test: true });
-		expect(response.status).toBe(200);
-		expect(response.text).toEqual("test2");
-	});
-});
+	@Test("should after and before decorator worked")
+	public async test8() {
+		const response = await this.instance.post("/combin").send({ test: true });
+		Expect(response.status).toBe(200);
+		Expect(response.text).toEqual("test2");
+	}
+}
