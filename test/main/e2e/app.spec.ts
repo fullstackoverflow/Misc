@@ -9,7 +9,7 @@ import { Res } from "../../../lib/util/response";
 
 let app;
 let agent;
-
+console.log(process.env);
 describe("app", () => {
 	beforeAll(done => {
 		Config.path = resolve(__dirname, "../../config");
@@ -43,7 +43,6 @@ describe("app", () => {
 			},
 			port: 7891
 		});
-		console.log(app);
 		agent = request.agent(app.server);
 	});
 
