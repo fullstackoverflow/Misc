@@ -1,8 +1,9 @@
 language: node_js
 node_js:
 - lts/*
-cache: npm
-script: echo "Running tests against $(node -v) ..."&&npm run test&&npm run codecov
+cache: 
+  npm: false
+script: echo "Running tests against $(node -v) ..."&&npm i&&npm run test&&npm run codecov
 notifications:
   email:
     on_success: always
