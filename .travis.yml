@@ -3,7 +3,7 @@ node_js:
 - lts/*
 cache: 
   npm: false
-script: echo "Running tests against $(node -v) ..."&&ls&&env&&npm i -g typescript&&npm i&&npm run test&&npm run codecov
+script: echo "Running tests against $(node -v) ..."&&ls&&env&&npm i -g typescript&&rm-rf ./node_modules&&npm i&&npm run test&&npm run codecov
 notifications:
   email:
     on_success: always
@@ -21,4 +21,3 @@ jobs:
       on:
         branch: master
         tags: true
-        
