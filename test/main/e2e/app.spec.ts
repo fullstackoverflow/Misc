@@ -43,6 +43,7 @@ describe("app", () => {
 			},
 			port: 7891
 		});
+		console.log(app);
 		agent = request.agent(app.server);
 	});
 
