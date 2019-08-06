@@ -3,7 +3,7 @@ node_js:
 - lts/*
 cache: 
   npm: false
-script: echo "Running tests against $(node -v) ..."&&npm i ts-node -g&&npm run tscversion&&npm run ts-node&&npm run coverage&&npm run codecov
+script: echo "Running tests against $(node -v) ..."&&rm -rf ./node_modules&&npm i&&npm i typescript -g&&npm i ts-node -g&&npm run tscversion&&npm run ts-node&&npm run coverage&&npm run codecov
 notifications:
   email:
     on_success: always
