@@ -11,8 +11,8 @@ class Config {
 		if (this.path === undefined) {
 			throw new Error("Config path is not init, set path first");
 		}
-		const config_path = resolve(this.path, `./${process.env.NODE_ENV}.ts`);
-		const default_path = resolve(this.path, `./default.ts`);
+		const config_path = existsSync(resolve(this.path, `./default.ts`)) ? resolve(this.path, `./default.ts`) : resolve(this.path, `./default.js`);
+		const default_path = existsSync(resolve(this.path, `./${process.env.NODE_ENV}.ts`)) ? resolve(this.path, `./${process.env.NODE_ENV}.ts`) : resolve(this.path, `./${process.env.NODE_ENV}.js`);;
 		if (this._instance == undefined) {
 			if (existsSync(default_path) && existsSync(config_path)) {
 				this._instance = Object.assign({}, require(default_path).default, require(config_path).default);
