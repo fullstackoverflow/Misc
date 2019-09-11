@@ -7,7 +7,12 @@ const fs_1 = require("fs");
 class Config {
     static get instance() {
         if (Config.path === undefined) {
-            throw new Error("Config path is not init, set path first");
+            if (process.env.CONFIG) {
+                Config.path = process.env.CONFIG;
+            }
+            else {
+                throw new Error("Config path is not init, set path first");
+            }
         }
         const default_path = fs_1.existsSync(path_1.resolve(Config.path, `./default.ts`)) ? path_1.resolve(Config.path, `./default.ts`) : path_1.resolve(Config.path, `./default.js`);
         const config_path = fs_1.existsSync(path_1.resolve(Config.path, `./${process.env.NODE_ENV}.ts`)) ? path_1.resolve(Config.path, `./${process.env.NODE_ENV}.ts`) : path_1.resolve(Config.path, `./${process.env.NODE_ENV}.js`);
