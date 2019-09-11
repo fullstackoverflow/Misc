@@ -9,7 +9,11 @@ class Config {
 
 	static get instance() {
 		if (Config.path === undefined) {
-			throw new Error("Config path is not init, set path first");
+			if (process.env.CONFIG) {
+				Config.path = process.env.CONFIG;
+			} else {
+				throw new Error("Config path is not init, set path first");
+			}
 		}
 		const default_path = existsSync(resolve(Config.path, `./default.ts`)) ? resolve(Config.path, `./default.ts`) : resolve(Config.path, `./default.js`);
 		const config_path = existsSync(resolve(Config.path, `./${process.env.NODE_ENV}.ts`)) ? resolve(Config.path, `./${process.env.NODE_ENV}.ts`) : resolve(Config.path, `./${process.env.NODE_ENV}.js`);;
