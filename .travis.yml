@@ -1,8 +1,9 @@
 language: node_js
 node_js:
 - lts/*
-install: npm install
-script: export NODE_ENV=test&&alsatian ./test/main/e2e/*.spec.ts&&npm run codecov&&npm run coverage
+cache: 
+  npm: false
+script: echo "Running tests against $(node -v) ..."&&npm run coverage&&npm run codecov
 notifications:
   email:
     on_success: always

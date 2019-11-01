@@ -1,11 +1,13 @@
 import Koa from "koa";
-import { Controller, Autowired, POST, Validate, ResSuccess, GET, File, DELETE, PUT, Value, Config, logger, ResWarn, ResError, Schedule, Before, After } from "../../lib/index";
+import { Autowired, Validate, ResSuccess, File, Value, Config, logger, ResWarn, ResError, Schedule, Before, After } from "../../lib/index";
 import { TestService } from "../service/TestService";
 import { IsBoolean, IsString, ValidateNested } from "class-validator";
 import { writeFileSync } from "fs";
 import { resolve } from "path";
 import moment = require("moment");
 import { Type } from "class-transformer";
+import { Controller } from "../../lib/decorator/controller/Controller";
+import { POST, GET, DELETE, PUT } from "../../lib/decorator/controller/Method";
 
 export class Test {
 	/**
