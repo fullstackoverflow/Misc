@@ -1,0 +1,1 @@
+{"version":3,"file":"Singleton.js","sourceRoot":"","sources":["../../../../lib/decorator/util/Singleton.ts"],"names":[],"mappings":";;AAAA,+CAAgE;AAEnD,QAAA,SAAS,GAAG,MAAM,CAAC,EAAE;IACjC,OAAO,CAAC,cAAc,CAAC,WAAI,CAAC,SAAS,EAAE,yBAAkB,CAAC,SAAS,EAAE,MAAM,CAAC,CAAC;AAC9E,CAAC,CAAC"}
