@@ -1,6 +1,7 @@
 language: node_js
 node_js:
 - lts/*
+install: npm
 cache: 
   npm: false
 script: echo "Running tests against $(node -v) ..."&&npm i ts-node -g&&npm i typescript -g&&npm run coverage&&npm run codecov
