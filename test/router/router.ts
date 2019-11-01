@@ -1,23 +1,5 @@
 import Koa from "koa";
-import {
-	Controller,
-	Autowired,
-	POST,
-	Validate,
-	ResSuccess,
-	GET,
-	File,
-	DELETE,
-	PUT,
-	Value,
-	Config,
-	logger,
-	ResWarn,
-	ResError,
-	Schedule,
-	Before,
-	After
-} from "../../lib/index";
+import { Controller, Autowired, POST, Validate, ResSuccess, GET, File, DELETE, PUT, Value, Config, logger, ResWarn, ResError, Schedule, Before, After } from "../../lib/index";
 import { TestService } from "../service/TestService";
 import { IsBoolean, IsString, ValidateNested } from "class-validator";
 import { writeFileSync } from "fs";
@@ -33,7 +15,7 @@ export class Test {
 	test: boolean;
 
 	@IsString()
-	test2:string;
+	test2: string;
 }
 
 class FormFile {
@@ -56,7 +38,7 @@ export default class Router {
 	@Autowired
 	TestService: TestService;
 
-	test:"test"
+	test: "test"
 
 	@POST("/basetest")
 	async staus(ctx: Koa.Context) {
@@ -64,7 +46,7 @@ export default class Router {
 	}
 
 	@POST("/formdata")
-	@Validate({schema:Upload})
+	@Validate({ schema: Upload })
 	@File()
 	async formdata(ctx: Koa.Context) {
 		ctx.body = new ResSuccess("", ctx.request.body.file.name);
