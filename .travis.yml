@@ -2,9 +2,7 @@ language: node_js
 node_js:
 - lts/*
 install: npm install
-cache: 
-  npm: false
-script: echo "Running tests against $(node -v) ..."&&npm run coverage&&npm run codecov
+script: npm run coverage&&npm run codecov
 notifications:
   email:
     on_success: always

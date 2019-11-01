@@ -23,6 +23,7 @@ export class ClassScanner {
 			.map(p => {
 				return glob.sync(p).reduce((pre, curr) => {
 					if (statSync(curr).isFile()) {
+						console.log(curr);
 						return pre.concat(Object.values(require(curr)));
 					} else {
 						return pre;
