@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var _a;
+Object.defineProperty(exports, "__esModule", { value: true });
 const enum_1 = require("../../type/enum");
 const koa_router_1 = __importDefault(require("koa-router"));
 const Autowired_1 = require("../../../decorator/util/Autowired");
