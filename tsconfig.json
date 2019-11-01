@@ -11,10 +11,6 @@
 		"sourceMap": true,
 		"allowJs": false,
 		"outDir": "./dist",
-		"rootDirs": [
-			"./lib",
-			"./test"
-		],
 		"resolveJsonModule": true,
 		"esModuleInterop": true
 	},
