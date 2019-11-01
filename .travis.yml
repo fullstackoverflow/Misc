@@ -4,7 +4,7 @@ node_js:
 install: npm install
 cache: 
   npm: false
-script: echo "Running tests against $(node -v) ..."&&npm run coverage&&npm run codecov
+script: echo "Running tests against $(node -v) ..."&&npm install ts-node --save-dev&&npm install typescript -g&&npm install typescript --save-dev&&npm run coverage&&npm run codecov
 notifications:
   email:
     on_success: always
