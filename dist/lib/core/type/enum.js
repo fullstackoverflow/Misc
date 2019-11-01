@@ -6,36 +6,36 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Type {
 }
+exports.Type = Type;
 Type.ClassType = Symbol("ClassType");
 Type.MethodType = Symbol("MethodType");
-exports.Type = Type;
 class ClassDecoratorType {
 }
+exports.ClassDecoratorType = ClassDecoratorType;
 ClassDecoratorType.Controller = Symbol("controller");
 ClassDecoratorType.Schedule = Symbol("schedule");
 ClassDecoratorType.Config = Symbol("config");
 ClassDecoratorType.Component = Symbol("component");
 ClassDecoratorType.Singleton = Symbol("singleton");
-exports.ClassDecoratorType = ClassDecoratorType;
 var MethodDecoratorType;
 (function (MethodDecoratorType) {
     MethodDecoratorType["Http"] = "Http";
 })(MethodDecoratorType = exports.MethodDecoratorType || (exports.MethodDecoratorType = {}));
 class ControllerType {
 }
+exports.ControllerType = ControllerType;
 ControllerType.PREFIX = Symbol("prefix");
 ControllerType.PATH = Symbol("path");
 ControllerType.METHOD = Symbol("method");
 ControllerType.VALUE = Symbol("value");
-exports.ControllerType = ControllerType;
 class ScheduleType {
 }
-ScheduleType.SCHEDULE = Symbol("schedule");
 exports.ScheduleType = ScheduleType;
+ScheduleType.SCHEDULE = Symbol("schedule");
 class ConfigType {
 }
-ConfigType.ENV = Symbol("env");
 exports.ConfigType = ConfigType;
+ConfigType.ENV = Symbol("env");
 var Methods;
 (function (Methods) {
     Methods["GET"] = "get";

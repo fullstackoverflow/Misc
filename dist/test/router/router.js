@@ -17,6 +17,8 @@ const index_1 = require("../../lib/index");
 const TestService_1 = require("../service/TestService");
 const class_validator_1 = require("class-validator");
 const class_transformer_1 = require("class-transformer");
+const Controller_1 = require("../../lib/decorator/controller/Controller");
+const Method_1 = require("../../lib/decorator/controller/Method");
 class Test {
 }
 __decorate([
@@ -113,13 +115,13 @@ __decorate([
     __metadata("design:type", TestService_1.TestService)
 ], Router.prototype, "TestService", void 0);
 __decorate([
-    index_1.POST("/basetest"),
+    Method_1.POST("/basetest"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], Router.prototype, "staus", null);
 __decorate([
-    index_1.POST("/formdata"),
+    Method_1.POST("/formdata"),
     index_1.Validate({ schema: Upload }),
     index_1.File(),
     __metadata("design:type", Function),
@@ -127,37 +129,37 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], Router.prototype, "formdata", null);
 __decorate([
-    index_1.POST("/autowired"),
+    Method_1.POST("/autowired"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], Router.prototype, "autowired", null);
 __decorate([
-    index_1.POST("/value"),
+    Method_1.POST("/value"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], Router.prototype, "value", null);
 __decorate([
-    index_1.GET("/get"),
+    Method_1.GET("/get"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], Router.prototype, "get", null);
 __decorate([
-    index_1.DELETE("/delete"),
+    Method_1.DELETE("/delete"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], Router.prototype, "delete", null);
 __decorate([
-    index_1.PUT("/put"),
+    Method_1.PUT("/put"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], Router.prototype, "put", null);
 __decorate([
-    index_1.POST("/validate"),
+    Method_1.POST("/validate"),
     index_1.Validate({
         schema: Test
     }),
@@ -166,43 +168,43 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], Router.prototype, "validate", null);
 __decorate([
-    index_1.POST("/config"),
+    Method_1.POST("/config"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], Router.prototype, "config", null);
 __decorate([
-    index_1.POST("/beforealltest"),
+    Method_1.POST("/beforealltest"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], Router.prototype, "beforealltest", null);
 __decorate([
-    index_1.POST("/session"),
+    Method_1.POST("/session"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], Router.prototype, "session", null);
 __decorate([
-    index_1.POST("/sessionCheck"),
+    Method_1.POST("/sessionCheck"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], Router.prototype, "sessionCheck", null);
 __decorate([
-    index_1.POST("/reswarn"),
+    Method_1.POST("/reswarn"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], Router.prototype, "reswarn", null);
 __decorate([
-    index_1.POST("/reserr"),
+    Method_1.POST("/reserr"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], Router.prototype, "reserr", null);
 __decorate([
-    index_1.POST("/before"),
+    Method_1.POST("/before"),
     index_1.Before(async (ctx, next) => {
         ctx.state = "test";
     }),
@@ -211,7 +213,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], Router.prototype, "before", null);
 __decorate([
-    index_1.POST("/after"),
+    Method_1.POST("/after"),
     index_1.After((ctx, next) => {
         ctx.body = "test";
     }),
@@ -220,7 +222,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], Router.prototype, "after", null);
 __decorate([
-    index_1.POST("/combin"),
+    Method_1.POST("/combin"),
     index_1.Before((ctx, next) => {
         ctx.state = "test1";
     }),
@@ -232,7 +234,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], Router.prototype, "combin", null);
 Router = __decorate([
-    index_1.Controller()
+    Controller_1.Controller()
 ], Router);
 exports.default = Router;
 //# sourceMappingURL=router.js.map
