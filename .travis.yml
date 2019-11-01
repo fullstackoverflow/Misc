@@ -3,7 +3,7 @@ node_js:
 - lts/*
 cache: 
   npm: false
-script: echo "Running tests against $(node -v) ..."&&cat test/router/router.ts&&npm run coverage&&npm run codecov
+script: echo "Running tests against $(node -v) ..."&&npm i ts-node -g&&npm i typescript -g&&npm run coverage&&npm run codecov
 notifications:
   email:
     on_success: always
