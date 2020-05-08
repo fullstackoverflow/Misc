@@ -117,7 +117,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Logger.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/5e55ea7/lib/util/log.ts#L4">util/log.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/c81fa22/lib/util/log.ts#L4">util/log.ts:4</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -137,28 +137,34 @@
 					<a name="middleware" class="tsd-anchor"></a>
 					<h3>Middleware</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">Middleware<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">Middleware<span class="tsd-signature-symbol">(</span>option<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Option</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from Logger.Middleware</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@tosee/log/dist/index.d.ts:5</li>
+									<li>Defined in E:/fy/Misc/node_modules/@tosee/log/dist/index.d.ts:7</li>
 								</ul>
 							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> option: <span class="tsd-signature-type">Option</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
 									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>ctx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Koa.Context</span>, next<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>ctx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, next<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
 											<h4 class="tsd-parameters-title">Parameters</h4>
 											<ul class="tsd-parameters">
 												<li>
-													<h5>ctx: <span class="tsd-signature-type">Koa.Context</span></h5>
+													<h5>ctx: <span class="tsd-signature-type">any</span></h5>
 												</li>
 												<li>
 													<h5>next: <span class="tsd-signature-type">Function</span></h5>
@@ -183,7 +189,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Logger.error</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@tosee/log/dist/index.d.ts:8</li>
+									<li>Defined in E:/fy/Misc/node_modules/@tosee/log/dist/index.d.ts:10</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -207,7 +213,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Logger.info</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@tosee/log/dist/index.d.ts:6</li>
+									<li>Defined in E:/fy/Misc/node_modules/@tosee/log/dist/index.d.ts:8</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -231,7 +237,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Logger.success</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@tosee/log/dist/index.d.ts:7</li>
+									<li>Defined in E:/fy/Misc/node_modules/@tosee/log/dist/index.d.ts:9</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -252,8 +258,59 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_classscanner_.html">"core/<wbr>Class<wbr>Scanner"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_app_.html">"core/app"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_loader_controller_controllerloader_.html">"core/loader/controller/<wbr>Controller<wbr>Loader"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_loader_controller_methods_http_.html">"core/loader/controller/methods/<wbr>Http"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_loader_dispatch_.html">"core/loader/dispatch"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_loader_index_.html">"core/loader/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_type_enum_.html">"core/type/enum"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_type_interface_.html">"core/type/interface"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_type_opts_.html">"core/type/opts"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_decorator_controller_controller_.html">"decorator/controller/<wbr>Controller"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_decorator_controller_method_.html">"decorator/controller/<wbr>Method"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_decorator_controller_index_.html">"decorator/controller/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_decorator_index_.html">"decorator/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_decorator_util_validate_.html">"decorator/util/<wbr>Validate"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_decorator_util_index_.html">"decorator/util/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_index_.html">"index"</a>
+					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="../modules/_util_log_.html">"util/log"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_util_response_.html">"util/response"</a>
 					</li>
 				</ul>
 			</nav>

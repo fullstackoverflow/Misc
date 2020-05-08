@@ -100,11 +100,13 @@
 						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-class"><a href="../interfaces/_core_app_.misc.application.html" class="tsd-kind-icon">Application</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-class"><a href="../interfaces/_core_app_.misc.basecontext.html" class="tsd-kind-icon">Base<wbr>Context</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-class"><a href="../interfaces/_core_app_.misc.baserequest.html" class="tsd-kind-icon">Base<wbr>Request</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-class"><a href="../interfaces/_core_app_.misc.baseresponse.html" class="tsd-kind-icon">Base<wbr>Response</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-class"><a href="../interfaces/_core_app_.misc.context.html" class="tsd-kind-icon">Context</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-class"><a href="../interfaces/_core_app_.misc.defaultcontext.html" class="tsd-kind-icon">Default<wbr>Context</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-class"><a href="../interfaces/_core_app_.misc.defaultstate.html" class="tsd-kind-icon">Default<wbr>State</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-class"><a href="../interfaces/_core_app_.misc.extendablecontext.html" class="tsd-kind-icon">Extendable<wbr>Context</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-class"><a href="../interfaces/_core_app_.misc.request.html" class="tsd-kind-icon">Request</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-class"><a href="../interfaces/_core_app_.misc.response.html" class="tsd-kind-icon">Response</a></li>
 							</ul>
@@ -112,7 +114,10 @@
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-class tsd-is-static"><a href="_core_app_.misc.html#defaultcontextextends" class="tsd-kind-icon">Default<wbr>Context<wbr>Extends</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-class tsd-is-static"><a href="_core_app_.misc.html#defaultstateextends" class="tsd-kind-icon">Default<wbr>State<wbr>Extends</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="_core_app_.misc.html#middleware" class="tsd-kind-icon">Middleware</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-class tsd-is-static"><a href="_core_app_.misc.html#next" class="tsd-kind-icon">Next</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-class tsd-has-type-parameter tsd-is-static"><a href="_core_app_.misc.html#parameterizedcontext" class="tsd-kind-icon">Parameterized<wbr>Context</a></li>
 							</ul>
 						</section>
@@ -128,8 +133,10 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_core_app_.misc.html#context-1" class="tsd-kind-icon">context</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_core_app_.misc.html#env" class="tsd-kind-icon">env</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_core_app_.misc.html#keys" class="tsd-kind-icon">keys</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_core_app_.misc.html#maxipscount" class="tsd-kind-icon">max<wbr>Ips<wbr>Count</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_core_app_.misc.html#middleware-1" class="tsd-kind-icon">middleware</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_core_app_.misc.html#proxy" class="tsd-kind-icon">proxy</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_core_app_.misc.html#proxyipheader" class="tsd-kind-icon">proxy<wbr>IpHeader</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_core_app_.misc.html#request-1" class="tsd-kind-icon">request</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_core_app_.misc.html#response-1" class="tsd-kind-icon">response</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_core_app_.misc.html#server" class="tsd-kind-icon">server</a></li>
@@ -171,23 +178,73 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-class tsd-is-static">
+					<a name="defaultcontextextends" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> Default<wbr>Context<wbr>Extends</h3>
+					<div class="tsd-signature tsd-kind-icon">Default<wbr>Context<wbr>Extends<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:545</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-class tsd-is-static">
+					<a name="defaultstateextends" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> Default<wbr>State<wbr>Extends</h3>
+					<div class="tsd-signature tsd-kind-icon">Default<wbr>State<wbr>Extends<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:539</li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
 					<a name="middleware" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> Middleware</h3>
 					<div class="tsd-signature tsd-kind-icon">Middleware<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">compose.Middleware</span><span class="tsd-signature-symbol">&lt;</span><a href="_core_app_.misc.html#parameterizedcontext" class="tsd-signature-type">ParameterizedContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">StateT</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CustomT</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:529</li>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:556</li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-class tsd-is-static">
+					<a name="next" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> Next</h3>
+					<div class="tsd-signature tsd-kind-icon">Next<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:746</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
 					<a name="parameterizedcontext" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> Parameterized<wbr>Context</h3>
-					<div class="tsd-signature tsd-kind-icon">Parameterized<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">BaseContext</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">CustomT</span></div>
+					<div class="tsd-signature tsd-kind-icon">Parameterized<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ExtendableContext</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">CustomT</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:689</li>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:737</li>
 						</ul>
 					</aside>
 				</section>
@@ -205,7 +262,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Application.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/5e55ea7/lib/core/app.ts#L19">core/app.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/c81fa22/lib/core/app.ts#L17">core/app.ts:17</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -242,7 +299,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Application.context</p>
 						<ul>
-							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:439</li>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:449</li>
 						</ul>
 					</aside>
 				</section>
@@ -253,7 +310,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Application.env</p>
 						<ul>
-							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:438</li>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:448</li>
 						</ul>
 					</aside>
 				</section>
@@ -264,7 +321,18 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Application.keys</p>
 						<ul>
-							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:443</li>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:453</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="maxipscount" class="tsd-anchor"></a>
+					<h3>max<wbr>Ips<wbr>Count</h3>
+					<div class="tsd-signature tsd-kind-icon">max<wbr>Ips<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from Application.maxIpsCount</p>
+						<ul>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:445</li>
 						</ul>
 					</aside>
 				</section>
@@ -275,7 +343,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Application.middleware</p>
 						<ul>
-							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:436</li>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:446</li>
 						</ul>
 					</aside>
 				</section>
@@ -286,7 +354,18 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Application.proxy</p>
 						<ul>
-							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:435</li>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:443</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="proxyipheader" class="tsd-anchor"></a>
+					<h3>proxy<wbr>IpHeader</h3>
+					<div class="tsd-signature tsd-kind-icon">proxy<wbr>IpHeader<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from Application.proxyIpHeader</p>
+						<ul>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:444</li>
 						</ul>
 					</aside>
 				</section>
@@ -297,7 +376,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Application.request</p>
 						<ul>
-							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:440</li>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:450</li>
 						</ul>
 					</aside>
 				</section>
@@ -308,7 +387,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Application.response</p>
 						<ul>
-							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:441</li>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:451</li>
 						</ul>
 					</aside>
 				</section>
@@ -318,7 +397,7 @@
 					<div class="tsd-signature tsd-kind-icon">server<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">httpServer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">httpsServer</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/5e55ea7/lib/core/app.ts#L19">core/app.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/fullstackoverflow/Misc/blob/c81fa22/lib/core/app.ts#L17">core/app.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -329,7 +408,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Application.silent</p>
 						<ul>
-							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:442</li>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:452</li>
 						</ul>
 					</aside>
 				</section>
@@ -340,7 +419,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from Application.subdomainOffset</p>
 						<ul>
-							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:437</li>
+							<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:447</li>
 						</ul>
 					</aside>
 				</section>
@@ -415,7 +494,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Application.callback</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:508</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:518</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -428,7 +507,7 @@
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-siganture">
 									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>req<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IncomingMessage</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Http2ServerRequest</span>, res<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ServerResponse</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Http2ServerResponse</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>req<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IncomingMessage</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Http2ServerRequest</span>, res<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ServerResponse</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Http2ServerResponse</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
@@ -441,7 +520,7 @@
 													<h5>res: <span class="tsd-signature-type">ServerResponse</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Http2ServerResponse</span></h5>
 												</li>
 											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 										</li>
 									</ul>
 								</li>
@@ -460,7 +539,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Application.createContext</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:515</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:525</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -569,7 +648,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Application.inspect</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:487</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:497</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -601,7 +680,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Application.listen</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:452</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:462</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -643,7 +722,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Application.listen</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:458</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:468</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -676,7 +755,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Application.listen</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:463</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:473</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -709,7 +788,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Application.listen</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:468</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:478</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -739,7 +818,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Application.listen</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:469</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:479</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -772,7 +851,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Application.listen</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:474</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:484</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -802,7 +881,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Application.listen</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:475</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:485</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -832,7 +911,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Application.listen</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:476</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:486</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -865,7 +944,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Application.listen</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:481</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:491</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1092,7 +1171,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Application.onerror</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:525</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:535</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1339,7 +1418,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Application.toJSON</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:493</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:503</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1356,14 +1435,14 @@
 					<a name="use" class="tsd-anchor"></a>
 					<h3>use</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">use&lt;NewStateT, NewCustomT&gt;<span class="tsd-signature-symbol">(</span>middleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Application.Middleware</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">StateT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewStateT</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CustomT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewCustomT</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_core_app_.misc.application.html" class="tsd-signature-type">Application</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">StateT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewStateT</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CustomT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewCustomT</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">use&lt;NewStateT, NewCustomT&gt;<span class="tsd-signature-symbol">(</span>middleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Application.Middleware</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">StateT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewStateT</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CustomT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewCustomT</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Application</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">StateT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewStateT</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CustomT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewCustomT</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from Application.use</p>
 								<ul>
-									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:500</li>
+									<li>Defined in E:/fy/Misc/node_modules/@types/koa/index.d.ts:510</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1387,7 +1466,7 @@
 									<h5>middleware: <span class="tsd-signature-type">Application.Middleware</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">StateT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewStateT</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CustomT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewCustomT</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_core_app_.misc.application.html" class="tsd-signature-type">Application</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">StateT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewStateT</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CustomT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewCustomT</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Application</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">StateT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewStateT</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CustomT</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">NewCustomT</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1433,8 +1512,59 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_classscanner_.html">"core/<wbr>Class<wbr>Scanner"</a>
+					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="../modules/_core_app_.html">"core/app"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_loader_controller_controllerloader_.html">"core/loader/controller/<wbr>Controller<wbr>Loader"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_loader_controller_methods_http_.html">"core/loader/controller/methods/<wbr>Http"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_loader_dispatch_.html">"core/loader/dispatch"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_loader_index_.html">"core/loader/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_type_enum_.html">"core/type/enum"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_type_interface_.html">"core/type/interface"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_core_type_opts_.html">"core/type/opts"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_decorator_controller_controller_.html">"decorator/controller/<wbr>Controller"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_decorator_controller_method_.html">"decorator/controller/<wbr>Method"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_decorator_controller_index_.html">"decorator/controller/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_decorator_index_.html">"decorator/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_decorator_util_validate_.html">"decorator/util/<wbr>Validate"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_decorator_util_index_.html">"decorator/util/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_index_.html">"index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_util_log_.html">"util/log"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_util_response_.html">"util/response"</a>
 					</li>
 				</ul>
 			</nav>
@@ -1445,9 +1575,6 @@
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_core_app_.misc.html" class="tsd-kind-icon">Misc</a>
 						<ul>
-							<li class=" tsd-kind-interface tsd-parent-kind-class">
-								<a href="../interfaces/_core_app_.misc.application.html" class="tsd-kind-icon">Application</a>
-							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
 								<a href="../interfaces/_core_app_.misc.basecontext.html" class="tsd-kind-icon">Base<wbr>Context</a>
 							</li>
@@ -1461,13 +1588,31 @@
 								<a href="../interfaces/_core_app_.misc.context.html" class="tsd-kind-icon">Context</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
+								<a href="../interfaces/_core_app_.misc.defaultcontext.html" class="tsd-kind-icon">Default<wbr>Context</a>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-class">
+								<a href="../interfaces/_core_app_.misc.defaultstate.html" class="tsd-kind-icon">Default<wbr>State</a>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-class">
+								<a href="../interfaces/_core_app_.misc.extendablecontext.html" class="tsd-kind-icon">Extendable<wbr>Context</a>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-class">
 								<a href="../interfaces/_core_app_.misc.request.html" class="tsd-kind-icon">Request</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-class">
 								<a href="../interfaces/_core_app_.misc.response.html" class="tsd-kind-icon">Response</a>
 							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-class tsd-is-static">
+								<a href="_core_app_.misc.html#defaultcontextextends" class="tsd-kind-icon">Default<wbr>Context<wbr>Extends</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-class tsd-is-static">
+								<a href="_core_app_.misc.html#defaultstateextends" class="tsd-kind-icon">Default<wbr>State<wbr>Extends</a>
+							</li>
 							<li class=" tsd-kind-type-alias tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
 								<a href="_core_app_.misc.html#middleware" class="tsd-kind-icon">Middleware</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-class tsd-is-static">
+								<a href="_core_app_.misc.html#next" class="tsd-kind-icon">Next</a>
 							</li>
 							<li class=" tsd-kind-type-alias tsd-parent-kind-class tsd-has-type-parameter tsd-is-static">
 								<a href="_core_app_.misc.html#parameterizedcontext" class="tsd-kind-icon">Parameterized<wbr>Context</a>
@@ -1485,10 +1630,16 @@
 								<a href="_core_app_.misc.html#keys" class="tsd-kind-icon">keys</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="_core_app_.misc.html#maxipscount" class="tsd-kind-icon">max<wbr>Ips<wbr>Count</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="_core_app_.misc.html#middleware-1" class="tsd-kind-icon">middleware</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="_core_app_.misc.html#proxy" class="tsd-kind-icon">proxy</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="_core_app_.misc.html#proxyipheader" class="tsd-kind-icon">proxy<wbr>IpHeader</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="_core_app_.misc.html#request-1" class="tsd-kind-icon">request</a>
