@@ -37,11 +37,11 @@
     "koa-body": "^4.1.1",
     "koa-router": "^7.4.0",
     "moment": "^2.25.3",
-    "reflect-metadata": "^0.1.12"
+    "reflect-metadata": "^0.1.12",
+    "@koa/cors": "^2.2.3"
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^0.1.3",
-    "@koa/cors": "^2.2.3",
     "@types/glob": "^7.1.1",
     "@types/jest": "^24.9.1",
     "@types/keygrip": "^1.0.2",
