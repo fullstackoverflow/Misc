@@ -1,8 +1,4 @@
 "use strict";
-// export const Type = {
-// 	ClassType: Symbol("ClassType"),
-// 	MethodType: Symbol("MethodType")
-// };
 Object.defineProperty(exports, "__esModule", { value: true });
 class Type {
 }
@@ -28,14 +24,6 @@ ControllerType.PREFIX = Symbol("prefix");
 ControllerType.PATH = Symbol("path");
 ControllerType.METHOD = Symbol("method");
 ControllerType.VALUE = Symbol("value");
-class ScheduleType {
-}
-exports.ScheduleType = ScheduleType;
-ScheduleType.SCHEDULE = Symbol("schedule");
-class ConfigType {
-}
-exports.ConfigType = ConfigType;
-ConfigType.ENV = Symbol("env");
 var Methods;
 (function (Methods) {
     Methods["GET"] = "get";

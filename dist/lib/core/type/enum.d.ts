@@ -18,12 +18,6 @@ export declare class ControllerType {
     static readonly METHOD: unique symbol;
     static readonly VALUE: unique symbol;
 }
-export declare class ScheduleType {
-    static readonly SCHEDULE: unique symbol;
-}
-export declare class ConfigType {
-    static readonly ENV: unique symbol;
-}
 export declare enum Methods {
     GET = "get",
     POST = "post",

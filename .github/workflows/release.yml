@@ -1,0 +1,29 @@
+name: Release
+
+on:
+    push:
+        tags:
+            - "v*.*.*"
+
+jobs:
+    Release:
+        name: Release
+        env:
+            NPM_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+            CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@master
+            - uses: actions/setup-node@v1
+            - name: Install
+              run: npm install
+            - name: Coverage
+              run: npm run coverage
+            - name: Upload
+              run: npm run codecov
+            - name: Build
+              run: npm run build
+            - name: AUTH
+              run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+            - name: Publish
+              run: npm publish --access public   

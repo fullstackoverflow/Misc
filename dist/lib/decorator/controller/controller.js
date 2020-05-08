@@ -7,4 +7,4 @@ exports.Controller = (path) => {
         Reflect.defineMetadata(enum_1.Type.ClassType, enum_1.ClassDecoratorType.Controller, target);
     };
 };
-//# sourceMappingURL=controller.js.map
+//# sourceMappingURL=Controller.js.map

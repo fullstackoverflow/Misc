@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const koa_1 = __importDefault(require("koa"));
 const index_1 = require("../../lib/index");
-const TestService_1 = require("../service/TestService");
 const class_validator_1 = require("class-validator");
 const class_transformer_1 = require("class-transformer");
 const Controller_1 = require("../../lib/decorator/controller/Controller");
@@ -44,76 +43,39 @@ __decorate([
     __metadata("design:type", FormFile)
 ], Upload.prototype, "file", void 0);
 exports.Upload = Upload;
+var Code;
+(function (Code) {
+    Code[Code["basetest"] = 0] = "basetest";
+    Code[Code["get"] = 1] = "get";
+    Code[Code["formdata"] = 2] = "formdata";
+    Code[Code["delete"] = 3] = "delete";
+    Code[Code["put"] = 4] = "put";
+    Code[Code["validateerror"] = 5] = "validateerror";
+    Code[Code["beforealltest"] = 6] = "beforealltest";
+})(Code = exports.Code || (exports.Code = {}));
 let Router = class Router {
     async staus(ctx) {
-        ctx.body = new index_1.ResSuccess("", ctx.request.body);
-    }
-    async formdata(ctx) {
-        ctx.body = new index_1.ResSuccess("", ctx.request.body.file.name);
-    }
-    async autowired(ctx) {
-        ctx.body = new index_1.ResSuccess("", this.TestService.test());
-    }
-    async value(ctx) {
-        ctx.body = new index_1.ResSuccess("", this.value_test);
+        ctx.body = new index_1.Response(Code.basetest, ctx.request.body, "");
     }
     async get(ctx) {
-        ctx.body = new index_1.ResSuccess("", "success");
+        ctx.body = new index_1.Response(Code.get, "success", "");
+    }
+    async formdata(ctx) {
+        ctx.body = new index_1.Response(Code.formdata, ctx.request.files.file.name, "");
     }
     async delete(ctx) {
-        ctx.body = new index_1.ResSuccess("", "success");
+        ctx.body = new index_1.Response(Code.delete, "success", "");
     }
     async put(ctx) {
-        ctx.body = new index_1.ResSuccess("", "success");
+        ctx.body = new index_1.Response(Code.put, "success", "");
     }
-    /**
-     * @api {post} /basetest basetest
-     * @apiGroup test
-     * @apiName basetest
-     * @apiParamClass (test/router/router.ts) {Test}
-     */
-    async validate(ctx) {
-        ctx.body = new index_1.ResSuccess("", "success");
-    }
-    async config(ctx) {
-        ctx.body = new index_1.ResSuccess("", index_1.Config.instance.test);
+    async validateerror(ctx) {
+        ctx.body = new index_1.Response(Code.validateerror, "success", "");
     }
     async beforealltest(ctx) {
         index_1.logger.info(ctx.body);
     }
-    async session(ctx) {
-        ctx.session.user = true;
-        ctx.body = new index_1.ResSuccess("", null);
-    }
-    async sessionCheck(ctx) {
-        ctx.body = ctx.session.user;
-    }
-    async reswarn(ctx) {
-        index_1.logger.info("reswarn");
-        throw new index_1.ResWarn("reswarn", null);
-    }
-    async reserr(ctx) {
-        index_1.logger.error("reserr");
-        throw new index_1.ResError("reserr", null);
-    }
-    async before(ctx) {
-        ctx.body = ctx.state;
-    }
-    async after(ctx) {
-        ctx.body = "after";
-    }
-    async combin(ctx) {
-        ctx.body = "after";
-    }
 };
-__decorate([
-    index_1.Value("test"),
-    __metadata("design:type", String)
-], Router.prototype, "value_test", void 0);
-__decorate([
-    index_1.Autowired,
-    __metadata("design:type", TestService_1.TestService)
-], Router.prototype, "TestService", void 0);
 __decorate([
     Method_1.POST("/basetest"),
     __metadata("design:type", Function),
@@ -121,31 +83,18 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], Router.prototype, "staus", null);
 __decorate([
-    Method_1.POST("/formdata"),
-    index_1.Validate({ schema: Upload }),
-    index_1.File(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], Router.prototype, "formdata", null);
-__decorate([
-    Method_1.POST("/autowired"),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], Router.prototype, "autowired", null);
-__decorate([
-    Method_1.POST("/value"),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], Router.prototype, "value", null);
-__decorate([
     Method_1.GET("/get"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], Router.prototype, "get", null);
+__decorate([
+    Method_1.POST("/formdata"),
+    index_1.Validate({ schema: Upload }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], Router.prototype, "formdata", null);
 __decorate([
     Method_1.DELETE("/delete"),
     __metadata("design:type", Function),
@@ -159,80 +108,23 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], Router.prototype, "put", null);
 __decorate([
-    Method_1.POST("/validate"),
+    Method_1.POST("/validateerror"),
     index_1.Validate({
-        schema: Test
+        schema: Test,
+        error: (err) => {
+            throw "validateerror";
+        }
     }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], Router.prototype, "validate", null);
-__decorate([
-    Method_1.POST("/config"),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], Router.prototype, "config", null);
+], Router.prototype, "validateerror", null);
 __decorate([
     Method_1.POST("/beforealltest"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], Router.prototype, "beforealltest", null);
-__decorate([
-    Method_1.POST("/session"),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], Router.prototype, "session", null);
-__decorate([
-    Method_1.POST("/sessionCheck"),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], Router.prototype, "sessionCheck", null);
-__decorate([
-    Method_1.POST("/reswarn"),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], Router.prototype, "reswarn", null);
-__decorate([
-    Method_1.POST("/reserr"),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], Router.prototype, "reserr", null);
-__decorate([
-    Method_1.POST("/before"),
-    index_1.Before(async (ctx, next) => {
-        ctx.state = "test";
-    }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], Router.prototype, "before", null);
-__decorate([
-    Method_1.POST("/after"),
-    index_1.After((ctx, next) => {
-        ctx.body = "test";
-    }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], Router.prototype, "after", null);
-__decorate([
-    Method_1.POST("/combin"),
-    index_1.Before((ctx, next) => {
-        ctx.state = "test1";
-    }),
-    index_1.After((ctx, next) => {
-        ctx.body = "test2";
-    }),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], Router.prototype, "combin", null);
 Router = __decorate([
     Controller_1.Controller()
 ], Router);

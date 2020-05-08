@@ -15,7 +15,7 @@ var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const enum_1 = require("../../type/enum");
 const koa_router_1 = __importDefault(require("koa-router"));
-const Autowired_1 = require("../../../decorator/util/Autowired");
+const util_1 = require("@tosee/util");
 const Http_1 = require("./methods/Http");
 const log_1 = require("../../../util/log");
 class ControllerLoader {
@@ -38,7 +38,7 @@ class ControllerLoader {
 }
 _a = enum_1.MethodDecoratorType.Http;
 __decorate([
-    Autowired_1.Autowired,
+    util_1.Autowired(),
     __metadata("design:type", Http_1.Http)
 ], ControllerLoader.prototype, _a, void 0);
 exports.ControllerLoader = ControllerLoader;

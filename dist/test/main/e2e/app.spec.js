@@ -13,15 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = require("../../../lib/core/app");
-const config_1 = require("../../../lib/util/config");
 const supertest_1 = __importDefault(require("supertest"));
 const koa_1 = __importDefault(require("koa"));
 const path_1 = require("path");
 const response_1 = require("../../../lib/util/response");
 const alsatian_1 = require("alsatian");
+const router_1 = require("../../router/router");
 let ExampleTestFixture = class ExampleTestFixture {
     setup() {
-        config_1.Config.path = path_1.resolve(__dirname, "../../config");
         const middleware = async (ctx, next) => {
             ctx.body = "test";
             await next();
@@ -31,8 +30,12 @@ let ExampleTestFixture = class ExampleTestFixture {
                 await next();
             }
             catch (err) {
+                console.log(err);
                 if (err.code != undefined) {
-                    ctx.body = new response_1.Res(err.code, err.message, err.data);
+                    ctx.body = new response_1.Response(err.code, err.data, err.message);
+                }
+                else {
+                    ctx.body = err;
                 }
             }
         };
@@ -42,14 +45,8 @@ let ExampleTestFixture = class ExampleTestFixture {
                 multipart: true
             },
             beforeall: [errorHandler, middleware],
-            scan: path_1.resolve(__dirname, "../../router/**/*.ts"),
+            router: path_1.resolve(__dirname, "../../router/**/*.ts"),
             keys: ["test"],
-            session: {
-                maxAge: 30 * 60 * 1000,
-                overwrite: true,
-                httpOnly: true,
-                signed: true
-            },
             port: 7891
         });
         this.instance = supertest_1.default(this.app.server);
@@ -60,40 +57,28 @@ let ExampleTestFixture = class ExampleTestFixture {
     async test3() {
         const response = await this.instance.post("/basetest").send({ test: true });
         alsatian_1.Expect(response.status).toBe(200);
-        alsatian_1.Expect(response.body).toEqual({ code: 2, message: "", data: { test: true } });
+        alsatian_1.Expect(response.body).toEqual({ code: router_1.Code.basetest, message: "", data: { test: true } });
     }
     async test4() {
         const response = await this.instance.post("/formdata").attach("file", path_1.resolve(__dirname, "../../assets/test.md"));
         alsatian_1.Expect(response.status).toBe(200);
-        alsatian_1.Expect(response.body).toEqual({ code: 2, message: "", data: "test.md" });
+        alsatian_1.Expect(response.body).toEqual({ code: router_1.Code.formdata, message: "", data: "test.md" });
     }
     async test5() {
         const response = await this.instance.post("/beforealltest");
         alsatian_1.Expect(response.status).toBe(200);
         alsatian_1.Expect(response.text).toBe("test");
     }
-    // @Test("should session worked")
-    // public async test6() {
-    // 	const response1 = await this.instance.post("/session");
-    // 	Expect(response1.status).toBe(200);
-    // 	response1.header["set-cookie"][0]
-    // 		.split(",")
-    // 		.map(item => item.split(";")[0])
-    // 		.forEach(c => {
-    // 			console.log(this.instance.jar);
-    // 			return this.instance.jar.setCookie(c)
-    // 		});
-    // 	const response2 = await this.instance.post("/sessionCheck");
-    // 	Expect(response2.status).toBe(200);
-    // 	Expect(response2.text).toBe("true");
-    // }
+    async test6() {
+        const response = await this.instance.post("/validateerror");
+        alsatian_1.Expect(response.status).toBe(200);
+        alsatian_1.Expect(response.text).toEqual("validateerror");
+    }
     async test7() {
-        const response1 = await this.instance.post("/reswarn");
-        alsatian_1.Expect(response1.status).toBe(200);
-        alsatian_1.Expect(response1.body).toEqual({ code: 1, message: "reswarn", data: null });
-        const response2 = await this.instance.post("/reserr");
-        alsatian_1.Expect(response2.status).toBe(200);
-        alsatian_1.Expect(response2.body).toEqual({ code: 0, message: "reserr", data: null });
+        const response = await this.instance.post("/validateerror").send({ test: true, test2: "111" });
+        ;
+        alsatian_1.Expect(response.status).toBe(200);
+        alsatian_1.Expect(response.body).toEqual({ code: router_1.Code.validateerror, message: "", data: "success" });
     }
 };
 __decorate([
@@ -127,7 +112,13 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ExampleTestFixture.prototype, "test5", null);
 __decorate([
-    alsatian_1.Test("should return value correct"),
+    alsatian_1.Test("should validate custom error worked"),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ExampleTestFixture.prototype, "test6", null);
+__decorate([
+    alsatian_1.Test("should validate worked"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)

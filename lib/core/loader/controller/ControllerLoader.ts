@@ -2,12 +2,12 @@ import { ClassLoader } from "../../type/interface";
 import { ControllerType, Type, MethodDecoratorType } from "../../type/enum";
 import Koa from "koa";
 import Router from "koa-router";
-import { Autowired, Container } from "../../../decorator/util/Autowired";
+import { Autowired } from "@tosee/util";
 import { Http } from "./methods/Http";
 import { logger } from "../../../util/log";
 
 export class ControllerLoader implements ClassLoader {
-	@Autowired
+	@Autowired()
 	[MethodDecoratorType.Http]: Http;
 
 	Load(clazz: FunctionConstructor, app: Koa) {

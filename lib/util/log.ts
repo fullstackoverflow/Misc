@@ -1,5 +1,5 @@
 import { Logger as Log } from "@tosee/log";
-import pkg from "read-pkg-up";
+import moment from "moment";
 
 class Logger extends Log {
 	constructor(namespace: string) {
@@ -7,6 +7,6 @@ class Logger extends Log {
 	}
 }
 
-const logger = new Logger(pkg.sync().pkg.name);
+const logger = new Logger(moment().valueOf() + "");
 
 export { logger };

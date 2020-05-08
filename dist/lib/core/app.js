@@ -10,7 +10,6 @@ const log_1 = require("../util/log");
 const http_1 = __importDefault(require("http"));
 const https_1 = __importDefault(require("https"));
 const cors_1 = __importDefault(require("@koa/cors"));
-const koa_session_1 = __importDefault(require("koa-session"));
 const koa_body_1 = __importDefault(require("koa-body"));
 const read_pkg_up_1 = __importDefault(require("read-pkg-up"));
 const ClassScanner_1 = require("./ClassScanner");
@@ -30,7 +29,7 @@ class Misc extends koa_1.default {
      * ```
      */
     constructor(opts) {
-        const default_options = { body: koa_body_1.default, cors: cors_1.default, session: koa_session_1.default, beforeall: koa_compose_1.default };
+        const default_options = { body: koa_body_1.default, cors: cors_1.default, beforeall: koa_compose_1.default };
         const pack = read_pkg_up_1.default.sync().pkg;
         log_1.logger.info("project:", pack.name);
         log_1.logger.info("version:", pack.version);
@@ -53,17 +52,12 @@ class Misc extends koa_1.default {
             const key = Object.keys(default_options)[index];
             const func = default_options[key];
             const option = opts[key];
-            if (key === "session") {
-                this.use(func(option, this));
-            }
-            else {
-                this.use(func(option));
-            }
+            this.use(func(option));
         });
         this.keys = opts.keys;
         const dipatch = new dispatch_1.Dispatch();
-        log_1.logger.info("scan path:", opts.scan || require(path_1.resolve("tsconfig.json")).include || "src/**/*.ts");
-        new ClassScanner_1.ClassScanner(opts.scan || require(path_1.resolve("tsconfig.json")).include || "src/**/*.ts").scan().forEach(clazz => {
+        log_1.logger.info("router path:", opts.router || "src/router/**/*.ts");
+        new ClassScanner_1.ClassScanner(opts.router || require(path_1.resolve("tsconfig.json")).include || "src/**/*.ts").scan().forEach(clazz => {
             const ClassType = Reflect.getMetadata(enum_1.Type.ClassType, clazz);
             if (ClassType != undefined) {
                 dipatch[ClassType](clazz, this);

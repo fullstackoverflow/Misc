@@ -8,5 +8,6 @@ export declare class ExampleTestFixture {
     test3(): Promise<void>;
     test4(): Promise<void>;
     test5(): Promise<void>;
+    test6(): Promise<void>;
     test7(): Promise<void>;
 }

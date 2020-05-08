@@ -1,10 +1,10 @@
 import { Misc } from "../../../lib/core/app";
-import { Config } from "../../../lib/util/config";
 import request from "supertest";
 import Koa from "koa";
 import { resolve } from "path";
-import { Res } from "../../../lib/util/response";
+import { Response } from "../../../lib/util/response";
 import { Test, Expect, TestFixture, SetupFixture } from "alsatian";
+import { Code } from '../../router/router'
 
 @TestFixture('App test')
 export class ExampleTestFixture {
@@ -13,7 +13,6 @@ export class ExampleTestFixture {
 
 	@SetupFixture
 	setup() {
-		Config.path = resolve(__dirname, "../../config");
 		const middleware = async (ctx, next) => {
 			ctx.body = "test";
 			await next();
@@ -22,8 +21,11 @@ export class ExampleTestFixture {
 			try {
 				await next();
 			} catch (err) {
+				console.log(err);
 				if (err.code != undefined) {
-					ctx.body = new Res(err.code, err.message, err.data);
+					ctx.body = new Response(err.code, err.data, err.message);
+				} else {
+					ctx.body = err;
 				}
 			}
 		};
@@ -33,14 +35,8 @@ export class ExampleTestFixture {
 				multipart: true
 			},
 			beforeall: [errorHandler, middleware],
-			scan: resolve(__dirname, "../../router/**/*.ts"),
+			router: resolve(__dirname, "../../router/**/*.ts"),
 			keys: ["test"],
-			session: {
-				maxAge: 30 * 60 * 1000,
-				overwrite: true,
-				httpOnly: true,
-				signed: true
-			},
 			port: 7891
 		});
 		this.instance = request(this.app.server);
@@ -55,14 +51,14 @@ export class ExampleTestFixture {
 	public async test3() {
 		const response = await this.instance.post("/basetest").send({ test: true });
 		Expect(response.status).toBe(200);
-		Expect(response.body).toEqual({ code: 2, message: "", data: { test: true } });
+		Expect(response.body).toEqual({ code: Code.basetest, message: "", data: { test: true } });
 	}
 
 	@Test("should parse formdata with option")
 	public async test4() {
 		const response = await this.instance.post("/formdata").attach("file", resolve(__dirname, "../../assets/test.md"));
 		Expect(response.status).toBe(200);
-		Expect(response.body).toEqual({ code: 2, message: "", data: "test.md" });
+		Expect(response.body).toEqual({ code: Code.formdata, message: "", data: "test.md" });
 	}
 
 	@Test("should beforeall option worked")
@@ -72,29 +68,17 @@ export class ExampleTestFixture {
 		Expect(response.text).toBe("test");
 	}
 
-	// @Test("should session worked")
-	// public async test6() {
-	// 	const response1 = await this.instance.post("/session");
-	// 	Expect(response1.status).toBe(200);
-	// 	response1.header["set-cookie"][0]
-	// 		.split(",")
-	// 		.map(item => item.split(";")[0])
-	// 		.forEach(c => {
-	// 			console.log(this.instance.jar);
-	// 			return this.instance.jar.setCookie(c)
-	// 		});
-	// 	const response2 = await this.instance.post("/sessionCheck");
-	// 	Expect(response2.status).toBe(200);
-	// 	Expect(response2.text).toBe("true");
-	// }
+	@Test("should validate custom error worked")
+	public async test6() {
+		const response = await this.instance.post("/validateerror");
+		Expect(response.status).toBe(200);
+		Expect(response.text).toEqual("validateerror");
+	}
 
-	@Test("should return value correct")
+	@Test("should validate worked")
 	public async test7() {
-		const response1 = await this.instance.post("/reswarn");
-		Expect(response1.status).toBe(200);
-		Expect(response1.body).toEqual({ code: 1, message: "reswarn", data: null });
-		const response2 = await this.instance.post("/reserr");
-		Expect(response2.status).toBe(200);
-		Expect(response2.body).toEqual({ code: 0, message: "reserr", data: null });
+		const response = await this.instance.post("/validateerror").send({ test: true, test2: "111" });;
+		Expect(response.status).toBe(200);
+		Expect(response.body).toEqual({ code: Code.validateerror, message: "", data: "success" });
 	}
 }

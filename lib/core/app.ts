@@ -6,13 +6,11 @@ import http, { Server as httpServer } from "http";
 import https, { Server as httpsServer } from "https";
 import { options } from "./type/opts";
 import cors from "@koa/cors";
-import session from "koa-session";
 import body from "koa-body";
 import pkg from "read-pkg-up";
 import { ClassScanner } from "./ClassScanner";
 import { Type } from "./type/enum";
 import { Dispatch } from "./loader/dispatch";
-import { readFileSync } from "fs";
 import { resolve } from "path";
 
 export class Misc extends Koa {
@@ -29,7 +27,7 @@ export class Misc extends Koa {
 	 * ```
 	 */
 	constructor(opts: options) {
-		const default_options = { body: body, cors: cors, session: session, beforeall: compose };
+		const default_options = { body: body, cors: cors, beforeall: compose };
 		const pack = pkg.sync().pkg;
 		logger.info("project:", pack.name);
 		logger.info("version:", pack.version);
@@ -53,16 +51,12 @@ export class Misc extends Koa {
 				const key = Object.keys(default_options)[index];
 				const func = default_options[key];
 				const option = opts[key];
-				if (key === "session") {
-					this.use(func(option, this));
-				} else {
-					this.use(func(option));
-				}
+				this.use(func(option));
 			});
 		this.keys = opts.keys;
 		const dipatch = new Dispatch();
-		logger.info("scan path:", opts.scan || require(resolve("tsconfig.json")).include || "src/**/*.ts");
-		new ClassScanner(opts.scan || require(resolve("tsconfig.json")).include || "src/**/*.ts").scan().forEach(clazz => {
+		logger.info("router path:", opts.router || "src/router/**/*.ts");
+		new ClassScanner(opts.router || require(resolve("tsconfig.json")).include || "src/**/*.ts").scan().forEach(clazz => {
 			const ClassType = Reflect.getMetadata(Type.ClassType, clazz);
 			if (ClassType != undefined) {
 				dipatch[ClassType](clazz, this);

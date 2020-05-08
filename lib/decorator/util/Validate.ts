@@ -1,8 +1,6 @@
 import Koa from "koa";
 import { plainToClass } from "class-transformer";
-import { validate, ValidatorOptions, IsInt, ValidationError } from "class-validator";
-import { ControllerType } from "../../core/type/enum";
-import { MethodCache, RelationCache, ControllerCache } from "../../core/cache";
+import { validate, ValidatorOptions, ValidationError } from "class-validator";
 
 enum HttpMap {
 	POST = "body",
@@ -40,17 +38,6 @@ export function Validate(
 	const { schema, options, error } = ValidateOptions;
 	const { params } = ValidateObject;
 	return function (target: any, key: string, descriptor: PropertyDescriptor) {
-		let info = MethodCache.get(descriptor);
-		if (!info) {
-			MethodCache.set(target.prototype, {
-				schema
-			});
-		} else {
-			MethodCache.set(target.prototype, {
-				...info,
-				schema
-			});
-		}
 		const originFunction: Function = descriptor.value;
 		descriptor.value = async function (ctx: Koa.Context) {
 			const method = ctx.method;
