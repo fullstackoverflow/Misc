@@ -1,5 +1,5 @@
 import { MethodLoader } from "../../../type/interface";
-import Router from "koa-router";
+import Router from "@koa/router";
 import { ControllerType } from "../../../type/enum";
 import { logger } from "../../../..";
 

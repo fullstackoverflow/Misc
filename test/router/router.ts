@@ -51,12 +51,6 @@ export default class Router {
 		ctx.body = new Response(Code.get, "success", "");
 	}
 
-	@POST("/formdata")
-	@Validate({ schema: Upload })
-	async formdata(ctx: Koa.Context) {
-		ctx.body = new Response(Code.formdata, ctx.request.files.file.name, "");
-	}
-
 	@DELETE("/delete")
 	async delete(ctx: Koa.Context) {
 		ctx.body = new Response(Code.delete, "success", "");

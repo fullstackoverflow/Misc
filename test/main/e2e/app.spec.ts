@@ -31,9 +31,6 @@ export class ExampleTestFixture {
 		};
 		this.app = new Misc({
 			protocol: "http",
-			body: {
-				multipart: true
-			},
 			beforeall: [errorHandler, middleware],
 			router: resolve(__dirname, "../../router/**/*.ts"),
 			keys: ["test"],
@@ -52,13 +49,6 @@ export class ExampleTestFixture {
 		const response = await this.instance.post("/basetest").send({ test: true });
 		Expect(response.status).toBe(200);
 		Expect(response.body).toEqual({ code: Code.basetest, message: "", data: { test: true } });
-	}
-
-	@Test("should parse formdata with option")
-	public async test4() {
-		const response = await this.instance.post("/formdata").attach("file", resolve(__dirname, "../../assets/test.md"));
-		Expect(response.status).toBe(200);
-		Expect(response.body).toEqual({ code: Code.formdata, message: "", data: "test.md" });
 	}
 
 	@Test("should beforeall option worked")

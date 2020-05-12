@@ -2,15 +2,15 @@ import Keygrip from "keygrip";
 import compose from "koa-compose";
 import { ServerOptions } from "https";
 import { Options } from "@koa/cors";
-import { IKoaBodyOptions } from "koa-body";
+import { Options as IBodyOptions } from "koa-bodyparser";
 
 export interface options {
 	keys?: Keygrip | string[];
 	beforeall?: Array<compose.Middleware<any>>;
 	router?: string;
-	body?: IKoaBodyOptions;
+	body?: IBodyOptions;
 	protocol: "http" | "https";
-	callback?: ()=>void;
+	callback?: () => void;
 	port: number;
 	tls?: ServerOptions;
 	cors?: Options;

@@ -6,7 +6,7 @@ import http, { Server as httpServer } from "http";
 import https, { Server as httpsServer } from "https";
 import { options } from "./type/opts";
 import cors from "@koa/cors";
-import body from "koa-body";
+import body from "koa-bodyparser";
 import pkg from "read-pkg-up";
 import { ClassScanner } from "./ClassScanner";
 import { Type } from "./type/enum";
