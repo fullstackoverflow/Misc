@@ -3,6 +3,13 @@ import compose from "koa-compose";
 import { ServerOptions } from "https";
 import { Options } from "@koa/cors";
 import { Options as IBodyOptions } from "koa-bodyparser";
+import Koa from 'koa';
+
+declare module "koa" {
+	interface Request extends Koa.BaseRequest {
+		body?: any;
+	}
+}
 
 export interface options {
 	keys?: Keygrip | string[];
