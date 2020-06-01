@@ -11,7 +11,7 @@
     "start": "cross-env NODE_ENV=test ts-node test/app.ts",
     "tscversion": "tsc --version",
     "ts-node": "ts-node --version",
-    "doc": "typedoc --out ./docs ./lib",
+    "doc": "typedoc --out ./docs ./lib&&touch docs/.nojekyll",
     "codecov": "codecov"
   },
   "repository": {
