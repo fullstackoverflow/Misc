@@ -8,7 +8,83 @@ const createMappingDecorator = (method: string) => (path: string): MethodDecorat
 	};
 };
 
-export const GET = createMappingDecorator(Methods.GET);
-export const POST = createMappingDecorator(Methods.POST);
-export const PUT = createMappingDecorator(Methods.PUT);
-export const DELETE = createMappingDecorator(Methods.DELETE);
+/**
+ * Http Method Decorator
+ * @param path router prefix
+ * @example
+ * ```
+ * 	
+ * 	@Controller('/prefix')
+ * 	export default class Router {
+ * 		@Get("/test")
+ * 		test(ctx:Context,next:Function){
+ * 			ctx.body="hello world";
+ * 		}
+ * 	}
+ * 
+ * ```
+ */
+export function GET(path: string) {
+	return createMappingDecorator(Methods.GET)(path);
+}
+
+/**
+ * Http Method Decorator
+ * @param path path
+ * @example
+ * ```
+ * 	
+ * 	@Controller('/prefix')
+ * 	export default class Router {
+ * 		@POST("/test")
+ * 		test(ctx:Context,next:Function){
+ * 			ctx.body="hello world";
+ * 		}
+ * 	}
+ * 
+ * ```
+ */
+
+export function POST(path: string) {
+	return createMappingDecorator(Methods.POST)(path);
+}
+
+/**
+ * Http Method Decorator
+ * @param path path
+ * @example
+ * ```
+ * 	
+ * 	@Controller('/prefix')
+ * 	export default class Router {
+ * 		@PUT("/test")
+ * 		test(ctx:Context,next:Function){
+ * 			ctx.body="hello world";
+ * 		}
+ * 	}
+ * 
+ * ```
+ */
+export function PUT(path: string){
+	return createMappingDecorator(Methods.PUT)(path);
+}
+
+/**
+ * Http Method Decorator
+ * @param path path
+ * @example
+ * ```
+ * 	
+ * 	@Controller('/prefix')
+ * 	export default class Router {
+ * 		@DELETE("/test")
+ * 		test(ctx:Context,next:Function){
+ * 			ctx.body="hello world";
+ * 		}
+ * 	}
+ * 
+ * ```
+ */
+export function DELETE(path: string){
+	return createMappingDecorator(Methods.DELETE)(path);
+}

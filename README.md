@@ -22,7 +22,7 @@ npm run dev
 
 # 配置项
 
-Misc继承自Koa,实例化Misc时可以传入不同的参数来配置Koa实例,Misc自带`koa-bodyparser`,`@koa/cors`依赖,可以通过不同的配置来实现不同的功能，具体的参数细节查看[API](http://fullstackoverflow.github.io/Misc)。
+Misc继承自Koa,实例化Misc时可以传入不同的参数来配置Koa实例,Misc自带`koa-bodyparser`,`@koa/cors`依赖,可以通过不同的配置来实现不同的功能，具体的参数细节查看[API](http://fullstackoverflow.github.io/Misc/interfaces/_core_type_opts_.options.html)。
 
 ## keys
 
