@@ -169,3 +169,5 @@ app.use(logger.Middleware()); //在后续中间件中的logger打印会带上唯
 [@tosee/util](https://github.com/fullstackoverflow/util)@Before,@After,@Around,@Catch,@Autowired,@Schedule等工具装饰器
 
 [@tosee/busboy](https://github.com/fullstackoverflow/busboy)对[busboy](https://github.com/mscdex/busboy)的封装,直接处理formdata文件流无临时文件,提供装饰器,中间件与自定义方式
+
+[@tosee/log](https://github.com/fullstackoverflow/log)支持RequestID与自定义格式的日志库
