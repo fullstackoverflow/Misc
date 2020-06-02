@@ -23,6 +23,8 @@ jobs:
               run: npm run codecov
             - name: Build
               run: npm run build
+            - name: Clean
+              run: rm -rf docs&&rm -rf coverage
             - name: AUTH
               run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
             - name: Publish
