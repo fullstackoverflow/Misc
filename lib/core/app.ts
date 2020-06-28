@@ -55,8 +55,11 @@ export class Misc extends Koa {
 			});
 		this.keys = opts.keys;
 		const dipatch = new Dispatch();
-		logger.info("router path:", opts.router || "src/router/**/*.ts");
-		new ClassScanner(opts.router || require(resolve("tsconfig.json")).include || "src/**/*.ts").scan().forEach(clazz => {
+		const scan_path = [
+			opts.router || "src/router/**/*.ts"
+		];
+		logger.info("scan path:", scan_path);
+		new ClassScanner(scan_path).scan().forEach(clazz => {
 			const ClassType = Reflect.getMetadata(Type.ClassType, clazz);
 			if (ClassType != undefined) {
 				dipatch[ClassType](clazz, this);
