@@ -1,6 +1,6 @@
 {
   "name": "@tosee/misc",
-  "version": "4.1.3",
+  "version": "4.1.4",
   "description": "Framework based on Koa and Typescript",
   "main": "./dist/lib/index.js",
   "types": "./dist/lib/index.d.ts",
