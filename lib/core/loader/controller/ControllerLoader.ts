@@ -4,7 +4,6 @@ import Koa from "koa";
 import Router from "@koa/router";
 import { Autowired } from "@tosee/util";
 import { Http } from "./methods/Http";
-import { logger } from "../../../util/log";
 
 export class ControllerLoader implements ClassLoader {
 	@Autowired()
