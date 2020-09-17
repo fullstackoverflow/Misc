@@ -3,7 +3,7 @@ import request from "supertest";
 import Koa from "koa";
 import { resolve } from "path";
 import { Response } from "../../../lib/util/response";
-import { Test, Expect, TestFixture, SetupFixture } from "alsatian";
+import { Test, Expect, TestFixture, SetupFixture, Timeout } from "alsatian";
 import { Code } from '../../router/router'
 
 @TestFixture('App test')
@@ -59,6 +59,7 @@ export class ExampleTestFixture {
 	}
 
 	@Test("should validate custom error worked")
+	@Timeout(10000)
 	public async test6() {
 		const response = await this.instance.post("/validateerror");
 		Expect(response.status).toBe(200);
