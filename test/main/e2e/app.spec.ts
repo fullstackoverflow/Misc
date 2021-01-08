@@ -21,11 +21,10 @@ export class ExampleTestFixture {
 			try {
 				await next();
 			} catch (err) {
-				console.log(err);
 				if (err.code != undefined) {
 					ctx.body = new Response(err.code, err.data, err.message);
 				} else {
-					ctx.body = err;
+					ctx.body = err.message;
 				}
 			}
 		};
@@ -63,7 +62,7 @@ export class ExampleTestFixture {
 	public async test6() {
 		const response = await this.instance.post("/validateerror");
 		Expect(response.status).toBe(200);
-		Expect(response.text).toEqual("validateerror");
+		Expect(response.body).toEqual({ code: Code.validateerror, message: "validateerror", data: "" });
 	}
 
 	@Test("should validate worked")
@@ -71,5 +70,19 @@ export class ExampleTestFixture {
 		const response = await this.instance.post("/validateerror").send({ test: true, test2: "111" });;
 		Expect(response.status).toBe(200);
 		Expect(response.body).toEqual({ code: Code.validateerror, message: "", data: "success" });
+	}
+
+	@Test("should validate throw error")
+	public async test9() {
+		const response = await this.instance.put("/validateerror2");
+		// Expect(response.status).toBe(200);
+		// Expect(response.body).toEqual({ code: Code.validateerror, message: "", data: "success" });
+	}
+
+	@Test("should inside Response worked")
+	public async test8() {
+		const response = await this.instance.post("/response").send();;
+		Expect(response.status).toBe(200);
+		Expect(response.body).toEqual({ code: 1, message: "", data: null });
 	}
 }

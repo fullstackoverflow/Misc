@@ -1,5 +1,5 @@
 import Koa from "koa";
-import { Validate, logger, Response } from "../../lib/index";
+import { Validate, logger, Response, ValidateType } from "../../lib/index";
 import { IsBoolean, IsString, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
 import { Controller } from "../../lib/decorator/controller/Controller";
@@ -65,15 +65,31 @@ export default class Router {
 	@Validate({
 		schema: Test,
 		error: (err) => {
+			throw new Response(Code.validateerror, '', "validateerror");
+		}
+	}, ValidateType.Body)
+	async validateerror(ctx: Koa.Context) {
+		ctx.body = new Response(Code.validateerror, "success", "");
+	}
+
+	@PUT("/validateerror2")
+	@Validate({
+		schema: Test,
+		error: (err) => {
 			throw "validateerror";
 		}
 	})
-	async validateerror(ctx: Koa.Context) {
-		ctx.body = new Response(Code.validateerror, "success", "");
+	async validateerror2(ctx: Koa.Context) {
+		ctx.body = new Response(Code.validateerror, "success", ctx.request.body);
 	}
 
 	@POST("/beforealltest")
 	async beforealltest(ctx: Koa.Context) {
 		logger.info(ctx.body);
+	}
+
+	@POST("/response")
+	async response(ctx: Koa.Context) {
+		ctx.body = new Response(1, null);
 	}
 }

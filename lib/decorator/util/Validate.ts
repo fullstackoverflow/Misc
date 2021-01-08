@@ -2,9 +2,11 @@ import Koa from "koa";
 import { plainToClass } from "class-transformer";
 import { validate, ValidatorOptions, ValidationError } from "class-validator";
 
-enum HttpMap {
-	POST = "body",
-	GET = "query"
+export enum ValidateType {
+	Body = 'body',
+	QueryParams = 'query',
+	Headers = 'headers',
+	Params = 'params'
 }
 
 /**
@@ -33,26 +35,26 @@ enum HttpMap {
  */
 export function Validate(
 	ValidateOptions: { schema: any; options?: ValidatorOptions; error?: (errors: ValidationError[]) => any },
-	ValidateObject: { params?: Boolean } = { params: false }
+	type?: ValidateType
 ): MethodDecorator {
 	const { schema, options, error } = ValidateOptions;
-	const { params } = ValidateObject;
 	return function (target: any, key: string, descriptor: PropertyDescriptor) {
 		const originFunction: Function = descriptor.value;
 		descriptor.value = async function (ctx: Koa.Context) {
-			const method = ctx.method;
-			if (HttpMap[method] == undefined) {
-				throw new Error("Unsupported HTTP methods");
-			} else {
-				const prop = params === true ? ctx.params : ctx.request[HttpMap[method]];
-				const obj = plainToClass(schema, prop, { excludePrefixes: ["_", "__"] });
-				const errors = await validate(obj, options);
-				if (errors && errors.length > 0) {
-					if (error) {
-						error(errors);
-					} else {
-						throw new Error(`${[...errors.map(error => Object.values(error.constraints))]}`);
-					}
+			const default_property = ctx.method == "POST" ? ValidateType.Body :
+				ctx.method == "GET" ? ValidateType.QueryParams : undefined;
+			const property = type || default_property;
+			if (property == undefined) {
+				throw new Error(`Please specified second param to tell what property to validate`);
+			}
+			const prop = ctx.request[type || default_property];
+			const obj = plainToClass(schema, prop, { excludePrefixes: ["_", "__"] });
+			const errors = await validate(obj, options);
+			if (errors && errors.length > 0) {
+				if (error) {
+					error(errors);
+				} else {
+					throw new Error(`${[...errors.map(error => Object.values(error.constraints))]}`);
 				}
 			}
 			await originFunction.apply(this, arguments);
