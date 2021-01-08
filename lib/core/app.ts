@@ -7,11 +7,9 @@ import https, { Server as httpsServer } from "https";
 import { options } from "./type/opts";
 import cors from "@koa/cors";
 import body from "koa-bodyparser";
-import pkg from "read-pkg-up";
 import { ClassScanner } from "./ClassScanner";
 import { Type } from "./type/enum";
 import { Dispatch } from "./loader/dispatch";
-import { resolve } from "path";
 
 export class Misc extends Koa {
 	server: httpServer | httpsServer;
@@ -28,7 +26,7 @@ export class Misc extends Koa {
 	 */
 	constructor(opts: options) {
 		const default_options = { body: body, cors: cors, beforeall: compose };
-		const pack = pkg.sync().pkg;
+		const pack = require("../../package.json");
 		logger.info("project:", pack.name);
 		logger.info("version:", pack.version);
 		super();
