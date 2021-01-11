@@ -27,7 +27,6 @@ export class Misc extends Koa {
 	constructor(opts: options) {
 		const default_options = { body: body, cors: cors, beforeall: compose };
 		const pack = require("../../package.json");
-		logger.info("project:", pack.name);
 		logger.info("version:", pack.version);
 		super();
 		/**

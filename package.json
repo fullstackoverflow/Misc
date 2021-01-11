@@ -43,7 +43,6 @@
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^0.1.3",
     "@types/glob": "^7.1.1",
-    "@types/jest": "^24.9.1",
     "@types/keygrip": "^1.0.2",
     "@types/koa": "^2.11.3",
     "@types/koa-bodyparser": "^4.3.0",
@@ -55,7 +54,6 @@
     "alsatian": "^3.2.1",
     "codecov": "^3.6.5",
     "cross-env": "^5.2.1",
-    "jest": "^24.9.0",
     "nyc": "^14.1.1",
     "source-map-support": "^0.5.19",
     "supertest": "^3.3.0",
