@@ -2,10 +2,10 @@
   "name": "@tosee/misc",
   "version": "4.1.5",
   "description": "Framework based on Koa and Typescript",
-  "main": "./dist/lib/index.js",
-  "types": "./dist/lib/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "coverage": "nyc --reporter=lcov --reporter=html npm run test && nyc report",
     "test": "cross-env NODE_ENV=test alsatian './test/main/e2e/*.spec.ts'",
     "start": "cross-env NODE_ENV=test ts-node test/app.ts",
