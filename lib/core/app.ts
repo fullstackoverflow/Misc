@@ -13,6 +13,9 @@ import { Dispatch } from "./loader/dispatch";
 
 export class Misc extends Koa {
 	server: httpServer | httpsServer;
+
+	private start: Promise<void>;
+
 	/**
 	 * create application instance
 	 * @example
@@ -25,10 +28,19 @@ export class Misc extends Koa {
 	 * ```
 	 */
 	constructor(opts: options) {
+		super();
+		this.start = new Promise(resolve => {
+			this.Before()
+				.then(() => this.Load(opts))
+				.then(() => this.After())
+				.then(() => resolve());
+		})
+	}
+
+	private Load(opts: options) {
 		const default_options = { body: body, cors: cors, beforeall: compose };
 		const pack = require("../../package.json");
 		logger.info("version:", pack.version);
-		super();
 		/**
 		 * 内置插件
 		 */
@@ -73,5 +85,17 @@ export class Misc extends Koa {
 		logger.success("NODE_ENV:" + process.env.NODE_ENV);
 		logger.success("server start at:" + opts.port);
 		logger.success("protocol:", opts.protocol);
+	}
+
+	async Before() {
+
+	}
+
+	async After() {
+
+	}
+
+	Wait() {
+		return this.start;
 	}
 }

@@ -4,7 +4,6 @@ import { ServerOptions } from "https";
 import { Options } from "@koa/cors";
 import { Options as IBodyOptions } from "koa-bodyparser";
 import Koa from 'koa';
-import Application from "koa";
 
 declare module "koa" {
 	interface Request extends Koa.BaseRequest {

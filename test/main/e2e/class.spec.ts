@@ -28,12 +28,21 @@ export class ExampleTestFixture {
 				}
 			}
 		};
-		this.app = new Misc({
+		class App extends Misc {
+			async Before(){
+				console.log("====>Beofre");
+			}
+
+			async After(){
+				console.log('====>After');
+			}
+		}
+		this.app = new App({
 			protocol: "http",
 			beforeall: [errorHandler, middleware],
 			router: resolve(__dirname, "../../router/**/*.ts"),
 			keys: ["test"],
-			port: 7891
+			port: 7892
 		});
 		await this.app.Wait();
 		this.instance = request(this.app.server);
