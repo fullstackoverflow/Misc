@@ -57,6 +57,7 @@ export function Validate(
 					throw new Error(`${[...errors.map(error => Object.values(error.constraints))]}`);
 				}
 			}
+			ctx.request.body = obj;
 			await originFunction.apply(this, arguments);
 		};
 	};
