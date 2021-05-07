@@ -1,5 +1,4 @@
 import { Logger as Log } from "@tosee/log";
-import moment from "moment";
 
 class Logger extends Log {
 	constructor(namespace: string) {
@@ -7,6 +6,6 @@ class Logger extends Log {
 	}
 }
 
-const logger = new Logger(moment().valueOf() + "");
+const logger = new Logger(Date.now() + "");
 
 export { logger };
