@@ -65,7 +65,7 @@ export class Misc extends Koa {
 		this.keys = opts.keys;
 		const dipatch = new Dispatch();
 		const scan_path = [
-			opts.router || "src/router/**/*.ts"
+			opts.router || "src/router/**/*.*{ts,js}"
 		];
 		logger.info("scan path:", scan_path);
 		new ClassScanner(scan_path).scan().forEach(clazz => {
