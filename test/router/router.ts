@@ -4,6 +4,7 @@ import { IsBoolean, IsString, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
 import { Controller } from "../../lib/decorator/controller/Controller";
 import { POST, GET, DELETE, PUT } from "../../lib/decorator/controller/Method";
+import { Autowired, MODE } from "@tosee/util";
 
 export class Test {
 	/**
@@ -37,9 +38,16 @@ export enum Code {
 	beforealltest
 }
 
+export class TestRequest {
+	num: number = 0;
+}
+
 @Controller()
 export default class Router {
 	test: "test"
+
+	@Autowired({ mode: MODE.Request })
+	TestRequest: TestRequest
 
 	@POST("/basetest")
 	async staus(ctx: Koa.Context) {
@@ -91,5 +99,17 @@ export default class Router {
 	@POST("/response")
 	async response(ctx: Koa.Context) {
 		ctx.body = new Response(1, null);
+	}
+
+	@POST("/requestscope")
+	async requestscope(ctx: Koa.Context,next:Function) {
+		this.TestRequest.num++;
+		await next();
+	}
+
+	@POST("/requestscope")
+	async requestscope2(ctx: Koa.Context) {
+		this.TestRequest.num++;
+		ctx.body = new Response(this.TestRequest.num, null);
 	}
 }

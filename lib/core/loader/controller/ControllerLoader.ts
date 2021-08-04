@@ -15,7 +15,7 @@ export class ControllerLoader implements ClassLoader {
 		const instance = new clazz();
 		const prototype = Object.getPrototypeOf(instance);
 		const methodsNames = Object.getOwnPropertyNames(prototype).filter(
-			item => typeof prototype[item] == "function" && item != "constructor"
+			item => Object.getOwnPropertyDescriptor(prototype, item).get == undefined && typeof prototype[item] == "function" && item != "constructor"
 		);
 		methodsNames.forEach(methodName => {
 			const fn = prototype[methodName];

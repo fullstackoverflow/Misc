@@ -10,6 +10,7 @@ import body from "koa-bodyparser";
 import { ClassScanner } from "./ClassScanner";
 import { Type } from "./type/enum";
 import { Dispatch } from "./loader/dispatch";
+import { RequestContext } from "@tosee/util";
 
 export class Misc extends Koa {
 	server: httpServer | httpsServer;
@@ -29,6 +30,10 @@ export class Misc extends Koa {
 	 */
 	constructor(opts: options) {
 		super();
+		this.use(async (ctx: Koa.Context, next: Function) => {
+			RequestContext.getInstance().init(ctx);
+			await next();
+		});
 		this.start = new Promise(resolve => {
 			this.Before()
 				.then(() => this.Load(opts))

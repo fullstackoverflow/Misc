@@ -86,4 +86,14 @@ export class ExampleTestFixture {
 		Expect(response.status).toBe(200);
 		Expect(response.body).toEqual({ code: 1, message: "", data: null });
 	}
+
+	@Test("should request scope worked")
+	public async test10() {
+		const response_1 = await this.instance.post("/requestscope").send();
+		Expect(response_1.status).toBe(200);
+		Expect(response_1.body).toEqual({ code: 2, message: "", data: null });
+		const response_2 = await this.instance.post("/requestscope").send();
+		Expect(response_2.status).toBe(200);
+		Expect(response_2.body).toEqual({ code: 2, message: "", data: null });
+	}
 }
