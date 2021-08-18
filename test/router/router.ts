@@ -1,4 +1,4 @@
-import Koa from "koa";
+import Koa, { Context } from "koa";
 import { Validate, logger, Response, ValidateType } from "../../lib/index";
 import { IsBoolean, IsString, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
@@ -39,7 +39,22 @@ export enum Code {
 }
 
 export class TestRequest {
+	constructor(ctx: Context) {
+		this.num = ctx.request.body.num;
+	}
+
 	num: number = 0;
+}
+
+class Service {
+
+	@Autowired({ mode: MODE.Request })
+	TestRequest: TestRequest
+
+	getnum() {
+		const num = this.TestRequest.num + 1;
+		return num;
+	}
 }
 
 @Controller()
@@ -48,6 +63,9 @@ export default class Router {
 
 	@Autowired({ mode: MODE.Request })
 	TestRequest: TestRequest
+
+	@Autowired({ mode: MODE.Singleton })
+	Service: Service
 
 	@POST("/basetest")
 	async staus(ctx: Koa.Context) {
@@ -102,7 +120,7 @@ export default class Router {
 	}
 
 	@POST("/requestscope")
-	async requestscope(ctx: Koa.Context,next:Function) {
+	async requestscope(ctx: Koa.Context, next: Function) {
 		this.TestRequest.num++;
 		await next();
 	}
@@ -110,6 +128,11 @@ export default class Router {
 	@POST("/requestscope")
 	async requestscope2(ctx: Koa.Context) {
 		this.TestRequest.num++;
-		ctx.body = new Response(this.TestRequest.num, null);
+		ctx.body = new Response(2, this.TestRequest.num);
+	}
+
+	@POST("/requestscope3")
+	async requestscope3(ctx: Koa.Context) {
+		ctx.body = new Response(2, this.Service.getnum());
 	}
 }

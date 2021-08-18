@@ -89,11 +89,14 @@ export class ExampleTestFixture {
 
 	@Test("should request scope worked")
 	public async test10() {
-		const response_1 = await this.instance.post("/requestscope").send();
+		const response_1 = await this.instance.post("/requestscope").send({ num: 1 });
 		Expect(response_1.status).toBe(200);
-		Expect(response_1.body).toEqual({ code: 2, message: "", data: null });
-		const response_2 = await this.instance.post("/requestscope").send();
+		Expect(response_1.body).toEqual({ code: 2, message: "", data: 3 });
+		const response_2 = await this.instance.post("/requestscope").send({ num: 4 });
 		Expect(response_2.status).toBe(200);
-		Expect(response_2.body).toEqual({ code: 2, message: "", data: null });
+		Expect(response_2.body).toEqual({ code: 2, message: "", data: 6 });
+		const response_3 = await this.instance.post("/requestscope3").send({ num: 7 });
+		Expect(response_3.status).toBe(200);
+		Expect(response_3.body).toEqual({ code: 2, message: "", data: 8 });
 	}
 }
