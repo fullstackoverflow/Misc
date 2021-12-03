@@ -11,14 +11,14 @@ declare module "koa" {
 	}
 
 	interface DefaultContext extends Koa.DefaultContextExtends {
-		params:any
+		params: any
 	}
 }
 
 export interface options {
 	keys?: Keygrip | string[];
 	beforeall?: Array<compose.Middleware<any>>;
-	router?: string;
+	router: string | string[];
 	body?: IBodyOptions;
 	protocol: "http" | "https";
 	callback?: () => void;

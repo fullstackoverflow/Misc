@@ -1,6 +1,6 @@
 import { ControllerType, Methods, MethodDecoratorType, Type } from "../../core/type/enum";
 
-const createMappingDecorator = (method: string) => (path: string): MethodDecorator => {
+const createMappingDecorator = (method: string) => (path: string | RegExp): MethodDecorator => {
 	return (target: any, key, descriptor) => {
 		Reflect.defineMetadata(Type.MethodType, MethodDecoratorType.Http, descriptor.value);
 		Reflect.defineMetadata(ControllerType.PATH, path, descriptor.value);
@@ -24,7 +24,7 @@ const createMappingDecorator = (method: string) => (path: string): MethodDecorat
  * 
  * ```
  */
-export function GET(path: string) {
+export function GET(path: string | RegExp) {
 	return createMappingDecorator(Methods.GET)(path);
 }
 
@@ -45,7 +45,7 @@ export function GET(path: string) {
  * ```
  */
 
-export function POST(path: string) {
+export function POST(path: string | RegExp) {
 	return createMappingDecorator(Methods.POST)(path);
 }
 
@@ -65,7 +65,7 @@ export function POST(path: string) {
  * 
  * ```
  */
-export function PUT(path: string){
+export function PUT(path: string | RegExp) {
 	return createMappingDecorator(Methods.PUT)(path);
 }
 
@@ -85,6 +85,6 @@ export function PUT(path: string){
  * 
  * ```
  */
-export function DELETE(path: string){
+export function DELETE(path: string | RegExp) {
 	return createMappingDecorator(Methods.DELETE)(path);
 }
