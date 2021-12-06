@@ -22,6 +22,16 @@ export class ControllerType {
 	static readonly VALUE: unique symbol = Symbol("value");
 }
 
+export const Parameters = Symbol("Parameters");
+
+export class ParameterDecoratorType {
+	static readonly Body: unique symbol = Symbol("body");
+	static readonly Header: unique symbol = Symbol("header");
+	static readonly Query: unique symbol = Symbol("query");
+	static readonly Params: unique symbol = Symbol("params");
+	static readonly Context: unique symbol = Symbol("context");
+}
+
 export enum Methods {
 	GET = "get",
 	POST = "post",

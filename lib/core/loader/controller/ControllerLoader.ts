@@ -1,5 +1,5 @@
 import { ClassLoader } from "../../type/interface";
-import { ControllerType, Type, MethodDecoratorType } from "../../type/enum";
+import { ControllerType, Type, MethodDecoratorType, Parameters } from "../../type/enum";
 import Koa from "koa";
 import Router from "@koa/router";
 import { Autowired } from "@tosee/util";
@@ -21,7 +21,7 @@ export class ControllerLoader implements ClassLoader {
 			const fn = prototype[methodName];
 			const MethodType = Reflect.getMetadata(Type.MethodType, fn);
 			if (MethodType != undefined) {
-				this[MethodType].Load(fn, instance, router);
+				this[MethodType].Load(fn, instance, router, prototype, methodName);
 			}
 		});
 		app.use(router.routes()).use(router.allowedMethods());

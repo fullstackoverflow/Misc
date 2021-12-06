@@ -3,7 +3,7 @@ import request from "supertest";
 import Koa from "koa";
 import { resolve } from "path";
 import { Response } from "../../../lib/util/response";
-import { Test, Expect, TestFixture, SetupFixture, Timeout } from "alsatian";
+import { Test, Expect, TestFixture, SetupFixture, Timeout, Focus } from "alsatian";
 import { Code } from '../../router/router'
 
 @TestFixture('App test')
@@ -98,5 +98,30 @@ export class ExampleTestFixture {
 		const response_3 = await this.instance.post("/requestscope3").send({ num: 7 });
 		Expect(response_3.status).toBe(200);
 		Expect(response_3.body).toEqual({ code: 2, message: "", data: 8 });
+	}
+
+	@Test("should parameter decorator worked")
+	@Focus
+	public async test11() {
+		const response_1 = await this.instance.post("/head").set("accept", "application/json").send();
+		Expect(response_1.status).toBe(200);
+		Expect(response_1.body.data.accept).toEqual("application/json");
+		const response_2 = await this.instance.post("/body").send({ test: 1 });
+		Expect(response_2.status).toBe(200);
+		Expect(response_2.body.data.test).toEqual(1);
+		const response_3 = await this.instance.post("/query?uid=5").send();
+		Expect(response_3.status).toBe(200);
+		Expect(response_3.body.data.uid).toEqual(5);
+		const response_4 = await this.instance.post("/params/5").send();
+		Expect(response_4.status).toBe(200);
+		Expect(response_4.body.data.id).toEqual(5);
+		const response_5 = await this.instance.post("/transform?test2=5").send();
+		Expect(response_5.status).toBe(200);
+		Expect(response_5.body.data.test2).toEqual(5);
+		Expect(typeof response_5.body.data.test2).toEqual("number");
+		const response_6 = await this.instance.post("/transform2?test2=5").send();
+		Expect(response_6.status).toBe(200);
+		Expect(response_6.body.data.test2).toEqual('5');
+		Expect(typeof response_6.body.data.test2).toEqual("string");
 	}
 }
