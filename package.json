@@ -39,14 +39,14 @@
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
-    "@istanbuljs/nyc-config-typescript": "^1.0.1",
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@types/glob": "^7.2.0",
     "@types/keygrip": "^1.0.2",
     "@types/koa": "^2.13.4",
     "@types/koa__cors": "^3.0.3",
-    "@types/koa__router": "^8.0.10",
+    "@types/koa__router": "^8.0.11",
     "@types/koa-bodyparser": "^4.3.4",
-    "@types/node": "^16.11.10",
+    "@types/node": "^16.11.11",
     "@types/supertest": "^2.0.11",
     "alsatian": "^3.2.1",
     "codecov": "^3.8.2",
@@ -55,7 +55,7 @@
     "source-map-support": "^0.5.21",
     "supertest": "^6.1.6",
     "ts-node": "^10.4.0",
-    "typedoc": "^0.22.9",
+    "typedoc": "^0.22.10",
     "typescript": "^4.5.2"
   }
 }

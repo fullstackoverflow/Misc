@@ -225,7 +225,7 @@ class Test{
 ```
 import {logger} from '@tosee/misc'
 
-logger.info("xxxx");
+logger.info("hello world");
 app.use(logger.Middleware()); //在后续中间件中的logger打印会带上唯一id,参考@tosee/log
 
 ```
