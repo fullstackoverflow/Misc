@@ -78,7 +78,9 @@ class Test{
 @Controller('/hello');
 class Test{
   @GET('/test')
-  async test(ctx:Koa.Context)
+  async test(){
+    return 'hello world';
+  }
 }
 ```
 
@@ -90,7 +92,9 @@ class Test{
 @Controller('/hello');
 class Test{
   @POST('/test')
-  async test(ctx:Koa.Context)
+  async test(@Body body){
+    return body;
+  }
 }
 ```
 
@@ -102,7 +106,9 @@ class Test{
 @Controller('/hello');
 class Test{
   @PUT('/test')
-  async test(ctx:Koa.Context)
+  async test(){
+
+  }
 }
 ```
 
@@ -114,13 +120,72 @@ class Test{
 @Controller('/hello');
 class Test{
   @DELETE('/test')
-  async test(ctx:Koa.Context)
+  async test(){
+
+  }
+}
+```
+
+> @Body
+
+参数装饰器,配合```@POST```,```@GET```,```@PUT```,```@DELETE```等方法装饰器时可以获取请求参数,该装饰器默认值为```ctx.request.body```,例:
+
+```
+@POST('/test')
+async test(@Body body){
+    return body;
+}
+```
+
+> @Query
+
+参数装饰器,配合```@POST```,```@GET```,```@PUT```,```@DELETE```等方法装饰器时可以获取请求参数,该装饰器默认值为```ctx.request.query```,例:
+
+```
+@GET('/test')
+async test(@Query query){
+    return query;
+}
+```
+
+> @Headers
+
+参数装饰器,配合```@POST```,```@GET```,```@PUT```,```@DELETE```等方法装饰器时可以获取请求参数,该装饰器默认值为```ctx.request.headers```,例:
+
+```
+@GET('/test')
+async test(@Headers headers){
+    return headers;
+}
+```
+
+> @Headers
+
+参数装饰器,配合```@POST```,```@GET```,```@PUT```,```@DELETE```等方法装饰器时可以获取请求参数,该装饰器默认值为```ctx.params```,例:
+
+```
+@GET('/test/:id')
+async test(@Params params){
+    return params.id;
+}
+```
+
+> @Ctx
+
+参数装饰器,配合```@POST```,```@GET```,```@PUT```,```@DELETE```等方法装饰器时可以获取请求参数,该装饰器默认值为```ctx```,例:
+
+```
+@GET('/test/:id')
+async test(@Ctx ctx){
+    return ctx.params.id;
 }
 ```
 
 > @Validate
 
 参数验证装饰器,使用[class-validator](https://github.com/typestack/class-validator)实现,传入 schema 即可完成校验,支持自定义错误处理。
+
+使用该装饰器后,参数装饰器获取的参数是经过该装饰器转换过后的参数(例如schema中包含Transform之类的功能)，需要获取原始数据可以使用```@Ctx```装饰器获取koa的Context。
 
 ```
 export class Login {
@@ -146,7 +211,9 @@ class Test{
   @Validate({schema:Login,error:(errors)=>{
     throw new Error(`${errors.map(error=>Object.value(error.constraints))}`);
   }})
-  async test(ctx:Koa.Context)
+  async test(@Query query){
+    return query;
+  }
 }
 ```
 
