@@ -1,3 +1,11 @@
+/**
+* create response instance
+* @example
+* ```typescript
+*
+* const response = new Response(200,null,'success');
+* ```
+*/
 export class Response {
 	code: number;
 	message: string;

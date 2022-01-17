@@ -5,6 +5,30 @@ import { RequestContext } from "@tosee/util";
 import { ParameterDecoratorType, Parameters } from "../../core/type/enum";
 import { FunctionCache } from "../../util/cache";
 
+/**
+ * use class-validator to validate request object
+ * @param ValidateOptions
+ * @param ValidateObject
+ * @example
+ * ```typescript
+ *
+ * class Test{
+ * 	@IsBoolean()
+ * 	test:Boolean;
+ * }
+ *
+ * export class Router{
+ * 	@GET('/test')
+ * 	@Validate({schema:Test,error:(errors)=> {
+ *		throw new Error(`${errors.map(error=>Object.values(error.constraints))}`)
+ * 	},ValidateType.QueryParams)
+ * 	async test(){
+ * 		ctx.body = 'origin';
+ * 	}
+ * }
+ *
+ * ```
+ */
 export enum ValidateType {
 	Body = 'body',
 	QueryParams = 'query',

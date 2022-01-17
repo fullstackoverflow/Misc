@@ -33,8 +33,8 @@ const createMappingDecorator = (method: string) => (path: string | RegExp) => {
  * 	@Controller('/prefix')
  * 	export default class Router {
  * 		@Get("/test")
- * 		test(ctx:Context,next:Function){
- * 			ctx.body="hello world";
+ * 		test(@Ctx ctx){
+ * 			return new Response(200,null,"hello world");
  * 		}
  * 	}
  * 
@@ -53,8 +53,8 @@ export function GET(path: string | RegExp) {
  * 	@Controller('/prefix')
  * 	export default class Router {
  * 		@POST("/test")
- * 		test(ctx:Context,next:Function){
- * 			ctx.body="hello world";
+ * 		test(@Ctx ctx){
+ * 			return new Response(200,null,"hello world");
  * 		}
  * 	}
  * 
@@ -74,8 +74,8 @@ export function POST(path: string | RegExp) {
  * 	@Controller('/prefix')
  * 	export default class Router {
  * 		@PUT("/test")
- * 		test(ctx:Context,next:Function){
- * 			ctx.body="hello world";
+ * 		test(@Ctx ctx){
+ * 			return new Response(200,null,"hello world");
  * 		}
  * 	}
  * 
@@ -94,8 +94,8 @@ export function PUT(path: string | RegExp) {
  * 	@Controller('/prefix')
  * 	export default class Router {
  * 		@DELETE("/test")
- * 		test(ctx:Context,next:Function){
- * 			ctx.body="hello world";
+ * 		test(@Ctx ctx){
+ * 			return new Response(200,null,"hello world");
  * 		}
  * 	}
  * 

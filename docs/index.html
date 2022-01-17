@@ -1,310 +1,159 @@
-<!doctype html>
-<html class="default no-js">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@tosee/misc</title>
-	<meta name="description" content="Documentation for @tosee/misc">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
-</head>
-<body>
-<header>
-	<div class="tsd-page-toolbar">
-		<div class="container">
-			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
-					<div class="field">
-						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
-						<input id="tsd-search-field" type="text" />
-					</div>
-					<ul class="results">
-						<li class="state loading">Preparing search index...</li>
-						<li class="state failure">The search index is not available</li>
-					</ul>
-					<a href="index.html" class="title">@tosee/misc</a>
-				</div>
-				<div class="table-cell" id="tsd-widgets">
-					<div id="tsd-filter">
-						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
-						<div class="tsd-filter-group">
-							<div class="tsd-select" id="tsd-filter-visibility">
-								<span class="tsd-select-label">All</span>
-								<ul class="tsd-select-list">
-									<li data-value="public">Public</li>
-									<li data-value="protected">Public/Protected</li>
-									<li data-value="private" class="selected">All</li>
-								</ul>
-							</div>
-							<input type="checkbox" id="tsd-filter-inherited" checked />
-							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
-						</div>
-					</div>
-					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="tsd-page-title">
-		<div class="container">
-			<ul class="tsd-breadcrumb">
-				<li>
-					<a href="globals.html">Globals</a>
-				</li>
-			</ul>
-			<h1>@tosee/misc</h1>
-		</div>
-	</div>
-</header>
-<div class="container container-main">
-	<div class="row">
-		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<p><a href="https://www.travis-ci.org/fullstackoverflow/Misc.svg?branch=master"><img src="https://www.travis-ci.org/fullstackoverflow/Misc.svg?branch=master" alt="Build Status"></a>
-					<a href="https://codecov.io/gh/fullstackoverflow/Misc"><img src="https://codecov.io/gh/fullstackoverflow/Misc/branch/master/graph/badge.svg" alt="codecov"></a>
-				<a href="https://www.npmjs.com/@tosee/misc"><img src="https://img.shields.io/npm/v/@tosee/misc.svg" alt="NPM version"></a></p>
-				<a href="#misc" id="misc" style="color: inherit; text-decoration: none;">
-					<h1>Misc</h1>
-				</a>
-				<blockquote>
-					<p>基于Koa与Typescript构建的框架</p>
-				</blockquote>
-				<a href="#快速开始" id="快速开始" style="color: inherit; text-decoration: none;">
-					<h1>快速开始</h1>
-				</a>
-				<ol>
-					<li>安装命令行工具<pre><code><span class="hljs-built_in">npm</span> i @tosee/misc-cli -g</code></pre></li>
-					<li>初始化项目并运行<pre><code>mkdir <span class="hljs-keyword">project</span>
-misc <span class="hljs-keyword">new</span> ./<span class="hljs-keyword">project</span>
-cd <span class="hljs-keyword">project</span>
-npm run dev</code></pre></li>
-				</ol>
-				<a href="#配置项" id="配置项" style="color: inherit; text-decoration: none;">
-					<h1>配置项</h1>
-				</a>
-				<p>Misc继承自Koa,实例化Misc时可以传入不同的参数来配置Koa实例,Misc自带<code>koa-bodyparser</code>,<code>@koa/cors</code>依赖,可以通过不同的配置来实现不同的功能，具体的参数细节查看<a href="http://fullstackoverflow.github.io/Misc/interfaces/_core_type_opts_.options.html">API</a>。</p>
-				<a href="#keys" id="keys" style="color: inherit; text-decoration: none;">
-					<h2>keys</h2>
-				</a>
-				<p><a href="https://koa.bootcss.com/">Koa 的 cookie 签名秘钥</a></p>
-				<a href="#beforeall" id="beforeall" style="color: inherit; text-decoration: none;">
-					<h2>beforeall</h2>
-				</a>
-				<p>中间件数组,Misc会使用<code>koa-compose</code>组合数组中的中间件,这些中间处于<code>koa-bodyparser</code>,<code>@koa/cors</code>之后(如果有配置的话),routerpath目录中的各路由之前。</p>
-				<a href="#routerpath" id="routerpath" style="color: inherit; text-decoration: none;">
-					<h2>routerpath</h2>
-				</a>
-				<p>Misc会加载该配置目录及其子目录下的所有ts文件,并获取它们的默认导出(export default)，如果是<code>koa-router</code>实例(使用@Controller装饰器)则Misc会加载这些实例,默认路径<code>src/router</code>。</p>
-				<a href="#body" id="body" style="color: inherit; text-decoration: none;">
-					<h2>body</h2>
-				</a>
-				<p><code>koa-bodyparser</code>配置选项，参照<a href="https://github.com/koajs/bodyparser">koa-bodyparser</a>。</p>
-				<a href="#protocol必须" id="protocol必须" style="color: inherit; text-decoration: none;">
-					<h2>protocol(必须)</h2>
-				</a>
-				<p>可选 http 或 https,选择 https 时则必须配置 tls 选项。</p>
-				<a href="#tls" id="tls" style="color: inherit; text-decoration: none;">
-					<h2>tls</h2>
-				</a>
-				<p>https 配置，详见<a href="http://nodejs.cn/api/https.html#https_https_createserver_options_requestlistener">https 参数</a>。</p>
-				<a href="#cors" id="cors" style="color: inherit; text-decoration: none;">
-					<h2>cors</h2>
-				</a>
-				<p>跨域配置,使用<code>@koa/cors</code>,参照<a href="https://github.com/koajs/cors">@koa/cors</a>。</p>
-				<a href="#port必须" id="port必须" style="color: inherit; text-decoration: none;">
-					<h2>port(必须)</h2>
-				</a>
-				<p>监听端口号。</p>
-				<a href="#装饰器" id="装饰器" style="color: inherit; text-decoration: none;">
-					<h1>装饰器</h1>
-				</a>
-				<blockquote>
-					<p>@Controller</p>
-				</blockquote>
-				<p>路由类装饰器,实例化类时转化为一个<code>koa-router</code>实例,作用类似于<code>prefix</code>,例:</p>
-				<pre><code><span class="hljs-meta">@Controller(<span class="hljs-meta-string">'/hello'</span>)</span>;
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span></span>{
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@tosee/misc</title><meta name="description" content="Documentation for @tosee/misc"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@tosee/misc</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>@tosee/misc</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography"><p><a href="https://open.vscode.dev/fullstackoverflow/Misc"><img src="https://open.vscode.dev/badges/open-in-vscode.svg" alt="Open in Visual Studio Code"></a>
+<a href="https://www.travis-ci.org/fullstackoverflow/Misc.svg?branch=master"><img src="https://www.travis-ci.org/fullstackoverflow/Misc.svg?branch=master" alt="Build Status"></a>
+<a href="https://codecov.io/gh/fullstackoverflow/Misc"><img src="https://codecov.io/gh/fullstackoverflow/Misc/branch/master/graph/badge.svg" alt="codecov"></a>
+<a href="https://www.npmjs.com/@tosee/misc"><img src="https://img.shields.io/npm/v/@tosee/misc.svg" alt="NPM version"></a></p>
 
-}</code></pre><blockquote>
-					<p>@GET</p>
-				</blockquote>
-				<p>路由方法装饰器,与<code>@Controller</code>配合,实现一个 get 方法的路由,例:</p>
-				<pre><code><span class="hljs-meta">@Controller(<span class="hljs-meta-string">'/hello'</span>)</span>;
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span></span>{
-  <span class="hljs-meta">@GET(<span class="hljs-meta-string">'/test'</span>)</span>
-  async test(ctx:Koa.Context)
-}</code></pre><blockquote>
-					<p>@POST</p>
-				</blockquote>
-				<p>路由方法装饰器,与<code>@Controller</code>配合,实现一个 post 方法的路由,例:</p>
-				<pre><code><span class="hljs-meta">@Controller(<span class="hljs-meta-string">'/hello'</span>)</span>;
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span></span>{
-  <span class="hljs-meta">@POST(<span class="hljs-meta-string">'/test'</span>)</span>
-  async test(ctx:Koa.Context)
-}</code></pre><blockquote>
-					<p>@PUT</p>
-				</blockquote>
-				<p>路由方法装饰器,与<code>@Controller</code>配合,实现一个 put 方法的路由,例:</p>
-				<pre><code><span class="hljs-meta">@Controller(<span class="hljs-meta-string">'/hello'</span>)</span>;
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span></span>{
-  <span class="hljs-meta">@PUT(<span class="hljs-meta-string">'/test'</span>)</span>
-  async test(ctx:Koa.Context)
-}</code></pre><blockquote>
-					<p>@DELETE</p>
-				</blockquote>
-				<p>路由方法装饰器,与<code>@Controller</code>配合,实现一个 delete 方法的路由,例:</p>
-				<pre><code><span class="hljs-meta">@Controller(<span class="hljs-meta-string">'/hello'</span>)</span>;
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span></span>{
-  <span class="hljs-meta">@DELETE(<span class="hljs-meta-string">'/test'</span>)</span>
-  async test(ctx:Koa.Context)
-}</code></pre><blockquote>
-					<p>@Validate</p>
-				</blockquote>
-				<p>参数验证装饰器,使用<a href="https://github.com/typestack/class-validator">class-validator</a>实现,传入 schema 即可完成校验,支持自定义错误处理。</p>
-				<pre><code><span class="hljs-selector-tag">export</span> <span class="hljs-selector-tag">class</span> <span class="hljs-selector-tag">Login</span> {
-    <span class="hljs-comment">/**
-     * username describe
-     */</span>
-    <span class="hljs-variable">@IsString</span>()
-    <span class="hljs-attribute">username</span>: string;
+<a href="#misc" id="misc" style="color: inherit; text-decoration: none;">
+  <h1>Misc</h1>
+</a>
+<blockquote>
+<p>基于Koa与Typescript构建的框架</p>
+</blockquote>
 
-  <span class="hljs-comment">/**
-     * password describe
-     */</span>
-    <span class="hljs-variable">@IsString</span>()
-    <span class="hljs-attribute">password</span>: string;
-}
-
-<span class="hljs-variable">@Controller</span>(<span class="hljs-string">'/hello'</span>);
-<span class="hljs-selector-tag">class</span> <span class="hljs-selector-tag">Test</span>{
-  <span class="hljs-variable">@Autowired</span>()
-  <span class="hljs-attribute">UserService</span>:UserService
-
-  <span class="hljs-variable">@GET</span>('/test)
-  <span class="hljs-variable">@Validate</span>({<span class="hljs-attribute">schema</span>:Login,<span class="hljs-attribute">error</span>:(errors)=&gt;{
-    throw new Error(<span class="hljs-built_in">`${errors.map(error=&gt;Object.value(error.constraints))}`</span>);
-  }})
-  async test(<span class="hljs-attribute">ctx</span>:Koa.Context)
-}</code></pre>
-				<a href="#工具" id="工具" style="color: inherit; text-decoration: none;">
-					<h1>工具</h1>
-				</a>
-				<a href="#logger" id="logger" style="color: inherit; text-decoration: none;">
-					<h2>logger</h2>
-				</a>
-				<p>打印信息，分为 error,info,和 succuess,带时间戳和不同颜色</p>
-				<pre><code><span class="hljs-keyword">import</span> {logger} <span class="hljs-keyword">from</span> <span class="hljs-string">'@tosee/misc'</span>
-
-logger.<span class="hljs-keyword">info</span>("xxxx");
-app.use(logger.Middleware()); //在后续中间件中的logger打印会带上唯一id,参考@tosee/<span class="hljs-keyword">log</span>
+<a href="#快速开始" id="快速开始" style="color: inherit; text-decoration: none;">
+  <h1>快速开始</h1>
+</a>
+<ol>
+<li>安装命令行工具<pre><code><span class="hl-3">npm</span><span class="hl-0"> </span><span class="hl-3">i</span><span class="hl-0"> @</span><span class="hl-3">tosee</span><span class="hl-0">/</span><span class="hl-3">misc</span><span class="hl-0">-</span><span class="hl-3">cli</span><span class="hl-0"> -</span><span class="hl-3">g</span>
 </code></pre>
-				<a href="#扩展" id="扩展" style="color: inherit; text-decoration: none;">
-					<h1>扩展</h1>
-				</a>
-				<p><a href="https://github.com/fullstackoverflow/config">@tosee/config</a>加载配置文件使用@Value装饰器注入</p>
-				<p><a href="https://github.com/fullstackoverflow/util">@tosee/util</a>@Before,@After,@Around,@Catch,@Autowired,@Schedule等工具装饰器</p>
-				<p><a href="https://github.com/fullstackoverflow/busboy">@tosee/busboy</a>对<a href="https://github.com/mscdex/busboy">busboy</a>的封装,直接处理formdata文件流无临时文件,提供装饰器,中间件与自定义方式</p>
-			</div>
-		</div>
-		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
-			<nav class="tsd-navigation primary">
-				<ul>
-					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_core_classscanner_.html">&quot;core/<wbr>Class<wbr>Scanner&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_core_app_.html">&quot;core/app&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_core_loader_controller_controllerloader_.html">&quot;core/loader/controller/<wbr>Controller<wbr>Loader&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_core_loader_controller_methods_http_.html">&quot;core/loader/controller/methods/<wbr>Http&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_core_loader_dispatch_.html">&quot;core/loader/dispatch&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_core_loader_index_.html">&quot;core/loader/index&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_core_type_enum_.html">&quot;core/type/enum&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_core_type_interface_.html">&quot;core/type/interface&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_core_type_opts_.html">&quot;core/type/opts&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_decorator_controller_controller_.html">&quot;decorator/controller/<wbr>Controller&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_decorator_controller_method_.html">&quot;decorator/controller/<wbr>Method&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_decorator_controller_index_.html">&quot;decorator/controller/index&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_decorator_index_.html">&quot;decorator/index&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_decorator_util_validate_.html">&quot;decorator/util/<wbr>Validate&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_decorator_util_index_.html">&quot;decorator/util/index&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_index_.html">&quot;index&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_util_log_.html">&quot;util/log&quot;</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/_util_response_.html">&quot;util/response&quot;</a>
-					</li>
-				</ul>
-			</nav>
-			<nav class="tsd-navigation secondary menu-sticky">
-				<ul class="before-current">
-				</ul>
-			</nav>
-		</div>
-	</div>
-</div>
-<footer class="with-border-bottom">
-	<div class="container">
-		<h2>Legend</h2>
-		<div class="tsd-legend-group">
-			<ul class="tsd-legend">
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-			</ul>
-		</div>
-	</div>
-</footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
-<div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
-</body>
-</html>
+</li>
+<li>初始化项目并运行<pre><code><span class="hl-3">mkdir</span><span class="hl-0"> </span><span class="hl-3">project</span><br/><span class="hl-3">misc</span><span class="hl-0"> </span><span class="hl-4">new</span><span class="hl-0"> ./</span><span class="hl-3">project</span><br/><span class="hl-3">cd</span><span class="hl-0"> </span><span class="hl-3">project</span><br/><span class="hl-3">npm</span><span class="hl-0"> </span><span class="hl-3">run</span><span class="hl-0"> </span><span class="hl-3">dev</span>
+</code></pre>
+</li>
+</ol>
+
+<a href="#配置项" id="配置项" style="color: inherit; text-decoration: none;">
+  <h1>配置项</h1>
+</a>
+<p>Misc继承自Koa,实例化Misc时可以传入不同的参数来配置Koa实例,Misc自带<code>koa-bodyparser</code>,<code>@koa/cors</code>依赖,可以通过不同的配置来实现不同的功能，具体的参数细节查看<a href="http://fullstackoverflow.github.io/Misc/interfaces/_core_type_opts_.options.html">API</a>。</p>
+
+<a href="#keys" id="keys" style="color: inherit; text-decoration: none;">
+  <h2>keys</h2>
+</a>
+<p><a href="https://koa.bootcss.com/">Koa 的 cookie 签名秘钥</a></p>
+
+<a href="#beforeall" id="beforeall" style="color: inherit; text-decoration: none;">
+  <h2>beforeall</h2>
+</a>
+<p>中间件数组,Misc会使用<code>koa-compose</code>组合数组中的中间件,这些中间处于<code>koa-bodyparser</code>,<code>@koa/cors</code>之后(如果有配置的话),routerpath目录中的各路由之前。</p>
+
+<a href="#routerpath" id="routerpath" style="color: inherit; text-decoration: none;">
+  <h2>routerpath</h2>
+</a>
+<p>Misc会加载该配置目录及其子目录下的所有ts文件,并获取它们的默认导出(export default)，如果是<code>koa-router</code>实例(使用@Controller装饰器)则Misc会加载这些实例,默认路径<code>src/router</code>。</p>
+
+<a href="#body" id="body" style="color: inherit; text-decoration: none;">
+  <h2>body</h2>
+</a>
+<p><code>koa-bodyparser</code>配置选项，参照<a href="https://github.com/koajs/bodyparser">koa-bodyparser</a>。</p>
+
+<a href="#protocol必须" id="protocol必须" style="color: inherit; text-decoration: none;">
+  <h2>protocol(必须)</h2>
+</a>
+<p>可选 http 或 https,选择 https 时则必须配置 tls 选项。</p>
+
+<a href="#tls" id="tls" style="color: inherit; text-decoration: none;">
+  <h2>tls</h2>
+</a>
+<p>https 配置，详见<a href="http://nodejs.cn/api/https.html#https_https_createserver_options_requestlistener">https 参数</a>。</p>
+
+<a href="#cors" id="cors" style="color: inherit; text-decoration: none;">
+  <h2>cors</h2>
+</a>
+<p>跨域配置,使用<code>@koa/cors</code>,参照<a href="https://github.com/koajs/cors">@koa/cors</a>。</p>
+
+<a href="#port必须" id="port必须" style="color: inherit; text-decoration: none;">
+  <h2>port(必须)</h2>
+</a>
+<p>监听端口号。</p>
+
+<a href="#装饰器" id="装饰器" style="color: inherit; text-decoration: none;">
+  <h1>装饰器</h1>
+</a>
+<blockquote>
+<p>@Controller</p>
+</blockquote>
+<p>路由类装饰器,实例化类时转化为一个<code>koa-router</code>实例,作用类似于<code>prefix</code>,例:</p>
+<pre><code><span class="hl-0">@</span><span class="hl-1">Controller</span><span class="hl-0">(</span><span class="hl-2">&#39;/hello&#39;</span><span class="hl-0">);</span><br/><span class="hl-4">class</span><span class="hl-0"> </span><span class="hl-7">Test</span><span class="hl-0">{</span><br/><br/><span class="hl-0">}</span>
+</code></pre>
+<blockquote>
+<p>@GET</p>
+</blockquote>
+<p>路由方法装饰器,与<code>@Controller</code>配合,实现一个 get 方法的路由,例:</p>
+<pre><code><span class="hl-0">@</span><span class="hl-1">Controller</span><span class="hl-0">(</span><span class="hl-2">&#39;/hello&#39;</span><span class="hl-0">);</span><br/><span class="hl-4">class</span><span class="hl-0"> </span><span class="hl-7">Test</span><span class="hl-0">{</span><br/><span class="hl-0">  @</span><span class="hl-1">GET</span><span class="hl-0">(</span><span class="hl-2">&#39;/test&#39;</span><span class="hl-0">)</span><br/><span class="hl-0">  </span><span class="hl-4">async</span><span class="hl-0"> </span><span class="hl-1">test</span><span class="hl-0">(){</span><br/><span class="hl-0">    </span><span class="hl-5">return</span><span class="hl-0"> </span><span class="hl-2">&#39;hello world&#39;</span><span class="hl-0">;</span><br/><span class="hl-0">  }</span><br/><span class="hl-0">}</span>
+</code></pre>
+<blockquote>
+<p>@POST</p>
+</blockquote>
+<p>路由方法装饰器,与<code>@Controller</code>配合,实现一个 post 方法的路由,例:</p>
+<pre><code><span class="hl-0">@</span><span class="hl-1">Controller</span><span class="hl-0">(</span><span class="hl-2">&#39;/hello&#39;</span><span class="hl-0">);</span><br/><span class="hl-4">class</span><span class="hl-0"> </span><span class="hl-7">Test</span><span class="hl-0">{</span><br/><span class="hl-0">  @</span><span class="hl-1">POST</span><span class="hl-0">(</span><span class="hl-2">&#39;/test&#39;</span><span class="hl-0">)</span><br/><span class="hl-0">  </span><span class="hl-4">async</span><span class="hl-0"> </span><span class="hl-1">test</span><span class="hl-0">(@</span><span class="hl-3">Body</span><span class="hl-0"> </span><span class="hl-3">body</span><span class="hl-0">){</span><br/><span class="hl-0">    </span><span class="hl-5">return</span><span class="hl-0"> </span><span class="hl-3">body</span><span class="hl-0">;</span><br/><span class="hl-0">  }</span><br/><span class="hl-0">}</span>
+</code></pre>
+<blockquote>
+<p>@PUT</p>
+</blockquote>
+<p>路由方法装饰器,与<code>@Controller</code>配合,实现一个 put 方法的路由,例:</p>
+<pre><code><span class="hl-0">@</span><span class="hl-1">Controller</span><span class="hl-0">(</span><span class="hl-2">&#39;/hello&#39;</span><span class="hl-0">);</span><br/><span class="hl-4">class</span><span class="hl-0"> </span><span class="hl-7">Test</span><span class="hl-0">{</span><br/><span class="hl-0">  @</span><span class="hl-1">PUT</span><span class="hl-0">(</span><span class="hl-2">&#39;/test&#39;</span><span class="hl-0">)</span><br/><span class="hl-0">  </span><span class="hl-4">async</span><span class="hl-0"> </span><span class="hl-1">test</span><span class="hl-0">(){</span><br/><br/><span class="hl-0">  }</span><br/><span class="hl-0">}</span>
+</code></pre>
+<blockquote>
+<p>@DELETE</p>
+</blockquote>
+<p>路由方法装饰器,与<code>@Controller</code>配合,实现一个 delete 方法的路由,例:</p>
+<pre><code><span class="hl-0">@</span><span class="hl-1">Controller</span><span class="hl-0">(</span><span class="hl-2">&#39;/hello&#39;</span><span class="hl-0">);</span><br/><span class="hl-4">class</span><span class="hl-0"> </span><span class="hl-7">Test</span><span class="hl-0">{</span><br/><span class="hl-0">  @</span><span class="hl-1">DELETE</span><span class="hl-0">(</span><span class="hl-2">&#39;/test&#39;</span><span class="hl-0">)</span><br/><span class="hl-0">  </span><span class="hl-4">async</span><span class="hl-0"> </span><span class="hl-1">test</span><span class="hl-0">(){</span><br/><br/><span class="hl-0">  }</span><br/><span class="hl-0">}</span>
+</code></pre>
+<blockquote>
+<p>@Body</p>
+</blockquote>
+<p>参数装饰器,配合<code>@POST</code>,<code>@GET</code>,<code>@PUT</code>,<code>@DELETE</code>等方法装饰器时可以获取请求参数,该装饰器默认值为<code>ctx.request.body</code>,例:</p>
+<pre><code><span class="hl-0">@</span><span class="hl-1">POST</span><span class="hl-0">(</span><span class="hl-2">&#39;/test&#39;</span><span class="hl-0">)</span><br/><span class="hl-3">async</span><span class="hl-0"> </span><span class="hl-1">test</span><span class="hl-0">(@</span><span class="hl-3">Body</span><span class="hl-0"> </span><span class="hl-3">body</span><span class="hl-0">){</span><br/><span class="hl-0">    </span><span class="hl-5">return</span><span class="hl-0"> </span><span class="hl-3">body</span><span class="hl-0">;</span><br/><span class="hl-0">}</span>
+</code></pre>
+<blockquote>
+<p>@Query</p>
+</blockquote>
+<p>参数装饰器,配合<code>@POST</code>,<code>@GET</code>,<code>@PUT</code>,<code>@DELETE</code>等方法装饰器时可以获取请求参数,该装饰器默认值为<code>ctx.request.query</code>,例:</p>
+<pre><code><span class="hl-0">@</span><span class="hl-1">GET</span><span class="hl-0">(</span><span class="hl-2">&#39;/test&#39;</span><span class="hl-0">)</span><br/><span class="hl-3">async</span><span class="hl-0"> </span><span class="hl-1">test</span><span class="hl-0">(@</span><span class="hl-3">Query</span><span class="hl-0"> </span><span class="hl-3">query</span><span class="hl-0">){</span><br/><span class="hl-0">    </span><span class="hl-5">return</span><span class="hl-0"> </span><span class="hl-3">query</span><span class="hl-0">;</span><br/><span class="hl-0">}</span>
+</code></pre>
+<blockquote>
+<p>@Headers</p>
+</blockquote>
+<p>参数装饰器,配合<code>@POST</code>,<code>@GET</code>,<code>@PUT</code>,<code>@DELETE</code>等方法装饰器时可以获取请求参数,该装饰器默认值为<code>ctx.request.headers</code>,例:</p>
+<pre><code><span class="hl-0">@</span><span class="hl-1">GET</span><span class="hl-0">(</span><span class="hl-2">&#39;/test&#39;</span><span class="hl-0">)</span><br/><span class="hl-3">async</span><span class="hl-0"> </span><span class="hl-1">test</span><span class="hl-0">(@</span><span class="hl-3">Headers</span><span class="hl-0"> </span><span class="hl-3">headers</span><span class="hl-0">){</span><br/><span class="hl-0">    </span><span class="hl-5">return</span><span class="hl-0"> </span><span class="hl-3">headers</span><span class="hl-0">;</span><br/><span class="hl-0">}</span>
+</code></pre>
+<blockquote>
+<p>@Headers</p>
+</blockquote>
+<p>参数装饰器,配合<code>@POST</code>,<code>@GET</code>,<code>@PUT</code>,<code>@DELETE</code>等方法装饰器时可以获取请求参数,该装饰器默认值为<code>ctx.params</code>,例:</p>
+<pre><code><span class="hl-0">@</span><span class="hl-1">GET</span><span class="hl-0">(</span><span class="hl-2">&#39;/test/:id&#39;</span><span class="hl-0">)</span><br/><span class="hl-3">async</span><span class="hl-0"> </span><span class="hl-1">test</span><span class="hl-0">(@</span><span class="hl-3">Params</span><span class="hl-0"> </span><span class="hl-3">params</span><span class="hl-0">){</span><br/><span class="hl-0">    </span><span class="hl-5">return</span><span class="hl-0"> </span><span class="hl-3">params</span><span class="hl-0">.</span><span class="hl-3">id</span><span class="hl-0">;</span><br/><span class="hl-0">}</span>
+</code></pre>
+<blockquote>
+<p>@Ctx</p>
+</blockquote>
+<p>参数装饰器,配合<code>@POST</code>,<code>@GET</code>,<code>@PUT</code>,<code>@DELETE</code>等方法装饰器时可以获取请求参数,该装饰器默认值为<code>ctx</code>,例:</p>
+<pre><code><span class="hl-0">@</span><span class="hl-1">GET</span><span class="hl-0">(</span><span class="hl-2">&#39;/test/:id&#39;</span><span class="hl-0">)</span><br/><span class="hl-3">async</span><span class="hl-0"> </span><span class="hl-1">test</span><span class="hl-0">(@</span><span class="hl-3">Ctx</span><span class="hl-0"> </span><span class="hl-3">ctx</span><span class="hl-0">){</span><br/><span class="hl-0">    </span><span class="hl-5">return</span><span class="hl-0"> </span><span class="hl-3">ctx</span><span class="hl-0">.</span><span class="hl-3">params</span><span class="hl-0">.</span><span class="hl-3">id</span><span class="hl-0">;</span><br/><span class="hl-0">}</span>
+</code></pre>
+<blockquote>
+<p>@Validate</p>
+</blockquote>
+<p>参数验证装饰器,使用<a href="https://github.com/typestack/class-validator">class-validator</a>实现,传入 schema 即可完成校验,支持自定义错误处理。</p>
+<p>使用该装饰器后,参数装饰器获取的参数是经过该装饰器转换过后的参数(例如schema中包含Transform之类的功能)，需要获取原始数据可以使用<code>@Ctx</code>装饰器获取koa的Context。</p>
+<pre><code><span class="hl-5">export</span><span class="hl-0"> </span><span class="hl-4">class</span><span class="hl-0"> </span><span class="hl-7">Login</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-9">/**</span><br/><span class="hl-9">     * username describe</span><br/><span class="hl-9">     */</span><br/><span class="hl-0">    @</span><span class="hl-1">IsString</span><span class="hl-0">()</span><br/><span class="hl-0">    </span><span class="hl-3">username</span><span class="hl-0">: </span><span class="hl-7">string</span><span class="hl-0">;</span><br/><br/><span class="hl-0">  </span><span class="hl-9">/**</span><br/><span class="hl-9">     * password describe</span><br/><span class="hl-9">     */</span><br/><span class="hl-0">    @</span><span class="hl-1">IsString</span><span class="hl-0">()</span><br/><span class="hl-0">    </span><span class="hl-3">password</span><span class="hl-0">: </span><span class="hl-7">string</span><span class="hl-0">;</span><br/><span class="hl-0">}</span><br/><br/><span class="hl-0">@</span><span class="hl-1">Controller</span><span class="hl-0">(</span><span class="hl-2">&#39;/hello&#39;</span><span class="hl-0">);</span><br/><span class="hl-4">class</span><span class="hl-0"> </span><span class="hl-7">Test</span><span class="hl-0">{</span><br/><span class="hl-0">  @</span><span class="hl-1">Autowired</span><span class="hl-0">()</span><br/><span class="hl-0">  </span><span class="hl-3">UserService</span><span class="hl-0">:</span><span class="hl-7">UserService</span><br/><br/><span class="hl-0">  @</span><span class="hl-1">GET</span><span class="hl-0">(</span><span class="hl-2">&#39;/test</span><span class="hl-10">)</span><br/><span class="hl-0">  @</span><span class="hl-1">Validate</span><span class="hl-0">({</span><span class="hl-3">schema:Login</span><span class="hl-0">,</span><span class="hl-1">error</span><span class="hl-3">:</span><span class="hl-0">(</span><span class="hl-3">errors</span><span class="hl-0">)</span><span class="hl-4">=&gt;</span><span class="hl-0">{</span><br/><span class="hl-0">    </span><span class="hl-5">throw</span><span class="hl-0"> </span><span class="hl-4">new</span><span class="hl-0"> </span><span class="hl-7">Error</span><span class="hl-0">(</span><span class="hl-2">`</span><span class="hl-4">${</span><span class="hl-3">errors</span><span class="hl-8">.</span><span class="hl-1">map</span><span class="hl-8">(</span><span class="hl-3">error</span><span class="hl-4">=&gt;</span><span class="hl-7">Object</span><span class="hl-8">.</span><span class="hl-1">value</span><span class="hl-8">(</span><span class="hl-3">error</span><span class="hl-8">.</span><span class="hl-3">constraints</span><span class="hl-8">))</span><span class="hl-4">}</span><span class="hl-2">`</span><span class="hl-0">);</span><br/><span class="hl-0">  }})</span><br/><span class="hl-0">  </span><span class="hl-3">async</span><span class="hl-0"> </span><span class="hl-1">test</span><span class="hl-0">(@</span><span class="hl-3">Query</span><span class="hl-0"> </span><span class="hl-3">query</span><span class="hl-0">){</span><br/><span class="hl-0">    return query;</span><br/><span class="hl-0">  }</span><br/><span class="hl-0">}</span>
+</code></pre>
+
+<a href="#工具" id="工具" style="color: inherit; text-decoration: none;">
+  <h1>工具</h1>
+</a>
+
+<a href="#logger" id="logger" style="color: inherit; text-decoration: none;">
+  <h2>logger</h2>
+</a>
+<p>打印信息，分为 error,info,和 succuess,带时间戳和不同颜色</p>
+<pre><code><span class="hl-5">import</span><span class="hl-0"> {</span><span class="hl-3">logger</span><span class="hl-0">} </span><span class="hl-5">from</span><span class="hl-0"> </span><span class="hl-2">&#39;@tosee/misc&#39;</span><br/><br/><span class="hl-3">logger</span><span class="hl-0">.</span><span class="hl-1">info</span><span class="hl-0">(</span><span class="hl-2">&quot;hello world&quot;</span><span class="hl-0">);</span><br/><span class="hl-3">app</span><span class="hl-0">.</span><span class="hl-1">use</span><span class="hl-0">(</span><span class="hl-3">logger</span><span class="hl-0">.</span><span class="hl-1">Middleware</span><span class="hl-0">()); </span><span class="hl-9">//在后续中间件中的logger打印会带上唯一id,参考@tosee/log</span><br/>
+</code></pre>
+
+<a href="#扩展" id="扩展" style="color: inherit; text-decoration: none;">
+  <h1>扩展</h1>
+</a>
+<p><a href="https://github.com/fullstackoverflow/config">@tosee/config</a>加载配置文件使用@Value装饰器注入</p>
+<p><a href="https://github.com/fullstackoverflow/util">@tosee/util</a>@Before,@After,@Around,@Catch,@Autowired,@Schedule等工具装饰器</p>
+<p><a href="https://github.com/fullstackoverflow/busboy">@tosee/busboy</a>对<a href="https://github.com/mscdex/busboy">busboy</a>的封装,直接处理formdata文件流无临时文件,提供装饰器,中间件与自定义方式</p>
+<p><a href="https://github.com/fullstackoverflow/log">@tosee/log</a>支持RequestID与自定义格式的日志库</p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-enum"><a href="enums/ValidateType.html" class="tsd-kind-icon">Validate<wbr/>Type</a></li><li class="tsd-kind-class"><a href="classes/Misc.html" class="tsd-kind-icon">Misc</a></li><li class="tsd-kind-class"><a href="classes/Response.html" class="tsd-kind-icon">Response</a></li><li class="tsd-kind-interface"><a href="interfaces/options.html" class="tsd-kind-icon">options</a></li><li class="tsd-kind-variable"><a href="modules.html#Body" class="tsd-kind-icon">Body</a></li><li class="tsd-kind-variable"><a href="modules.html#Ctx" class="tsd-kind-icon">Ctx</a></li><li class="tsd-kind-variable"><a href="modules.html#Headers" class="tsd-kind-icon">Headers</a></li><li class="tsd-kind-variable"><a href="modules.html#Params" class="tsd-kind-icon">Params</a></li><li class="tsd-kind-variable"><a href="modules.html#Query" class="tsd-kind-icon">Query</a></li><li class="tsd-kind-variable"><a href="modules.html#logger" class="tsd-kind-icon">logger</a></li><li class="tsd-kind-function"><a href="modules.html#Controller" class="tsd-kind-icon">Controller</a></li><li class="tsd-kind-function"><a href="modules.html#DELETE" class="tsd-kind-icon">DELETE</a></li><li class="tsd-kind-function"><a href="modules.html#GET" class="tsd-kind-icon">GET</a></li><li class="tsd-kind-function"><a href="modules.html#POST" class="tsd-kind-icon">POST</a></li><li class="tsd-kind-function"><a href="modules.html#PUT" class="tsd-kind-icon">PUT</a></li><li class="tsd-kind-function"><a href="modules.html#Validate" class="tsd-kind-icon">Validate</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
