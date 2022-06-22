@@ -1,6 +1,6 @@
 import glob from "glob";
 import { statSync } from "fs";
-import { resolve, join } from "path";
+import { resolve, join, sep } from "path";
 
 export class ClassScanner {
 	private path: string[];
@@ -21,7 +21,7 @@ export class ClassScanner {
 	scan() {
 		return this.path
 			.map(p => {
-				return glob.sync(p).reduce((pre, curr) => {
+				return glob.sync(p.split(sep).join("/")).reduce((pre, curr) => {
 					if (statSync(curr).isFile()) {
 						return pre.concat(Object.values(require(curr)).filter(i => typeof i == "function"));
 					} else {
