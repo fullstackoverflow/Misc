@@ -27,7 +27,7 @@
   "author": "tosee",
   "license": "MIT",
   "dependencies": {
-    "@koa/cors": "^3.3.0",
+    "@koa/cors": "^5.0.0",
     "@koa/router": "^10.1.1",
     "@tosee/log": "^1.4.2",
     "@tosee/util": "^1.1.5",
