@@ -31,4 +31,4 @@ jobs:
             - name: Clean
               run: rm -rf docs&&rm -rf coverage
             - name: Publish
-              run: npm publish --provenance --access public
+              run: npm -v && npm publish --provenance --access public
