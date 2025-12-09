@@ -1,4 +1,4 @@
-import glob from "glob";
+import { sync } from "glob";
 import { statSync } from "fs";
 import { resolve, join, sep } from "path";
 
@@ -21,7 +21,7 @@ export class ClassScanner {
 	scan() {
 		return this.path
 			.map(p => {
-				return glob.sync(p.split(sep).join("/")).reduce((pre, curr) => {
+				return sync(p.split(sep).join("/")).reduce((pre, curr) => {
 					if (statSync(curr).isFile()) {
 						return pre.concat(Object.values(require(curr)).filter(i => typeof i == "function"));
 					} else {

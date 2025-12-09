@@ -11,7 +11,7 @@ export class ControllerLoader implements ClassLoader {
 
 	Load(clazz: FunctionConstructor, app: Koa) {
 		const prefix = Reflect.getMetadata(ControllerType.PREFIX, clazz);
-		const router: Router = new Router(prefix ? { prefix } : null);
+		const router: Router = new Router({ prefix });
 		const instance = new clazz();
 		const prototype = Object.getPrototypeOf(instance);
 		const methodsNames = Object.getOwnPropertyNames(prototype).filter(
