@@ -7,9 +7,11 @@ on:
 
 jobs:
     Release:
+        permissions:
+          contents: read
+          id-token: write
         name: Release
         env:
-            NPM_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
             CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
         runs-on: ubuntu-latest
         steps:
@@ -17,6 +19,7 @@ jobs:
             - uses: actions/setup-node@v6
               with: 
                 check-latest: true
+                registry-url: 'https://registry.npmjs.org'
             - name: Install
               run: npm install
             - name: Coverage
@@ -27,7 +30,5 @@ jobs:
               run: npm run build
             - name: Clean
               run: rm -rf docs&&rm -rf coverage
-            - name: AUTH
-              run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
             - name: Publish
-              run: npm publish --access public   
+              run: npm publish --provenance --access public
