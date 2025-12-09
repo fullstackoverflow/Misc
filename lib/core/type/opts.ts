@@ -6,10 +6,6 @@ import { Options as IBodyOptions } from "koa-bodyparser";
 import Koa from 'koa';
 
 declare module "koa" {
-	interface Request extends Koa.BaseRequest {
-		body?: any;
-	}
-
 	interface DefaultContext extends Koa.DefaultContextExtends {
 		params: any
 	}
