@@ -22,7 +22,7 @@ jobs:
                 check-latest: true
                 registry-url: 'https://registry.npmjs.org'
             - name: Update NPM
-              run: npm install -g npm@latest
+              run: sudo npm install -g npm@latest
             - name: Install
               run: npm install
             - name: Coverage
